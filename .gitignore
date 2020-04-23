@@ -32,3 +32,6 @@ data/grafana/data/plugins/grafana-simple-json-datasource/yarn.lock
 data/grafana/data/plugins/natel-plotly-panel/package.json
 data/grafana/data/plugins/natel-plotly-panel/yarn.lock
 data/influxdb/data/meta/meta.db
+
+data/cb-spider/*
+data/cb-tumblebug/*
