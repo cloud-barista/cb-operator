@@ -24,21 +24,32 @@ import (
 // stopCmd represents the stop command
 var stopCmd = &cobra.Command{
 	Use:   "stop",
-	Short: "Stop",
-	Long: `Stop the Cloud-Barista System`,
+	Short: "Stop Cloud-Barista System",
+	Long: `Stop Cloud-Barista System`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("\n[Stop Cloud-Barista]\n")
 
-		cmdStr := "sudo docker-compose down"
-		fmt.Println(cmdStr)
-		common.SysCall(cmdStr)
+		if common.FileStr == "" {
+			fmt.Println("file is required")
+		} else {
+			cmdStr := "sudo docker-compose -f " + common.FileStr + " stop"
+			//fmt.Println(cmdStr)
+			common.SysCall(cmdStr)
+
+			fmt.Println("\n[v]Status of Cloud-Barista runtimes")
+			cmdStr = "sudo docker-compose ps"
+			common.SysCall(cmdStr)
+		}
 
 	},
 }
 
+
+
 func init() {
 	rootCmd.AddCommand(stopCmd)
 
+	stopCmd.PersistentFlags().StringVarP(&common.FileStr, "file", "f", "*.yaml", "Path to Cloud-Barista Docker-compose file")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

@@ -17,27 +17,38 @@ package cmd
 
 import (
 	"fmt"
-
+	"github.com/cloud-barista/cb-operator/src/common"
 	"github.com/spf13/cobra"
 )
 
 // execCmd represents the exec command
 var execCmd = &cobra.Command{
 	Use:   "exec",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Run commands in a target component of Cloud-Barista System",
+	Long: `Run commands in your components of Cloud-Barista System. 
+	For instance, you can get an interactive prompt of cb-tumblebug by
+	[operator exec cb-tumblebug sh]`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("exec called")
+		fmt.Println("\n[Execute COMMAND{"+common.CommandStr+"] in the TARGET{"+common.TargetStr + "}]\n")
+
+		if common.TargetStr != "" && common.CommandStr != "" {	
+			//Need to resolve a problem which "sh" command can not get interactive shell. (-T mode is added intentionally)		
+			cmdStr := "sudo docker-compose exec -T " + common.TargetStr + " " + common.CommandStr
+			fmt.Println(cmdStr)
+			common.SysCall(cmdStr)
+		} else {
+			fmt.Println("Need to provide -t [target name] and -c [command]")
+		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(execCmd)
+
+	common.TargetStr = ""
+	common.CommandStr = ""
+	execCmd.PersistentFlags().StringVarP(&common.TargetStr, "target", "t", "", "Name of CB component to command")
+	execCmd.PersistentFlags().StringVarP(&common.CommandStr, "command", "c", "", "Command to excute")
 
 	// Here you will define your flags and configuration settings.
 

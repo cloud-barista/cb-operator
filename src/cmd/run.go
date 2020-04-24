@@ -26,12 +26,12 @@ import (
 // runCmd represents the run command
 var runCmd = &cobra.Command{
 	Use:   "run",
-	Short: "Setup and Run",
-	Long: `Setup and Run the Cloud-Barista System`,
+	Short: "Setup and Run Cloud-Barista System",
+	Long: `Setup and Run Cloud-Barista System`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("\n[Setup and Run Cloud-Barista]\n")
 
-		if fileStr == "" {
+		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
 			
@@ -50,20 +50,19 @@ var runCmd = &cobra.Command{
 			common.PrintJsonPretty(configuration)
 			*/
 
-			cmdStr := "sudo docker-compose -f " + fileStr + " up"
-			fmt.Println(cmdStr)
+			cmdStr := "sudo docker-compose -f " + common.FileStr + " up"
+			//fmt.Println(cmdStr)
 			common.SysCall(cmdStr)
 		}
 
 	},
 }
 
-var fileStr string
 
 func init() {
 	rootCmd.AddCommand(runCmd)
 
-	runCmd.PersistentFlags().StringVarP(&fileStr, "file", "f", "*.yaml", "Path to Cloud-Barista Docker-compose file")
+	runCmd.PersistentFlags().StringVarP(&common.FileStr, "file", "f", "*.yaml", "Path to Cloud-Barista Docker-compose file")
 
 	// Here you will define your flags and configuration settings.
 

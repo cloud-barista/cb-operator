@@ -33,13 +33,18 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
   Use:   "operator",
-  Short: "A brief description of your application",
-  Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+  Short: "A tool to operate Cloud-Barista system",
+  Long: `The operator is a tool to operate Cloud-Barista system. 
+  
+  For example, you can setup and run, stop, and ... Cloud-Barista runtimes.
+  
+  - operator run -f ../docker-compose.yaml
+  - operator info
+  - operator exec -t cb-tumblebug -c "ls -al"
+  - operator stop -f ../docker-compose.yaml
+  - operator remove -f ../docker-compose.yaml -v -i
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+  `,
   // Uncomment the following line if your bare application
   // has an action associated with it:
   //	Run: func(cmd *cobra.Command, args []string) { },
