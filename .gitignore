@@ -33,5 +33,12 @@ data/grafana/data/plugins/natel-plotly-panel/package.json
 data/grafana/data/plugins/natel-plotly-panel/yarn.lock
 data/influxdb/data/meta/meta.db
 
-data/cb-spider/*
-data/cb-tumblebug/*
+# need to check
+data/influxdb/data/data/_internal/
+data/influxdb/data/data/cbrestapigw/_series/
+data/influxdb/data/data/cbrestapigw/autogen/
+data/influxdb/data/wal/
+
+
+data/cb-spider/
+data/cb-tumblebug/
