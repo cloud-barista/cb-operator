@@ -17,27 +17,57 @@ package cmd
 
 import (
 	"fmt"
-
+	"github.com/cloud-barista/cb-operator/src/common"
 	"github.com/spf13/cobra"
 )
 
 // removeCmd represents the remove command
 var removeCmd = &cobra.Command{
 	Use:   "remove",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Stop and Remove Cloud-Barista System",
+	Long: `Stop and Remove Cloud-Barista System. Stop and Remove Cloud-Barista runtimes and related container images and meta-DB if necessary`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("remove called")
+
+		fmt.Println("\n[Remove Cloud-Barista]\n")
+
+		if common.FileStr == "" {
+			fmt.Println("file is required")
+		} else {
+
+			cmdStr := ""
+			if volFlag && imgFlag {
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v --rmi all"	
+			} else if volFlag {
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v"	
+			} else if imgFlag {
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down --rmi all"	
+			} else {
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down"	
+			}
+			
+			//fmt.Println(cmdStr)
+			common.SysCall(cmdStr)
+
+			fmt.Println("\n[v]Status of Cloud-Barista runtimes")
+			cmdStr = "sudo docker-compose ps"
+			//fmt.Println(cmdStr)
+			common.SysCall(cmdStr)
+
+		}
+
+	
 	},
 }
 
+var volFlag bool 
+var imgFlag bool 
+
 func init() {
 	rootCmd.AddCommand(removeCmd)
+
+	removeCmd.PersistentFlags().StringVarP(&common.FileStr, "file", "f", "*.yaml", "Path to Cloud-Barista Docker-compose file")
+	removeCmd.PersistentFlags().BoolVarP(&volFlag, "volumes", "v", false, "Remove named volumes declared in the volumes section of the Compose file")
+	removeCmd.PersistentFlags().BoolVarP(&imgFlag, "images", "i", false, "Remove all images")
 
 	// Here you will define your flags and configuration settings.
 

@@ -6,6 +6,9 @@ import (
 	"bufio"
 )
 
+var FileStr string
+var CommandStr string
+var TargetStr string
 
 func SysCall(cmdStr string) {
 	//cmdStr := "sudo docker-compose up"
