@@ -24,14 +24,14 @@ data/influxdb/data/wal/
 package.json
 yarn.lock
 
-data/grafana/data/grafana.db
+data/grafana/data/
 data/grafana/data/plugins/grafana-clock-panel/package.json
 data/grafana/data/plugins/grafana-clock-panel/yarn.lock
 data/grafana/data/plugins/grafana-simple-json-datasource/package.json
 data/grafana/data/plugins/grafana-simple-json-datasource/yarn.lock
 data/grafana/data/plugins/natel-plotly-panel/package.json
 data/grafana/data/plugins/natel-plotly-panel/yarn.lock
-data/influxdb/data/meta/meta.db
+data/influxdb/data/
 
 # need to check
 data/influxdb/data/data/_internal/
