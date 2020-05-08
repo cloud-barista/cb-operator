@@ -42,3 +42,6 @@ data/influxdb/data/wal/
 
 data/cb-spider/
 data/cb-tumblebug/
+
+# Binary
+src/operator
