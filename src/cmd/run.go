@@ -34,7 +34,6 @@ var runCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
-			
 			/*
 			var configuration mcisReq
 
@@ -62,7 +61,9 @@ var runCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(runCmd)
 
-	runCmd.PersistentFlags().StringVarP(&common.FileStr, "file", "f", "*.yaml", "Path to Cloud-Barista Docker-compose file")
+	pf := runCmd.PersistentFlags()
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+//	cobra.MarkFlagRequired(pf, "file")
 
 	// Here you will define your flags and configuration settings.
 

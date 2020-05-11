@@ -49,7 +49,9 @@ var stopCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(stopCmd)
 
-	stopCmd.PersistentFlags().StringVarP(&common.FileStr, "file", "f", "*.yaml", "Path to Cloud-Barista Docker-compose file")
+	pf := stopCmd.PersistentFlags()
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+//	cobra.MarkFlagRequired(pf, "file")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

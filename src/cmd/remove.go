@@ -36,15 +36,15 @@ var removeCmd = &cobra.Command{
 
 			cmdStr := ""
 			if volFlag && imgFlag {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v --rmi all"	
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v --rmi all"
 			} else if volFlag {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v"	
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v"
 			} else if imgFlag {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down --rmi all"	
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down --rmi all"
 			} else {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down"	
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " down"
 			}
-			
+
 			//fmt.Println(cmdStr)
 			common.SysCall(cmdStr)
 
@@ -55,19 +55,22 @@ var removeCmd = &cobra.Command{
 
 		}
 
-	
+
 	},
 }
 
-var volFlag bool 
-var imgFlag bool 
+var volFlag bool
+var imgFlag bool
 
 func init() {
 	rootCmd.AddCommand(removeCmd)
 
-	removeCmd.PersistentFlags().StringVarP(&common.FileStr, "file", "f", "*.yaml", "Path to Cloud-Barista Docker-compose file")
-	removeCmd.PersistentFlags().BoolVarP(&volFlag, "volumes", "v", false, "Remove named volumes declared in the volumes section of the Compose file")
-	removeCmd.PersistentFlags().BoolVarP(&imgFlag, "images", "i", false, "Remove all images")
+	pf := removeCmd.PersistentFlags()
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+//	cobra.MarkFlagRequired(pf, "file")
+
+	pf.BoolVarP(&volFlag, "volumes", "v", false, "Remove named volumes declared in the volumes section of the Compose file")
+	pf.BoolVarP(&imgFlag, "images", "i", false, "Remove all images")
 
 	// Here you will define your flags and configuration settings.
 

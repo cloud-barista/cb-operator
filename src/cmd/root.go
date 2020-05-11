@@ -38,11 +38,11 @@ var rootCmd = &cobra.Command{
   
   For example, you can setup and run, stop, and ... Cloud-Barista runtimes.
   
-  - operator run -f ../docker-compose.yaml
-  - operator info
-  - operator exec -t cb-tumblebug -c "ls -al"
-  - operator stop -f ../docker-compose.yaml
-  - operator remove -f ../docker-compose.yaml -v -i
+  - ./operator run -f ../docker-compose.yaml
+  - ./operator info
+  - ./operator exec -t cb-tumblebug -c "ls -al"
+  - ./operator stop -f ../docker-compose.yaml
+  - ./operator remove -f ../docker-compose.yaml -v -i
 
   `,
   // Uncomment the following line if your bare application
