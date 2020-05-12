@@ -1,19 +1,56 @@
-# cb-operator
+# CB-Operator
 The Operation Tool for Cloud-Barista System Runtime
 
-# Prerequisite
+# Prerequisites
 
-## install docker
+## Install Docker
+- [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- Tested version: Docker-CE 19.03.6
 
-## install docker-compose
+<details>
+  <summary>Docker version details</summary>
+  
 ```
-$ sudo curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-$ sudo chmod +x /usr/local/bin/docker-compose
-$ sudo docker-compose --version
+Client: Docker Engine - Community
+ Version:           19.03.6
+ API version:       1.40
+ Go version:        go1.12.16
+ Git commit:        369ce74a3c
+ Built:             Thu Feb 13 01:27:49 2020
+ OS/Arch:           linux/amd64
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.6
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.12.16
+  Git commit:       369ce74a3c
+  Built:            Thu Feb 13 01:26:21 2020
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.2.13
+  GitCommit:        7ad184331fa3e55e52b890ea95e65ba581ae3429
+ runc:
+  Version:          1.0.0-rc10
+  GitCommit:        dc9208a3303feef5b3839f4323d9beb36df0a9dd
+ docker-init:
+  Version:          0.18.0
+  GitCommit:        fec3683
 ```
+</details>
+
+## Install Docker Compose
+- On Ubuntu/Debian: `sudo apt install docker-compose`
+- Tested version: 1.17.1
 
 # Command to build the operator from souce code
-cloud-barista/cb-operator/src$ go build -o operator
+```Shell
+$ git clone https://github.com/cloud-barista/cb-operator.git
+$ cd cb-operator/src
+cb-operator/src$ go build -o operator
+```
 
 # Commands to use the operator
 
@@ -25,11 +62,12 @@ The operator is a tool to operate Cloud-Barista system.
   
   For example, you can setup and run, stop, and ... Cloud-Barista runtimes.
   
-  - operator run -f ../docker-compose.yaml
-  - operator info
-  - operator exec -t cb-tumblebug -c "ls -al"
-  - operator stop -f ../docker-compose.yaml
-  - operator remove -f ../docker-compose.yaml -v -i
+  - ./operator pull [-f ../docker-compose.yaml]
+  - ./operator run [-f ../docker-compose.yaml]
+  - ./operator info
+  - ./operator exec -t cb-tumblebug -c "ls -al"
+  - ./operator stop [-f ../docker-compose.yaml]
+  - ./operator remove [-f ../docker-compose.yaml] -v -i
 
 Usage:
   operator [command]
@@ -37,7 +75,8 @@ Usage:
 Available Commands:
   exec        Run commands in a target component of Cloud-Barista System
   help        Help about any command
-  info        Get informtion of Cloud-Barista System
+  info        Get information of Cloud-Barista System
+  pull        Pull images of Cloud-Barista System containers
   remove      Stop and Remove Cloud-Barista System
   run         Setup and Run Cloud-Barista System
   stop        Stop Cloud-Barista System
