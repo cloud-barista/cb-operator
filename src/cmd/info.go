@@ -25,8 +25,8 @@ import (
 // infoCmd represents the info command
 var infoCmd = &cobra.Command{
 	Use:   "info",
-	Short: "Get informtion of Cloud-Barista System",
-	Long: `Get informtion of Cloud-Barista System. Information about containers and container images`,
+	Short: "Get information of Cloud-Barista System",
+	Long: `Get information of Cloud-Barista System. Information about containers and container images`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("\n[Get info for Cloud-Barista runtimes]\n")
 
