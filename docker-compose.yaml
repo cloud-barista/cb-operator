@@ -59,7 +59,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:v0.1.9
+    image: cloudbaristaorg/cb-spider:v0.1.9.1
     container_name: cb-spider
     ports:
       - "1024:1024"
