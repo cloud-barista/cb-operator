@@ -94,13 +94,13 @@ services:
 
   # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:v0.1.9.1
+    image: cloudbaristaorg/cb-dragonfly:v0.1.9.2
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
 #     - ./data/cb-dragonfly/log:/go/src/github.com/cloud-barista/cb-dragonfly/log
     ports:
-      - "8094:8094"
+      - "8094:8094/udp"
       - "9090:9090"
     depends_on:
 #     - cb-restapigw
@@ -111,6 +111,7 @@ services:
       - CBLOG_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
       - CBMON_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
       - DRAGONFLY_INFLUXDB_URL=cb-dragonfly-influxdb:8086
+
 
   # InfluxDB for Dragonfly
   cb-dragonfly-influxdb:
@@ -141,7 +142,7 @@ services:
 
   # CB-Webtool
   cb-webtool:
-    image: cloudbaristaorg/cb-webtool:v0.1.9.3
+    image: cloudbaristaorg/cb-webtool:v0.1.9.4
     container_name: cb-webtool
     ports:
       - "1234:1234"
@@ -177,3 +178,10 @@ services:
 #     - fake_api
 #     - cb-spider
 #     - cb-tumblebug
+
+        #networks:
+        #  default:
+        #    external:
+        #      name: cboperator_default
+
+
