@@ -1,12 +1,14 @@
 version: 1
 name: cb-restapigw
 port: 8000
-cache_ttl: 3600s
+#cache_ttl: 3600s
 timeout: 1m
 debug: true
 host: 
   - "http://localhost:8100"
 middleware:
+  mw-httpcache:
+    enabled: false
   mw-metrics:
     router_enabled: true
     proxy_enabled: true
@@ -36,6 +38,8 @@ middleware:
     allow_methods:
       - POST
       - GET
+      - DELETE
+      - PUT
     allow_headers:
       - Origin
       - Authorization

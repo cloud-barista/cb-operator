@@ -141,7 +141,7 @@ services:
 
   # CB-Webtool
   cb-webtool:
-    image: cloudbaristaorg/cb-webtool:v0.1.9.1
+    image: cloudbaristaorg/cb-webtool:v0.1.9.3
     container_name: cb-webtool
     ports:
       - "1234:1234"
@@ -150,13 +150,13 @@ services:
       - cb-spider
       - cb-tumblebug
     environment:
-      - API_GW=http://cb-restapigw:8000
      #- SPIDER_URL=http://cb-restapigw:8000/spider
-      - SPIDER_URL=http://cb-spider:1024/spider
      #- TUMBLE_URL=http://cb-restapigw:8000/tumblebug
-      - TUMBLE_URL=http://cb-tumblebug:1323/tumblebug
-      - DRAGONFLY_URL=http://cb-restapigw:8000/dragonfly
-      - LADYBUG_URL=http://cb-restapigw:8000/ladybug
+      - API_GW=http://52.78.176.6:8000
+      - SPIDER_URL=http://52.78.176.6:8000/spider
+      - TUMBLE_URL=http://52.78.176.6:8000/tumblebug
+      - DRAGONFLY_URL=http://52.78.176.6:8000/dragonfly
+      - LADYBUG_URL=http://52.78.176.6:8000/ladybug
       - LoginEmail=admin
       - LoginPassword=admin
 
