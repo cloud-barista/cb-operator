@@ -42,6 +42,7 @@ data/influxdb/data/wal/
 
 data/cb-spider/
 data/cb-tumblebug/
+data/cb-tumblebug-mysql/
 
 # Binary
 src/operator
