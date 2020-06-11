@@ -57,6 +57,13 @@ services:
 #    ports:
 #      - "8010:8010"
 
+# The priority used by Compose to choose which env var value to use:
+# 1. Compose file
+# 2. Shell environment variables
+# 3. Environment file
+# 4. Dockerfile
+# 5. Variable is not defined
+
   # CB-Spider
   cb-spider:
     image: cloudbaristaorg/cb-spider:v0.2.0
@@ -85,12 +92,35 @@ services:
     environment:
       - SPIDER_URL=http://cb-restapigw:8000/spider
 
-# The priority used by Compose to choose which env var value to use:
-# 1. Compose file
-# 2. Shell environment variables
-# 3. Environment file
-# 4. Dockerfile
-# 5. Variable is not defined
+  cb-tumblebug-mysql:
+    image: mysql
+    container_name: cb-tumblebug-mysql
+    ports:
+      - "3306:3306" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
+    environment: # -e 옵션
+      MYSQL_ROOT_PASSWORD: "cloud-barista"  # MYSQL 패스워드 설정 옵션
+      MYSQL_DATABASE: cb_tumblebug
+      MYSQL_USER: cb_tumblebug
+      MYSQL_PASSWORD: cb_tumblebug
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./data/cb-tumblebug-mysql:/var/lib/mysql
+
+  cb-phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: cb-phpmyadmin
+    ports:
+      - 80:80
+    environment: # -e 옵션
+      PMA_HOSTS: cb-tumblebug-mysql
+      PMA_PORTS: 3306
+      PMA_USER: cb_tumblebug
+      PMA_PASSWORD: cb_tumblebug
+    links:
+      - cb-tumblebug-mysql
 
   # CB-Dragonfly
   cb-dragonfly:
