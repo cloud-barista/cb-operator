@@ -57,7 +57,13 @@ Server: Docker Engine - Community
 # Command to build the operator from souce code
 ```Shell
 $ git clone https://github.com/cloud-barista/cb-operator.git
+
 $ cd cb-operator/src
+
+(Setup dependencies)
+cb-operator/src$ go get -u
+
+(Build a binary for cb-operator)
 cb-operator/src$ go build -o operator
 ```
 
