@@ -1,0 +1,55 @@
+replicaCount: 1
+
+env:
+  - name: "SPIDER_URL"
+    value: "http://cb-restapigw:8000/spider"
+
+image:
+  repository: cloudbaristaorg/cb-spider
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "cb-spider"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 1024
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: cloud-barista.local
+      paths: []
+  tls: []
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

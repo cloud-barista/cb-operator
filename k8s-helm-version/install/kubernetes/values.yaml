@@ -1,0 +1,18 @@
+cb-dragonfly:
+  enabled : true
+
+cb-restapigw:
+  enabled : true
+
+cb-spider:
+  enabled : true
+
+cb-tumblebug:
+  enabled : true
+
+cb-webtool:
+  enabled : true
+
+docker-registry:
+  enabled : true
+  fullnameOverride: "docker-registry"
