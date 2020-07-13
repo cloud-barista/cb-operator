@@ -19,7 +19,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	"github.com/cloud-barista/cb-operator/src/common"
+	"github.com/cloud-barista/cb-operator/single-node-version/src/common"
 )
 
 // infoCmd represents the info command

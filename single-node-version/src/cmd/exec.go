@@ -17,7 +17,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/cloud-barista/cb-operator/src/common"
+	"github.com/cloud-barista/cb-operator/single-node-version/src/common"
 	"github.com/spf13/cobra"
 )
 

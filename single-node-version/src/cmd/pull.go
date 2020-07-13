@@ -18,18 +18,18 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/cloud-barista/cb-operator/src/common"
+	"github.com/cloud-barista/cb-operator/single-node-version/src/common"
 )
 
 
 
-// runCmd represents the run command
-var runCmd = &cobra.Command{
-	Use:   "run",
-	Short: "Setup and Run Cloud-Barista System",
-	Long: `Setup and Run Cloud-Barista System`,
+// pullCmd represents the pull command
+var pullCmd = &cobra.Command{
+	Use:   "pull",
+	Short: "Pull images of Cloud-Barista System containers",
+	Long: `Pull images of Cloud-Barista System containers`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("\n[Setup and Run Cloud-Barista]\n")
+		fmt.Println("\n[Pull images of Cloud-Barista System containers]\n")
 
 		if common.FileStr == "" {
 			fmt.Println("file is required")
@@ -49,7 +49,7 @@ var runCmd = &cobra.Command{
 			common.PrintJsonPretty(configuration)
 			*/
 
-			cmdStr := "sudo docker-compose -f " + common.FileStr + " up"
+			cmdStr := "sudo docker-compose -f " + common.FileStr + " pull"
 			//fmt.Println(cmdStr)
 			common.SysCall(cmdStr)
 		}
@@ -59,9 +59,9 @@ var runCmd = &cobra.Command{
 
 
 func init() {
-	rootCmd.AddCommand(runCmd)
+	rootCmd.AddCommand(pullCmd)
 
-	pf := runCmd.PersistentFlags()
+	pf := pullCmd.PersistentFlags()
 	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
 //	cobra.MarkFlagRequired(pf, "file")
 
@@ -69,9 +69,9 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// runCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// pullCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// runCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// pullCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/cloud-barista/cb-operator/src/cmd"
+import "github.com/cloud-barista/cb-operator/single-node-version/src/cmd"
 
 func main() {
   cmd.Execute()

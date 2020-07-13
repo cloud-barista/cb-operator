@@ -17,40 +17,27 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/cloud-barista/cb-operator/single-node-version/src/common"
 	"github.com/spf13/cobra"
-	"github.com/cloud-barista/cb-operator/src/common"
 )
 
-
-
-// pullCmd represents the pull command
-var pullCmd = &cobra.Command{
-	Use:   "pull",
-	Short: "Pull images of Cloud-Barista System containers",
-	Long: `Pull images of Cloud-Barista System containers`,
+// stopCmd represents the stop command
+var stopCmd = &cobra.Command{
+	Use:   "stop",
+	Short: "Stop Cloud-Barista System",
+	Long: `Stop Cloud-Barista System`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("\n[Pull images of Cloud-Barista System containers]\n")
+		fmt.Println("\n[Stop Cloud-Barista]\n")
 
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
-			/*
-			var configuration mcisReq
-
-    		viper.SetConfigFile(fileStr)
-			if err := viper.ReadInConfig(); err != nil {
-			fmt.Printf("Error reading config file, %s", err)
-			}
-			err := viper.Unmarshal(&configuration)
-			if err != nil {
-			fmt.Printf("Unable to decode into struct, %v", err)
-			}
-
-			common.PrintJsonPretty(configuration)
-			*/
-
-			cmdStr := "sudo docker-compose -f " + common.FileStr + " pull"
+			cmdStr := "sudo docker-compose -f " + common.FileStr + " stop"
 			//fmt.Println(cmdStr)
+			common.SysCall(cmdStr)
+
+			fmt.Println("\n[v]Status of Cloud-Barista runtimes")
+			cmdStr = "sudo docker-compose ps"
 			common.SysCall(cmdStr)
 		}
 
@@ -58,20 +45,20 @@ var pullCmd = &cobra.Command{
 }
 
 
-func init() {
-	rootCmd.AddCommand(pullCmd)
 
-	pf := pullCmd.PersistentFlags()
+func init() {
+	rootCmd.AddCommand(stopCmd)
+
+	pf := stopCmd.PersistentFlags()
 	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
 //	cobra.MarkFlagRequired(pf, "file")
-
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// pullCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// stopCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// pullCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// stopCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
