@@ -62,7 +62,7 @@ func init() {
 	rootCmd.AddCommand(pullCmd)
 
 	pf := pullCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
 //	cobra.MarkFlagRequired(pf, "file")
 
 	// Here you will define your flags and configuration settings.

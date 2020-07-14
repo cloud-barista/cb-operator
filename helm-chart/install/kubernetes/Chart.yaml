@@ -1,0 +1,26 @@
+apiVersion: v2
+name: cloud-barista
+description: A Helm chart for Cloud-Barista
+type: application
+version: 0.1.0
+appVersion: 1.0.0
+dependencies:
+  - name: cb-dragonfly
+    version: 0.1.0
+    condition: cb-dragonfly.enabled
+  - name: cb-restapigw
+    version: 0.1.0
+    condition: cb-restapigw.enabled
+  - name: cb-spider
+    version: 0.1.0
+    condition: cb-spider.enabled
+  - name: cb-tumblebug
+    version: 0.1.0
+    condition: cb-tumblebug.enabled
+  - name: cb-webtool
+    version: 0.1.0
+    condition: cb-webtool.enabled
+  - name: docker-registry
+    version: ~1.9.3
+    repository: "https://kubernetes-charts.storage.googleapis.com"
+    condition: docker-registry.enabled

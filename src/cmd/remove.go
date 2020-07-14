@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+
 	"github.com/cloud-barista/cb-operator/src/common"
 	"github.com/spf13/cobra"
 )
@@ -25,7 +26,7 @@ import (
 var removeCmd = &cobra.Command{
 	Use:   "remove",
 	Short: "Stop and Remove Cloud-Barista System",
-	Long: `Stop and Remove Cloud-Barista System. Stop and Remove Cloud-Barista runtimes and related container images and meta-DB if necessary`,
+	Long:  `Stop and Remove Cloud-Barista System. Stop and Remove Cloud-Barista runtimes and related container images and meta-DB if necessary`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		fmt.Println("\n[Remove Cloud-Barista]\n")
@@ -49,12 +50,11 @@ var removeCmd = &cobra.Command{
 			common.SysCall(cmdStr)
 
 			fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-			cmdStr = "sudo docker-compose ps"
+			cmdStr = "sudo docker-compose -f " + common.FileStr + " ps"
 			//fmt.Println(cmdStr)
 			common.SysCall(cmdStr)
 
 		}
-
 
 	},
 }
@@ -66,8 +66,8 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	pf := removeCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
-//	cobra.MarkFlagRequired(pf, "file")
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+	//	cobra.MarkFlagRequired(pf, "file")
 
 	pf.BoolVarP(&volFlag, "volumes", "v", false, "Remove named volumes declared in the volumes section of the Compose file")
 	pf.BoolVarP(&imgFlag, "images", "i", false, "Remove all images")

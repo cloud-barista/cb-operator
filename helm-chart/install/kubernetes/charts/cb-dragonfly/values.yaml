@@ -1,0 +1,82 @@
+## external : influxdb
+
+influxdb:
+  enabled: true
+  fullnameOverride: "cb-dragonfly-influxdb"
+  database: "cbmon"
+  adminUser:
+    name: "cbmon"
+    pwd: "password"
+
+## external : etcd
+etcd:
+  enabled: true
+  fullnameOverride: "cb-dragonfly-etcd"
+  auth:
+    rbac:
+      enabled: false
+  readinessProbe:
+    enabled: true
+  allowNoneAuthentication: true
+
+## cb-dragonfly custom variables
+dragonfly:
+  rootPath: "/go/src/github.com/cloud-barista/cb-dragonfly"
+
+## chart values
+replicaCount: 1
+
+image:
+  repository: cloudbaristaorg/cb-dragonfly
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "cb-dragonfly"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 9090
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: cloud-barista.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

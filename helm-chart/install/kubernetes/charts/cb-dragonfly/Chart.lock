@@ -1,0 +1,9 @@
+dependencies:
+- name: etcd
+  repository: https://charts.bitnami.com/bitnami
+  version: 4.8.2
+- name: influxdb
+  repository: https://charts.bitnami.com/bitnami
+  version: 0.4.8
+digest: sha256:7f568f5ff675bcfe5cec680195e6e27efeed11ae6b5ff9db9a28847d29b388b8
+generated: "2020-05-25T09:33:05.913859+09:00"

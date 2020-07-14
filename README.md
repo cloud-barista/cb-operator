@@ -77,12 +77,12 @@ The operator is a tool to operate Cloud-Barista system.
   
   For example, you can setup and run, stop, and ... Cloud-Barista runtimes.
   
-  - ./operator pull [-f ../docker-compose.yaml]
-  - ./operator run [-f ../docker-compose.yaml]
+  - ./operator pull [-f ../docker-compose-mode-files/docker-compose.yaml]
+  - ./operator run [-f ../docker-compose-mode-files/docker-compose.yaml]
   - ./operator info
   - ./operator exec -t cb-tumblebug -c "ls -al"
-  - ./operator stop [-f ../docker-compose.yaml]
-  - ./operator remove [-f ../docker-compose.yaml] -v -i
+  - ./operator stop [-f ../docker-compose-mode-files/docker-compose.yaml]
+  - ./operator remove [-f ../docker-compose-mode-files/docker-compose.yaml] -v -i
 
 Usage:
   operator [command]
