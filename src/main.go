@@ -72,9 +72,9 @@ func readMode() string {
 		CB_OPERATOR_MODE = string(data)
 		fmt.Println("CB_OPERATOR_MODE: " + CB_OPERATOR_MODE)
 
-		if CB_OPERATOR_MODE == "singlenode" || CB_OPERATOR_MODE == "k8scluster" {
-			return CB_OPERATOR_MODE
-		}
+		//if CB_OPERATOR_MODE == "singlenode" || CB_OPERATOR_MODE == "k8scluster" {
+		return CB_OPERATOR_MODE
+		//}
 
 	} else if os.IsNotExist(err) == true {
 		// path/to/whatever does *not* exist
@@ -102,5 +102,14 @@ func main() {
 
 	if mode == "singlenode" {
 		cmd.Execute()
+	} else if mode == "k8scluster" {
+
+	} else {
+		fmt.Println("Invalid CB_OPERATOR_MODE: " + mode)
+		fmt.Println("CB_OPERATOR_MODE should be one of these: singlenode, k8scluster")
+
+		//fmt.Println("To change CB_OPERATOR_MODE, just delete the CB_OPERATOR_MODE file and re-run the cb-operator.")
+		scanAndWriteMode()
+		main()
 	}
 }
