@@ -33,8 +33,8 @@ func scanAndWriteMode() {
 
 	fmt.Println("")
 	fmt.Println("[Options]")
-	fmt.Println("1: Single-node version (Docker Compose based)")
-	fmt.Println("2: K8s-cluster version (requires a K8s cluster with Helm 3 enabled)")
+	fmt.Println("1: Docker Compose environment (Requires Docker and Docker Compose)")
+	fmt.Println("2: Kubernetes environment (Requires Kubernetes cluster with Helm 3)")
 	fmt.Println("")
 	fmt.Print("Choose 1 or 2: ")
 
@@ -45,11 +45,11 @@ func scanAndWriteMode() {
 
 	switch userInput {
 	case 1:
-		fmt.Println("[1: Single-node version (Docker Compose based)] selected.")
-		tempStr = "singlenode"
+		fmt.Println("[1: Docker Compose environment (Requires Docker and Docker Compose)] selected.")
+		tempStr = "DockerCompose"
 	case 2:
-		fmt.Println("[2: K8s-cluster version (requires a K8s cluster with Helm 3 enabled)] selected.")
-		tempStr = "k8scluster"
+		fmt.Println("[2: Kubernetes environment (Requires Kubernetes cluster with Helm 3)] selected.")
+		tempStr = "Kubernetes"
 	default:
 		fmt.Println("You should choose between 1 and 2.")
 		return
@@ -72,7 +72,7 @@ func readMode() string {
 		CB_OPERATOR_MODE = string(data)
 		fmt.Println("CB_OPERATOR_MODE: " + CB_OPERATOR_MODE)
 
-		//if CB_OPERATOR_MODE == "singlenode" || CB_OPERATOR_MODE == "k8scluster" {
+		//if CB_OPERATOR_MODE == "DockerCompose" || CB_OPERATOR_MODE == "Kubernetes" {
 		return CB_OPERATOR_MODE
 		//}
 
@@ -100,13 +100,13 @@ func main() {
 
 	mode := readMode()
 
-	if mode == "singlenode" {
+	if mode == "DockerCompose" {
 		cmd.Execute()
-	} else if mode == "k8scluster" {
+	} else if mode == "Kubernetes" {
 
 	} else {
 		fmt.Println("Invalid CB_OPERATOR_MODE: " + mode)
-		fmt.Println("CB_OPERATOR_MODE should be one of these: singlenode, k8scluster")
+		fmt.Println("CB_OPERATOR_MODE should be one of these: DockerCompose, Kubernetes")
 
 		//fmt.Println("To change CB_OPERATOR_MODE, just delete the CB_OPERATOR_MODE file and re-run the cb-operator.")
 		scanAndWriteMode()
