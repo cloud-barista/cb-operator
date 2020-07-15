@@ -3,7 +3,7 @@ name: cb-restapigw
 type: application
 version: 0.1.0
 appVersion: v0.1-20200408
-description: A Helm chart for Kubernetes
+description: cb-restapigw Helm chart
 
 dependencies:
   - name: influxdb

@@ -3,4 +3,4 @@ name: cb-webtool
 type: application
 version: 0.1.0
 appVersion: v0.1-20200326
-description: A Helm chart for Kubernetes
+description: cb-webtool Helm chart
