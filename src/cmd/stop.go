@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+
 	"github.com/cloud-barista/cb-operator/src/common"
 	"github.com/spf13/cobra"
 )
@@ -25,7 +26,7 @@ import (
 var stopCmd = &cobra.Command{
 	Use:   "stop",
 	Short: "Stop Cloud-Barista System",
-	Long: `Stop Cloud-Barista System`,
+	Long:  `Stop Cloud-Barista System`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("\n[Stop Cloud-Barista]\n")
 
@@ -37,21 +38,19 @@ var stopCmd = &cobra.Command{
 			common.SysCall(cmdStr)
 
 			fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-			cmdStr = "sudo docker-compose ps"
+			cmdStr = "sudo docker-compose -f " + common.FileStr + " ps"
 			common.SysCall(cmdStr)
 		}
 
 	},
 }
 
-
-
 func init() {
 	rootCmd.AddCommand(stopCmd)
 
 	pf := stopCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
-//	cobra.MarkFlagRequired(pf, "file")
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+	//	cobra.MarkFlagRequired(pf, "file")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

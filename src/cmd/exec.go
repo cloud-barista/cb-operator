@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"fmt"
+
 	"github.com/cloud-barista/cb-operator/src/common"
 	"github.com/spf13/cobra"
 )
@@ -29,11 +30,11 @@ var execCmd = &cobra.Command{
 	For instance, you can get an interactive prompt of cb-tumblebug by
 	[operator exec cb-tumblebug sh]`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("\n[Execute COMMAND{"+common.CommandStr+"] in the TARGET{"+common.TargetStr + "}]\n")
+		fmt.Println("\n[Execute COMMAND{" + common.CommandStr + "] in the TARGET{" + common.TargetStr + "}]\n")
 
-		if common.TargetStr != "" && common.CommandStr != "" {	
-			//Need to resolve a problem which "sh" command can not get interactive shell. (-T mode is added intentionally)		
-			cmdStr := "sudo docker-compose exec -T " + common.TargetStr + " " + common.CommandStr
+		if common.TargetStr != "" && common.CommandStr != "" {
+			//Need to resolve a problem which "sh" command can not get interactive shell. (-T mode is added intentionally)
+			cmdStr := "sudo docker-compose -f " + common.FileStr + " exec -T " + common.TargetStr + " " + common.CommandStr
 			fmt.Println(cmdStr)
 			common.SysCall(cmdStr)
 		} else {
@@ -50,6 +51,8 @@ func init() {
 	execCmd.PersistentFlags().StringVarP(&common.TargetStr, "target", "t", "", "Name of CB component to command")
 	execCmd.PersistentFlags().StringVarP(&common.CommandStr, "command", "c", "", "Command to excute")
 
+	pf := execCmd.PersistentFlags()
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

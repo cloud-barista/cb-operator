@@ -1,0 +1,15 @@
+apiVersion: v2
+name: cb-dragonfly
+type: application
+version: 0.2.0
+appVersion: v0.2.0-20200714
+description: CB-Dragonfly Helm chart
+dependencies:
+  - name: etcd
+    version: ~4.8.2
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: etcd.enabled
+  - name: influxdb
+    version: ~0.4.8
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: influxdb.enabled

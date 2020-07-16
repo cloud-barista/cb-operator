@@ -18,35 +18,40 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/spf13/cobra"
 	"github.com/cloud-barista/cb-operator/src/common"
+	"github.com/spf13/cobra"
 )
 
 // infoCmd represents the info command
 var infoCmd = &cobra.Command{
 	Use:   "info",
 	Short: "Get information of Cloud-Barista System",
-	Long: `Get information of Cloud-Barista System. Information about containers and container images`,
+	Long:  `Get information of Cloud-Barista System. Information about containers and container images`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("\n[Get info for Cloud-Barista runtimes]\n")
 
-		fmt.Println("[v]Status of Cloud-Barista runtimes")
-		cmdStr := "sudo docker-compose ps"
-		//fmt.Println(cmdStr)
-		common.SysCall(cmdStr)
+		if common.FileStr == "" {
+			fmt.Println("file is required")
+		} else {
+			fmt.Println("[v]Status of Cloud-Barista runtimes")
+			cmdStr := "sudo docker-compose -f " + common.FileStr + " ps"
+			//fmt.Println(cmdStr)
+			common.SysCall(cmdStr)
 
-		fmt.Println("")
-		fmt.Println("[v]Status of Cloud-Barista runtime images")
-		cmdStr = "sudo docker-compose images"
-		//fmt.Println(cmdStr)
-		common.SysCall(cmdStr)
-
+			fmt.Println("")
+			fmt.Println("[v]Status of Cloud-Barista runtime images")
+			cmdStr = "sudo docker-compose -f " + common.FileStr + " images"
+			//fmt.Println(cmdStr)
+			common.SysCall(cmdStr)
+		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(infoCmd)
 
+	pf := infoCmd.PersistentFlags()
+	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
