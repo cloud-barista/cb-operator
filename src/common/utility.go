@@ -9,6 +9,14 @@ import (
 var FileStr string
 var CommandStr string
 var TargetStr string
+var CB_OPERATOR_MODE string
+
+const (
+	Mode_DockerCompose   string = "DockerCompose"
+	Mode_Kubernetes      string = "Kubernetes"
+	CB_K8s_Namespace     string = "cloud-barista"
+	CB_Helm_Release_Name string = "cloud-barista"
+)
 
 func SysCall(cmdStr string) {
 	//cmdStr := "sudo docker-compose -f " + common.FileStr + " up"

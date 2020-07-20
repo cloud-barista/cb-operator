@@ -21,6 +21,7 @@ import (
 	"os"
 
 	"github.com/cloud-barista/cb-operator/src/cmd"
+	"github.com/cloud-barista/cb-operator/src/common"
 )
 
 func errCheck(e error) {
@@ -46,10 +47,10 @@ func scanAndWriteMode() {
 	switch userInput {
 	case 1:
 		fmt.Println("[1: Docker Compose environment (Requires Docker and Docker Compose)] selected.")
-		tempStr = "DockerCompose"
+		tempStr = common.Mode_DockerCompose
 	case 2:
 		fmt.Println("[2: Kubernetes environment (Requires Kubernetes cluster with Helm 3)] selected.")
-		tempStr = "Kubernetes"
+		tempStr = common.Mode_Kubernetes
 	default:
 		fmt.Println("You should choose between 1 and 2.")
 		return
@@ -69,11 +70,11 @@ func readMode() string {
 		data, err := ioutil.ReadFile("./CB_OPERATOR_MODE")
 		errCheck(err)
 
-		CB_OPERATOR_MODE = string(data)
-		fmt.Println("CB_OPERATOR_MODE: " + CB_OPERATOR_MODE)
+		common.CB_OPERATOR_MODE = string(data)
+		fmt.Println("CB_OPERATOR_MODE: " + common.CB_OPERATOR_MODE)
 
-		//if CB_OPERATOR_MODE == "DockerCompose" || CB_OPERATOR_MODE == "Kubernetes" {
-		return CB_OPERATOR_MODE
+		//if common.CB_OPERATOR_MODE == common.DockerCompose || common.CB_OPERATOR_MODE == common.Kubernetes {
+		return common.CB_OPERATOR_MODE
 		//}
 
 	} else if os.IsNotExist(err) == true {
@@ -94,22 +95,24 @@ func readMode() string {
 	return ""
 }
 
-var CB_OPERATOR_MODE string
+//var CB_OPERATOR_MODE string
 
 func main() {
 
 	mode := readMode()
 
-	if mode == "DockerCompose" {
+	switch mode {
+	case common.Mode_DockerCompose:
 		cmd.Execute()
-	} else if mode == "Kubernetes" {
-
-	} else {
+	case common.Mode_Kubernetes:
+		cmd.Execute()
+	default:
 		fmt.Println("Invalid CB_OPERATOR_MODE: " + mode)
-		fmt.Println("CB_OPERATOR_MODE should be one of these: DockerCompose, Kubernetes")
+		fmt.Println("CB_OPERATOR_MODE should be one of these: " + common.Mode_DockerCompose + ", " + common.Mode_Kubernetes)
 
 		//fmt.Println("To change CB_OPERATOR_MODE, just delete the CB_OPERATOR_MODE file and re-run the cb-operator.")
 		scanAndWriteMode()
 		main()
 	}
+
 }

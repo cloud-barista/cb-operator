@@ -33,16 +33,30 @@ var infoCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
-			fmt.Println("[v]Status of Cloud-Barista runtimes")
-			cmdStr := "sudo docker-compose -f " + common.FileStr + " ps"
-			//fmt.Println(cmdStr)
-			common.SysCall(cmdStr)
+			var cmdStr string
+			switch common.CB_OPERATOR_MODE {
+			case common.Mode_DockerCompose:
+				fmt.Println("[v]Status of Cloud-Barista runtimes")
+				cmdStr := "sudo docker-compose -f " + common.FileStr + " ps"
+				//fmt.Println(cmdStr)
+				common.SysCall(cmdStr)
 
-			fmt.Println("")
-			fmt.Println("[v]Status of Cloud-Barista runtime images")
-			cmdStr = "sudo docker-compose -f " + common.FileStr + " images"
-			//fmt.Println(cmdStr)
-			common.SysCall(cmdStr)
+				fmt.Println("")
+				fmt.Println("[v]Status of Cloud-Barista runtime images")
+				cmdStr = "sudo docker-compose -f " + common.FileStr + " images"
+				//fmt.Println(cmdStr)
+				common.SysCall(cmdStr)
+			case common.Mode_Kubernetes:
+				fmt.Println("[v]Status of Cloud-Barista Helm release")
+				cmdStr = "sudo helm status --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name
+				common.SysCall(cmdStr)
+				fmt.Println()
+				fmt.Println("[v]Status of Cloud-Barista pods")
+				cmdStr = "sudo kubectl get pods -n " + common.CB_K8s_Namespace
+				common.SysCall(cmdStr)
+			default:
+
+			}
 		}
 	},
 }
@@ -51,7 +65,14 @@ func init() {
 	rootCmd.AddCommand(infoCmd)
 
 	pf := infoCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+	switch common.CB_OPERATOR_MODE {
+	case common.Mode_DockerCompose:
+		pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
+	case common.Mode_Kubernetes:
+		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/install/kubernetes/values.yaml", "Path to Cloud-Barista Helm chart file")
+	default:
+
+	}
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
