@@ -40,9 +40,7 @@ var stopCmd = &cobra.Command{
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 
-				fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " ps"
-				common.SysCall(cmdStr)
+				common.SysCall_docker_compose_ps()
 			case common.Mode_Kubernetes:
 				cmdStr = "sudo helm uninstall --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name
 				common.SysCall(cmdStr)

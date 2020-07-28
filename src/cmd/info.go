@@ -36,10 +36,7 @@ var infoCmd = &cobra.Command{
 			var cmdStr string
 			switch common.CB_OPERATOR_MODE {
 			case common.Mode_DockerCompose:
-				fmt.Println("[v]Status of Cloud-Barista runtimes")
-				cmdStr := "sudo docker-compose -f " + common.FileStr + " ps"
-				//fmt.Println(cmdStr)
-				common.SysCall(cmdStr)
+				common.SysCall_docker_compose_ps()
 
 				fmt.Println("")
 				fmt.Println("[v]Status of Cloud-Barista runtime images")
@@ -53,6 +50,13 @@ var infoCmd = &cobra.Command{
 				fmt.Println()
 				fmt.Println("[v]Status of Cloud-Barista pods")
 				cmdStr = "sudo kubectl get pods -n " + common.CB_K8s_Namespace
+				common.SysCall(cmdStr)
+				fmt.Println()
+				fmt.Println("[v]Status of Cloud-Barista container images")
+				cmdStr = `sudo kubectl get pods -n ` + common.CB_K8s_Namespace + ` -o jsonpath="{..image}" |\
+				tr -s '[[:space:]]' '\n' |\
+				sort |\
+				uniq`
 				common.SysCall(cmdStr)
 			default:
 

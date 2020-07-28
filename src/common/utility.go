@@ -32,3 +32,9 @@ func SysCall(cmdStr string) {
 	}
 	cmd.Wait()
 }
+
+func SysCall_docker_compose_ps() {
+	fmt.Println("\n[v]Status of Cloud-Barista runtimes")
+	cmdStr := "sudo docker-compose -f " + FileStr + " ps"
+	SysCall(cmdStr)
+}

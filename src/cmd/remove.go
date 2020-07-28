@@ -54,10 +54,7 @@ var removeCmd = &cobra.Command{
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 
-				fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " ps"
-				//fmt.Println(cmdStr)
-				common.SysCall(cmdStr)
+				common.SysCall_docker_compose_ps()
 			default:
 
 			}
