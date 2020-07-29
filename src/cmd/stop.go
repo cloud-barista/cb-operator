@@ -33,13 +33,20 @@ var stopCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
-			cmdStr := "sudo docker-compose -f " + common.FileStr + " stop"
-			//fmt.Println(cmdStr)
-			common.SysCall(cmdStr)
+			var cmdStr string
+			switch common.CB_OPERATOR_MODE {
+			case common.Mode_DockerCompose:
+				cmdStr := "sudo docker-compose -f " + common.FileStr + " stop"
+				//fmt.Println(cmdStr)
+				common.SysCall(cmdStr)
 
-			fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-			cmdStr = "sudo docker-compose -f " + common.FileStr + " ps"
-			common.SysCall(cmdStr)
+				common.SysCall_docker_compose_ps()
+			case common.Mode_Kubernetes:
+				cmdStr = "sudo helm uninstall --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name
+				common.SysCall(cmdStr)
+			default:
+
+			}
 		}
 
 	},
@@ -49,7 +56,14 @@ func init() {
 	rootCmd.AddCommand(stopCmd)
 
 	pf := stopCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+	switch common.CB_OPERATOR_MODE {
+	case common.Mode_DockerCompose:
+		pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
+	case common.Mode_Kubernetes:
+		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/install/kubernetes/values.yaml", "Path to Cloud-Barista Helm chart file")
+	default:
+
+	}
 	//	cobra.MarkFlagRequired(pf, "file")
 	// Here you will define your flags and configuration settings.
 

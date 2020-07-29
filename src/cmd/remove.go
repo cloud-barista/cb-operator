@@ -34,26 +34,30 @@ var removeCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
+			var cmdStr string
+			switch common.CB_OPERATOR_MODE {
+			case common.Mode_Kubernetes:
+				cmdStr = "sudo helm uninstall --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name
+				common.SysCall(cmdStr)
+				fallthrough
+			case common.Mode_DockerCompose:
+				if volFlag && imgFlag {
+					cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v --rmi all"
+				} else if volFlag {
+					cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v"
+				} else if imgFlag {
+					cmdStr = "sudo docker-compose -f " + common.FileStr + " down --rmi all"
+				} else {
+					cmdStr = "sudo docker-compose -f " + common.FileStr + " down"
+				}
 
-			cmdStr := ""
-			if volFlag && imgFlag {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v --rmi all"
-			} else if volFlag {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v"
-			} else if imgFlag {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down --rmi all"
-			} else {
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " down"
+				//fmt.Println(cmdStr)
+				common.SysCall(cmdStr)
+
+				common.SysCall_docker_compose_ps()
+			default:
+
 			}
-
-			//fmt.Println(cmdStr)
-			common.SysCall(cmdStr)
-
-			fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-			cmdStr = "sudo docker-compose -f " + common.FileStr + " ps"
-			//fmt.Println(cmdStr)
-			common.SysCall(cmdStr)
-
 		}
 
 	},

@@ -16,33 +16,33 @@
 
 .DS_Store
 
-data/influxdb/data/data/_internal/
-data/influxdb/data/data/cbrestapigw/
-data/influxdb/data/wal/
+docker-compose-mode-files/data/influxdb/data/data/_internal/
+docker-compose-mode-files/data/influxdb/data/data/cbrestapigw/
+docker-compose-mode-files/data/influxdb/data/wal/
 
 *.db
 package.json
 yarn.lock
 
-data/grafana/data/
-data/grafana/data/plugins/grafana-clock-panel/package.json
-data/grafana/data/plugins/grafana-clock-panel/yarn.lock
-data/grafana/data/plugins/grafana-simple-json-datasource/package.json
-data/grafana/data/plugins/grafana-simple-json-datasource/yarn.lock
-data/grafana/data/plugins/natel-plotly-panel/package.json
-data/grafana/data/plugins/natel-plotly-panel/yarn.lock
-data/influxdb/data/
+docker-compose-mode-files/data/grafana/data/
+docker-compose-mode-files/data/grafana/data/plugins/grafana-clock-panel/package.json
+docker-compose-mode-files/data/grafana/data/plugins/grafana-clock-panel/yarn.lock
+docker-compose-mode-files/data/grafana/data/plugins/grafana-simple-json-datasource/package.json
+docker-compose-mode-files/data/grafana/data/plugins/grafana-simple-json-datasource/yarn.lock
+docker-compose-mode-files/data/grafana/data/plugins/natel-plotly-panel/package.json
+docker-compose-mode-files/data/grafana/data/plugins/natel-plotly-panel/yarn.lock
+docker-compose-mode-files/data/influxdb/data/
 
 # need to check
-data/influxdb/data/data/_internal/
-data/influxdb/data/data/cbrestapigw/_series/
-data/influxdb/data/data/cbrestapigw/autogen/
-data/influxdb/data/wal/
+docker-compose-mode-files/data/influxdb/data/data/_internal/
+docker-compose-mode-files/data/influxdb/data/data/cbrestapigw/_series/
+docker-compose-mode-files/data/influxdb/data/data/cbrestapigw/autogen/
+docker-compose-mode-files/data/influxdb/data/wal/
 
 
-data/cb-spider/
-data/cb-tumblebug/
-data/cb-tumblebug-mysql/
+docker-compose-mode-files/data/cb-spider/
+docker-compose-mode-files/data/cb-tumblebug/
+docker-compose-mode-files/data/cb-tumblebug-mysql/
 
 # Binary
 src/operator
