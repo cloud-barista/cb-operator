@@ -3,6 +3,9 @@ cb-dragonfly:
   service:
     nodePort: 30090
     type: NodePort
+  etcd:
+    image:
+      tag: 3.3.11
 
 cb-restapigw:
   enabled : true
