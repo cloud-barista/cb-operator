@@ -18,12 +18,18 @@ cb-spider:
   service:
     nodePort: 31024
     type: NodePort
+  persistence:
+    enabled: true
+    size: 1Gi
 
 cb-tumblebug:
   enabled : true
   service:
     nodePort: 31323
     type: NodePort
+  persistence:
+    enabled: true
+    size: 1Gi
 
 cb-webtool:
   enabled : true

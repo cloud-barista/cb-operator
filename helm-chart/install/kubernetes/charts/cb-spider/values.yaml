@@ -1,9 +1,5 @@
 replicaCount: 1
 
-env:
-  - name: "SPIDER_URL"
-    value: "http://cb-restapigw:8000/spider"
-
 image:
   repository: cloudbaristaorg/cb-spider
   pullPolicy: IfNotPresent
@@ -47,6 +43,12 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
+
+persistence:
+  accessMode: 'ReadWriteMany'
+  enabled: false
+  size: 2Gi
+  # storageClass: '-'
 
 nodeSelector: {}
 
