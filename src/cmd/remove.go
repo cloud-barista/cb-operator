@@ -39,7 +39,17 @@ var removeCmd = &cobra.Command{
 			case common.Mode_Kubernetes:
 				cmdStr = "sudo helm uninstall --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name
 				common.SysCall(cmdStr)
-				fallthrough
+
+				cmdStr = "sudo kubectl delete pvc cb-spider -n " + common.CB_K8s_Namespace
+				common.SysCall(cmdStr)
+
+				cmdStr = "sudo kubectl delete pvc cb-tumblebug -n " + common.CB_K8s_Namespace
+				common.SysCall(cmdStr)
+
+				cmdStr = "sudo kubectl delete pvc data-cb-dragonfly-etcd-0 -n " + common.CB_K8s_Namespace
+				common.SysCall(cmdStr)
+
+				//fallthrough
 			case common.Mode_DockerCompose:
 				if volFlag && imgFlag {
 					cmdStr = "sudo docker-compose -f " + common.FileStr + " down -v --rmi all"

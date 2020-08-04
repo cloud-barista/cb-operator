@@ -43,6 +43,13 @@ spec:
           #     port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - name: {{ template "cb-tumblebug.fullname" . }}
+            mountPath: /app/meta_db
+      volumes:
+      - name: {{ template "cb-tumblebug.fullname" . }} #cb-tumblebug-persistent-storage
+        persistentVolumeClaim:
+          claimName: {{ template "cb-tumblebug.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
