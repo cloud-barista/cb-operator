@@ -7,7 +7,12 @@ image:
 env:
 - name: SPIDER_REST_URL
   value: "http://cb-restapigw:8000/spider"
-
+- name: DRAGONFLY_REST_URL
+  value: "http://cb-restapigw:8000/dragonfly"
+- name: API_USERNAME
+  value: "default"
+- name: API_PASSWORD
+  value: "default"
 
 imagePullSecrets: []
 nameOverride: ""

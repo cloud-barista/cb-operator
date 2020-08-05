@@ -97,7 +97,7 @@ services:
     environment:
       - SPIDER_CALL_METHOD=GRPC
       - SPIDER_REST_URL=http://cb-restapigw:8000/spider
-      - DRAGONFLY_REST_URL=http://cb-dragonfly:9090/dragonfly
+      - DRAGONFLY_REST_URL=http://cb-restapigw:8000/dragonfly
       - API_USERNAME=default
       - API_PASSWORD=default
 #     - DB_URL=cb-tumblebug-mysql:3306
