@@ -66,32 +66,38 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:v0.2.0-20200715
+    image: cloudbaristaorg/cb-spider:v0.2.0-20200804
     container_name: cb-spider
     ports:
       - "1024:1024"
+      - "50251:50251"
     volumes:
+      - ./conf/cb-spider:/root/go/src/github.com/cloud-barista/cb-spider/conf
       - ./data/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db/dat
-#     - ./data/cb-spider/log:/root/go/src/github.com/cloud-barista/cb-spider/log
+#     - ./data/cb-spider/log:/root/go/src/github.com/cloud-barista/cb-spider/log      
     depends_on:
       - cb-restapigw
 
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:v0.2.0-20200715
+    image: cloudbaristaorg/cb-tumblebug:v0.2.0-20200805
     container_name: cb-tumblebug
     ports:
       - "1323:1323"
+      - "50252:50252"
     depends_on:
       - cb-restapigw
       - cb-spider
 #     - cb-tumblebug-mysql
     volumes:
+      - ./conf/cb-tumblebug:/app/conf
       - ./data/cb-tumblebug/meta_db:/app/meta_db/dat
-#     - ./data/cb-tumblebug/log:/app/log
+#     - ./data/cb-tumblebug/log:/app/log      
     environment:
-      - SPIDER_URL=http://cb-restapigw:8000/spider
+      - SPIDER_CALL_METHOD=GRPC
+      - SPIDER_REST_URL=http://cb-restapigw:8000/spider
+      - DRAGONFLY_REST_URL=http://cb-dragonfly:9090/dragonfly
       - API_USERNAME=default
       - API_PASSWORD=default
 #     - DB_URL=cb-tumblebug-mysql:3306

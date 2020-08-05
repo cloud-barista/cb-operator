@@ -5,7 +5,7 @@ image:
   pullPolicy: IfNotPresent
 
 env:
-- name: SPIDER_URL
+- name: SPIDER_REST_URL
   value: "http://cb-restapigw:8000/spider"
 
 
