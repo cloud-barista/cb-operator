@@ -1,3 +1,6 @@
+tumblebug:
+  rootPath: "/app"
+
 replicaCount: 1
 
 image:
@@ -5,6 +8,8 @@ image:
   pullPolicy: IfNotPresent
 
 env:
+- name: SPIDER_CALL_METHOD
+  value: "REST"
 - name: SPIDER_REST_URL
   value: "http://cb-restapigw:8000/spider"
 - name: DRAGONFLY_REST_URL

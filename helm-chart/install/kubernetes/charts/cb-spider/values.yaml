@@ -1,3 +1,6 @@
+spider:
+  rootPath: "/root/go/src/github.com/cloud-barista/cb-spider"
+
 replicaCount: 1
 
 image:
