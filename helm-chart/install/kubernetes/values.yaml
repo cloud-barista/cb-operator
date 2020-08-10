@@ -1,8 +1,10 @@
 cb-dragonfly:
   enabled : true
   service:
-    nodePort: 30090
     type: NodePort
+    restNodePort: 30090
+    grpcNodePort: 30254
+    monitorNodePort: 30094
   etcd:
     image:
       tag: 3.3.11
@@ -16,8 +18,9 @@ cb-restapigw:
 cb-spider:
   enabled : true
   service:
-    nodePort: 31024
     type: NodePort
+    restNodePort: 31024
+    grpcNodePort: 30251
   persistence:
     enabled: true
     size: 1Gi
@@ -25,8 +28,9 @@ cb-spider:
 cb-tumblebug:
   enabled : true
   service:
-    nodePort: 31323
     type: NodePort
+    restNodePort: 31323
+    grpcNodePort: 30252
   persistence:
     enabled: true
     size: 1Gi

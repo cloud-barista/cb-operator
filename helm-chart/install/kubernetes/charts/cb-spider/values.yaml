@@ -29,7 +29,8 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 1024
+  restPort: 1024
+  grpcPort: 50251
 
 ingress:
   enabled: false
