@@ -46,10 +46,15 @@ spec:
           volumeMounts:
           - name: {{ template "cb-spider.fullname" . }}
             mountPath: /root/go/src/github.com/cloud-barista/cb-spider/meta_db
+          - name: config-volume
+            mountPath: {{ .Values.spider.rootPath }}/conf
       volumes:
       - name: {{ template "cb-spider.fullname" . }} #cb-spider-persistent-storage
         persistentVolumeClaim:
           claimName: {{ template "cb-spider.fullname" . }}
+      - name: config-volume
+        configMap:
+          name: {{ include "cb-spider.fullname" . }}-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
