@@ -80,7 +80,6 @@ The operator is a tool to operate Cloud-Barista system.
   - ./operator pull [-f ../docker-compose-mode-files/docker-compose.yaml]
   - ./operator run [-f ../docker-compose-mode-files/docker-compose.yaml]
   - ./operator info
-  - ./operator exec -t cb-tumblebug -c "ls -al"
   - ./operator stop [-f ../docker-compose-mode-files/docker-compose.yaml]
   - ./operator remove [-f ../docker-compose-mode-files/docker-compose.yaml] -v -i
 
@@ -88,7 +87,6 @@ Usage:
   operator [command]
 
 Available Commands:
-  exec        Run commands in a target component of Cloud-Barista System
   help        Help about any command
   info        Get information of Cloud-Barista System
   pull        Pull images of Cloud-Barista System containers
@@ -136,25 +134,4 @@ Flags:
 
 Global Flags:
       --config string   config file (default is $HOME/.operator.yaml)
-```
-
-## Exec
-```
-~/go/src/github.com/cloud-barista/cb-operator/src$ ./operator exec -h
-
-Run commands in your components of Cloud-Barista System. 
-	For instance, you can get an interactive prompt of cb-tumblebug by
-	[operator exec cb-tumblebug sh]
-
-Usage:
-  operator exec [flags]
-
-Flags:
-  -c, --command string   Command to excute
-  -h, --help             help for exec
-  -t, --target string    Name of CB component to command
-
-Global Flags:
-      --config string   config file (default is $HOME/.operator.yaml)
-
 ```

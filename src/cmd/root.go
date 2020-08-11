@@ -41,7 +41,6 @@ var rootCmd = &cobra.Command{
   - ./operator pull [-f ../docker-compose-mode-files/docker-compose.yaml]
   - ./operator run [-f ../docker-compose-mode-files/docker-compose.yaml]
   - ./operator info
-  - ./operator exec -t cb-tumblebug -c "ls -al"
   - ./operator stop [-f ../docker-compose-mode-files/docker-compose.yaml]
   - ./operator remove [-f ../docker-compose-mode-files/docker-compose.yaml] -v -i
 
