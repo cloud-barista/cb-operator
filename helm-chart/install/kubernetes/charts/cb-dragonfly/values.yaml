@@ -18,6 +18,8 @@ etcd:
   readinessProbe:
     enabled: true
   allowNoneAuthentication: true
+  volumePermissions:
+    enabled: true
 
 ## cb-dragonfly custom variables
 dragonfly:
@@ -52,7 +54,9 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 9090
+  restPort: 9090
+  grpcPort: 50254
+  monitorPort: 8094
 
 ingress:
   enabled: false

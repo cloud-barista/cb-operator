@@ -9,7 +9,7 @@ image:
 
 env:
 - name: SPIDER_CALL_METHOD
-  value: "REST"
+  value: "GRPC"
 - name: SPIDER_REST_URL
   value: "http://cb-restapigw:8000/spider"
 - name: DRAGONFLY_REST_URL
@@ -41,7 +41,8 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 1323
+  restPort: 1323
+  grpcPort: 50252
 
 ingress:
   enabled: false

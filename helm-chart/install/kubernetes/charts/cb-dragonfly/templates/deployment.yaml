@@ -26,10 +26,10 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+          #ports:
+          #  - name: http
+          #    containerPort: 80
+          #    protocol: TCP
           # livenessProbe:
           #   httpGet:
           #     path: /
