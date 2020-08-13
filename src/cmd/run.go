@@ -56,7 +56,7 @@ var runCmd = &cobra.Command{
 			case common.Mode_Kubernetes:
 				cmdStr = "sudo kubectl create ns " + common.CB_K8s_Namespace
 				common.SysCall(cmdStr)
-				cmdStr = "sudo helm install --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name + " -f " + common.FileStr + " ../helm-chart/install/kubernetes --debug"
+				cmdStr = "sudo helm install --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name + " -f " + common.FileStr + " ../helm-chart --debug"
 				common.SysCall(cmdStr)
 			default:
 
@@ -75,7 +75,7 @@ func init() {
 	case common.Mode_DockerCompose:
 		pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
 	case common.Mode_Kubernetes:
-		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/install/kubernetes/values.yaml", "Path to Cloud-Barista Helm chart file")
+		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/values.yaml", "Path to Cloud-Barista Helm chart file")
 	default:
 
 	}

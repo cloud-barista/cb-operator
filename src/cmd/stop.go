@@ -60,7 +60,7 @@ func init() {
 	case common.Mode_DockerCompose:
 		pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
 	case common.Mode_Kubernetes:
-		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/install/kubernetes/values.yaml", "Path to Cloud-Barista Helm chart file")
+		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/values.yaml", "Path to Cloud-Barista Helm chart file")
 	default:
 
 	}
