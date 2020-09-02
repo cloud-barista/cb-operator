@@ -56,7 +56,7 @@ func scanAndWriteMode() {
 		return
 	}
 
-	err := ioutil.WriteFile("./CB_OPERATOR_MODE", []byte(tempStr), os.FileMode(644))
+	err := ioutil.WriteFile("./CB_OPERATOR_MODE", []byte(tempStr), os.FileMode(0644))
 	errCheck(err)
 
 	fmt.Println("")
