@@ -1,0 +1,49 @@
+version: "3.3"
+services:
+
+  # CB-Dragonfly
+  cb-dragonfly:
+    image: cloudbaristaorg/cb-dragonfly:v0.2.0-20200714
+    container_name: cb-dragonfly
+    volumes:
+      - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
+#     - ./data/cb-dragonfly/log:/go/src/github.com/cloud-barista/cb-dragonfly/log
+    ports:
+      - "8094:8094/udp"
+      - "9090:9090"
+    depends_on:
+#     - cb-restapigw
+      - cb-dragonfly-influxdb
+      - cb-dragonfly-etcd
+    environment:
+      - CBSTORE_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
+      - CBLOG_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
+      - CBMON_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
+      - DRAGONFLY_INFLUXDB_URL=cb-dragonfly-influxdb:8086
+
+
+  # InfluxDB for Dragonfly
+  cb-dragonfly-influxdb:
+    image: influxdb:latest
+    container_name: cb-dragonfly-influxdb
+    ports:
+      - "28083:8083"
+      - "28086:8086"
+    environment:
+#     - PRE_CREATE_DB="cbmon"
+      - INFLUXDB_DB="cbmon"
+      - INFLUXDB_DATA_ENGINE=tsm1
+      - INFLUXDB_REPORTING_DISABLED=false
+      - INFLUXDB_ADMIN_USER=cbmon
+      - INFLUXDB_ADMIN_PASSWORD=password
+      - INFLUXDB_HTTP_AUTH_ENABLED=true
+
+  # etcd for Dragonfly
+  cb-dragonfly-etcd:
+    image: 'bitnami/etcd:3.3.11'
+    container_name: cb-dragonfly-etcd
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://cb-dragonfly-etcd:2379
+
+
