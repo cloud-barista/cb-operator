@@ -204,9 +204,9 @@ services:
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_ADVERTISE_CLIENT_URLS=http://cb-dragonfly-etcd:2379
-    ports:
-      - 2379:2379
-      - 2380:2380
+#   ports:
+#     - 2379:2379
+#     - 2380:2380
     restart: always
 
   # CB-Webtool
