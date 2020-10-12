@@ -34,6 +34,7 @@ var pullCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
+			common.FileStr = common.GenConfigPath(common.FileStr, common.CB_OPERATOR_MODE)
 			/*
 			var configuration mcisReq
 
@@ -62,7 +63,7 @@ func init() {
 	rootCmd.AddCommand(pullCmd)
 
 	pf := pullCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+	pf.StringVarP(&common.FileStr, "file", "f", common.Not_Defined, "User-defined configuration file")
 //	cobra.MarkFlagRequired(pf, "file")
 
 	// Here you will define your flags and configuration settings.

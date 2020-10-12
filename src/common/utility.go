@@ -17,7 +17,7 @@ const (
 	Default_DockerCompose_Config   	string = "../docker-compose-mode-files/docker-compose.yaml"
 	Default_Kubernetes_Config      	string = "../helm-chart/values.yaml"
 	Not_Defined      				string = "Not_Defined"
-	
+
 	CB_K8s_Namespace     string = "cloud-barista"
 	CB_Helm_Release_Name string = "cloud-barista"
 )
@@ -41,4 +41,22 @@ func SysCall_docker_compose_ps() {
 	fmt.Println("\n[v]Status of Cloud-Barista runtimes")
 	cmdStr := "sudo docker-compose -f " + FileStr + " ps"
 	SysCall(cmdStr)
+}
+
+func GenConfigPath(fileStr string, mode string) string {
+	returnStr := fileStr
+	switch mode {
+	case Mode_DockerCompose:
+		if fileStr == Not_Defined {
+			returnStr = Default_DockerCompose_Config
+		}
+	case Mode_Kubernetes:
+		if fileStr == Not_Defined {
+			returnStr = Default_Kubernetes_Config
+		}
+	default:
+
+	}
+	fmt.Println("[Config path] " + returnStr + "\n")
+	return returnStr
 }

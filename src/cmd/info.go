@@ -33,6 +33,7 @@ var infoCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
+			common.FileStr = common.GenConfigPath(common.FileStr, common.CB_OPERATOR_MODE)
 			var cmdStr string
 			switch common.CB_OPERATOR_MODE {
 			case common.Mode_DockerCompose:
@@ -69,14 +70,7 @@ func init() {
 	rootCmd.AddCommand(infoCmd)
 
 	pf := infoCmd.PersistentFlags()
-	switch common.CB_OPERATOR_MODE {
-	case common.Mode_DockerCompose:
-		pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
-	case common.Mode_Kubernetes:
-		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/values.yaml", "Path to Cloud-Barista Helm chart file")
-	default:
-
-	}
+	pf.StringVarP(&common.FileStr, "file", "f", common.Not_Defined, "User-defined configuration file")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
