@@ -34,6 +34,7 @@ var removeCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
+			common.FileStr = common.GenConfigPath(common.FileStr, common.CB_OPERATOR_MODE)
 			var cmdStr string
 			switch common.CB_OPERATOR_MODE {
 			case common.Mode_Kubernetes:
@@ -80,7 +81,7 @@ func init() {
 	rootCmd.AddCommand(removeCmd)
 
 	pf := removeCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker-compose file")
+	pf.StringVarP(&common.FileStr, "file", "f", common.Not_Defined, "User-defined configuration file")
 	//	cobra.MarkFlagRequired(pf, "file")
 
 	pf.BoolVarP(&volFlag, "volumes", "v", false, "Remove named volumes declared in the volumes section of the Compose file")

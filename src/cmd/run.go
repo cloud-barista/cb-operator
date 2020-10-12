@@ -47,19 +47,15 @@ var runCmd = &cobra.Command{
 
 				common.PrintJsonPretty(configuration)
 			*/
+			common.FileStr = common.GenConfigPath(common.FileStr, common.CB_OPERATOR_MODE)
+
 			var cmdStr string
 			switch common.CB_OPERATOR_MODE {
 			case common.Mode_DockerCompose:
-				if common.FileStr == common.Not_Defined {
-					common.FileStr = common.Default_DockerCompose_Config
-				}
 				cmdStr = "sudo docker-compose -f " + common.FileStr + " up"
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.Mode_Kubernetes:
-				if common.FileStr == common.Not_Defined {
-					common.FileStr = common.Default_Kubernetes_Config
-				}
 				cmdStr = "sudo kubectl create ns " + common.CB_K8s_Namespace
 				common.SysCall(cmdStr)
 				cmdStr = "sudo helm install --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name + " -f " + common.FileStr + " ../helm-chart --debug"
