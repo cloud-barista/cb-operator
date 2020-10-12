@@ -2,7 +2,7 @@ apiVersion: v2
 name: cb-dragonfly
 type: application
 version: 0.2.0
-appVersion: v0.2.0-20200714
+appVersion: v0.2.0-20201005
 description: CB-Dragonfly Helm chart
 dependencies:
   - name: etcd

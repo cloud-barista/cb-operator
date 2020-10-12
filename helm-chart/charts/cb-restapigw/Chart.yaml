@@ -2,7 +2,7 @@ apiVersion: v2
 name: cb-restapigw
 type: application
 version: 0.2.0
-appVersion: v0.2.0
+appVersion: v0.2.0-20201012
 description: cb-restapigw Helm chart
 
 dependencies:
