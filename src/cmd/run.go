@@ -50,13 +50,20 @@ var runCmd = &cobra.Command{
 			var cmdStr string
 			switch common.CB_OPERATOR_MODE {
 			case common.Mode_DockerCompose:
+				if common.FileStr == common.Not_Defined {
+					common.FileStr = common.Default_DockerCompose_Config
+				}
 				cmdStr = "sudo docker-compose -f " + common.FileStr + " up"
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.Mode_Kubernetes:
+				if common.FileStr == common.Not_Defined {
+					common.FileStr = common.Default_Kubernetes_Config
+				}
 				cmdStr = "sudo kubectl create ns " + common.CB_K8s_Namespace
 				common.SysCall(cmdStr)
 				cmdStr = "sudo helm install --namespace " + common.CB_K8s_Namespace + " " + common.CB_Helm_Release_Name + " -f " + common.FileStr + " ../helm-chart --debug"
+				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			default:
 
@@ -71,7 +78,7 @@ func init() {
 	rootCmd.AddCommand(runCmd)
 
 	pf := runCmd.PersistentFlags()
-	pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
+	pf.StringVarP(&common.FileStr, "file", "f", common.Not_Defined, "User-defined configuration file")
 	
 	/*
 	switch common.CB_OPERATOR_MODE {

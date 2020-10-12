@@ -14,6 +14,10 @@ var CB_OPERATOR_MODE string
 const (
 	Mode_DockerCompose   string = "DockerCompose"
 	Mode_Kubernetes      string = "Kubernetes"
+	Default_DockerCompose_Config   	string = "../docker-compose-mode-files/docker-compose.yaml"
+	Default_Kubernetes_Config      	string = "../helm-chart/values.yaml"
+	Not_Defined      				string = "Not_Defined"
+	
 	CB_K8s_Namespace     string = "cloud-barista"
 	CB_Helm_Release_Name string = "cloud-barista"
 )
