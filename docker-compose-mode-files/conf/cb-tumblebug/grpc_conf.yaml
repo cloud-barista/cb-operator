@@ -16,9 +16,8 @@ grpc:
           endpoint: localhost:6832
           service_name: tumblebug grpc server
           sample_rate: 1  
-  spidersrv:
-    addr: cb-spider:50251
   spidercli:
+    server_addr: cb-spider:2048
     timeout: 90s
     #tls:
     #  tls_ca: $CBTUMBLEBUG_ROOT/certs/ca.crt
