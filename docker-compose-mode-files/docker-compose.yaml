@@ -70,18 +70,18 @@ services:
     container_name: cb-spider
     ports:
       - "1024:1024"
-      - "50251:50251"
+      - "2048:2048"
     volumes:
       - ./conf/cb-spider:/root/go/src/github.com/cloud-barista/cb-spider/conf
       - ./data/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db/dat
-#     - ./data/cb-spider/log:/root/go/src/github.com/cloud-barista/cb-spider/log      
+      - ./data/cb-spider/log:/root/go/src/github.com/cloud-barista/cb-spider/log      
     depends_on:
       - cb-restapigw
 
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:v0.2.0-20201009
+    image: cloudbaristaorg/cb-tumblebug:v0.2.0-20201019
     container_name: cb-tumblebug
     ports:
       - "1323:1323"
@@ -93,7 +93,7 @@ services:
     volumes:
       - ./conf/cb-tumblebug:/app/conf
       - ./data/cb-tumblebug/meta_db:/app/meta_db/dat
-#     - ./data/cb-tumblebug/log:/app/log      
+      - ./data/cb-tumblebug/log:/app/log      
     environment:
       - SPIDER_CALL_METHOD=GRPC
       - SPIDER_REST_URL=http://cb-restapigw:8000/spider
@@ -104,6 +104,7 @@ services:
 #     - DB_DATABASE=cb_tumblebug
 #     - DB_USER=cb_tumblebug
 #     - DB_PASSWORD=cb_tumblebug
+#     - GODEBUG=netdns=go
 
 # cb-tumblebug-mysql:
 #   image: mysql
