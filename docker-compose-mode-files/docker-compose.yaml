@@ -74,7 +74,7 @@ services:
     volumes:
       - ./conf/cb-spider:/root/go/src/github.com/cloud-barista/cb-spider/conf
       - ./data/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db/dat
-      - ./data/cb-spider/log:/root/go/src/github.com/cloud-barista/cb-spider/log      
+      - ./data/cb-spider/log:/root/go/src/github.com/cloud-barista/cb-spider/log
     depends_on:
       - cb-restapigw
 
@@ -93,7 +93,7 @@ services:
     volumes:
       - ./conf/cb-tumblebug:/app/conf
       - ./data/cb-tumblebug/meta_db:/app/meta_db/dat
-      - ./data/cb-tumblebug/log:/app/log      
+      - ./data/cb-tumblebug/log:/app/log
     environment:
       - SPIDER_CALL_METHOD=GRPC
       - SPIDER_REST_URL=http://cb-restapigw:8000/spider
@@ -147,21 +147,21 @@ services:
     volumes:
       - ./data/cb-tumblebug/meta_db:/db
 
-
   # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:v0.2.0-20201005
+    image: cloudbaristaorg/cb-dragonfly:espresso-v0.1-inno-test
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
       - ./data/cb-dragonfly/log:/go/src/github.com/cloud-barista/cb-dragonfly/log
     ports:
-      - "8094:8094/udp"
-      - "9090:9090"
+      - 8094:8094/udp
+      - 9090:9090
     depends_on:
 #     - cb-restapigw
-      - cb-dragonfly-influxdb
       - cb-dragonfly-etcd
+      - cb-dragonfly-influxdb
+      - cb-dragonfly-kapacitor
     environment:
       - CBSTORE_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
       - CBLOG_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
@@ -171,14 +171,12 @@ services:
     security_opt:
       - no-new-privileges
 
-
   # InfluxDB for Dragonfly
   cb-dragonfly-influxdb:
     image: influxdb:1.8-alpine
     container_name: cb-dragonfly-influxdb
     ports:
-      - "28083:8083"
-      - "28086:8086"
+      - 28086:8086
     environment:
       - PRE_CREATE_DB=cbmon
       - INFLUXDB_DB=cbmon
@@ -187,27 +185,31 @@ services:
       - INFLUXDB_HTTP_AUTH_ENABLED=true
     restart: always
 
-  # Chronograf for CB-Dragonfly
-  cb-dragonfly-chronograf:
-    image: chronograf:1.8.4-alpine
-    container_name: cb-dragonfly-chronograf
-    ports:
-      - 8888:8888
-    depends_on:
-      - cb-dragonfly-etcd
-      - cb-dragonfly-influxdb
-      - cb-dragonfly
-
   # etcd for Dragonfly
   cb-dragonfly-etcd:
-    image: 'bitnami/etcd:3.3.11'
+    image: bitnami/etcd:3.3.11
     container_name: cb-dragonfly-etcd
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
       - ETCD_ADVERTISE_CLIENT_URLS=http://cb-dragonfly-etcd:2379
-#   ports:
-#     - 2379:2379
-#     - 2380:2380
+    ports:
+      - 2379:2379
+      - 2380:2380
+    restart: always
+
+  # Kapacitor for CB-Dragonfly
+  cb-dragonfly-kapacitor:
+    image: kapacitor:1.5
+    container_name: cb-dragonfly-kapacitor
+    ports:
+      - 9092:9092
+    environment:
+      - KAPACITOR_HOSTNAME=cb-dragonfly-kapacitor
+      - KAPACITOR_INFLUXDB_0_URLS_0=http://cb-dragonfly-influxdb:8086
+      - KAPACITOR_INFLUXDB_0_USERNAME=cbmon
+      - KAPACITOR_INFLUXDB_0_PASSWORD=password
+    depends_on:
+      - cb-dragonfly-influxdb
     restart: always
 
   # CB-Webtool
