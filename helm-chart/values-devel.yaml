@@ -10,6 +10,9 @@ cb-spider:
 cb-tumblebug:
   enabled : true
 
+cb-ladybug:
+  enabled : true
+
 cb-webtool:
   enabled : true
   service:

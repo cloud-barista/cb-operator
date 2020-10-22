@@ -1,6 +1,18 @@
 # Change Log
+## 
 
-## [1.0.3] - 2019-05-24
+## [1.1.1]
+
+- Improved background
+- Show timzeone
+
+## [1.1.0]
+
+- Support for Grafana 7+
+- Built with @grafana/toolkit
+- Ported to react
+
+## v1.0.3
 
 - Adds support for displaying timezones
 

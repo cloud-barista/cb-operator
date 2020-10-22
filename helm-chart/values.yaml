@@ -35,6 +35,16 @@ cb-tumblebug:
     enabled: true
     size: 1Gi
 
+cb-ladybug:
+  enabled : true
+  service:
+    type: NodePort
+    restNodePort: 31080
+#   grpcNodePort: 30252
+  persistence:
+    enabled: true
+    size: 1Gi
+
 cb-webtool:
   enabled : true
   service:
