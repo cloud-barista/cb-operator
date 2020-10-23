@@ -10,6 +10,12 @@ If you have any difficulties in using cb-operator, please let us know.
 (Open an issue or Join the cloud-barista Slack)
 ```
 
+```
+CB-Ladybug, which is included in cb-operator's Cloud-Barista deployment shape, is currently under development.
+So, we do not recommend using the current release in production.
+Please note that the functionalities of CB-Ladybug are not stable and secure yet.
+```
+
 # Prerequisites
 
 ## Install Docker
