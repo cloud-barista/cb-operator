@@ -17,6 +17,9 @@ dependencies:
   - name: cb-tumblebug
     version: 0.2.0
     condition: cb-tumblebug.enabled
+  - name: cb-ladybug
+    version: 0.2.0
+    condition: cb-ladybug.enabled
   - name: cb-webtool
     version: 0.2.0
     condition: cb-webtool.enabled

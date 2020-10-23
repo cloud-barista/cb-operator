@@ -67,6 +67,14 @@ endpoints:
         url_pattern: "*bypass"
 
   #################
+  # For Ladybug
+  #################
+  - endpoint: "/ladybug/*bypass"
+    backend:
+      - host: "http://cb-ladybug:8080"
+        url_pattern: "*bypass"
+
+  #################
   # For Dragonfly
   #################
   - endpoint: "/dragonfly/*bypass"
