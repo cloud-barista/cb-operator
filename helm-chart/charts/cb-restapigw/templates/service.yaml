@@ -10,12 +10,19 @@ spec:
   clusterIP: {{ .Values.service.clusterIP }}
 {{- end }}  
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.restPort }}
       protocol: TCP
-      name: http
+      name: rest
       targetPort: 8000
-{{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
-      nodePort: {{ .Values.service.nodePort }}
+{{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.restNodePort))) }}
+      nodePort: {{ .Values.service.restNodePort }}
+{{- end }}
+    - port: {{ .Values.service.webAdminPort }}
+      protocol: TCP
+      name: webadmin
+      targetPort: 8001
+{{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.webAdminNodePort))) }}
+      nodePort: {{ .Values.service.webAdminNodePort }}
 {{- end }}
   selector:
     {{- include "cb-restapigw.selectorLabels" . | nindent 4 }}
