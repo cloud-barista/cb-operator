@@ -65,7 +65,8 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8000
+  restPort: 8000
+  webAdminPort: 8001
 
 ingress:
   enabled: false

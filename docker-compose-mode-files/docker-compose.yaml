@@ -66,7 +66,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:v0.2.0-20201008
+    image: cloudbaristaorg/cb-spider:v0.2.0-20201025
     container_name: cb-spider
     ports:
       - "1024:1024"
@@ -81,7 +81,7 @@ services:
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:v0.2.0-20201019
+    image: cloudbaristaorg/cb-tumblebug:v0.2.0-20201023
     container_name: cb-tumblebug
     ports:
       - "1323:1323"
@@ -238,7 +238,7 @@ services:
 
   # CB-Webtool
   cb-webtool:
-    image: cloudbaristaorg/cb-webtool:v0.2.0-20201008
+    image: cloudbaristaorg/cb-webtool:v0.2.0-20201020
     container_name: cb-webtool
     ports:
       - "1234:1234"
@@ -259,13 +259,14 @@ services:
 
   # CB-RESTAPIGW SERVICE
   cb-restapigw:
-    image: cloudbaristaorg/cb-restapigw:v0.2.0-20201012
+    image: cloudbaristaorg/cb-restapigw:v0.2.0-20201022
     container_name: cb-restapigw
     volumes:
       - ./conf/cb-restapigw:/app/conf
 #     - ./data/cb-restapigw/log:/app/log
     ports:
       - "8000:8000"
+      - "8001:8001"
     depends_on:
       - influxdb
       - grafana

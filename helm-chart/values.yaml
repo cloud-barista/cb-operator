@@ -12,7 +12,8 @@ cb-dragonfly:
 cb-restapigw:
   enabled : true
   service:
-    nodePort: 30080
+    restNodePort: 30080
+    webAdminNodePort: 30081
     type: NodePort
 
 cb-spider:
