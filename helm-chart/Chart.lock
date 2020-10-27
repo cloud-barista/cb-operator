@@ -23,5 +23,11 @@ dependencies:
 - name: weave-scope
   repository: https://kubernetes-charts.storage.googleapis.com
   version: ~1.1.10
-digest: sha256:3f521cff66c0c58ec722375e21644124514c65a41dbc7fcf4257f757a33e4187
-generated: "2020-10-26T18:10:50.640012814+09:00"
+- name: grafana
+  repository: https://grafana.github.io/helm-charts
+  version: ~5.7.10
+- name: prometheus
+  repository: https://prometheus-community.github.io/helm-charts/
+  version: ~11.16.3
+digest: sha256:fe48fb10b8669a87fff6448988dde1cf86217a038b8e0e3797994c132142bad9
+generated: "2020-10-27T14:46:01.981875227+09:00"
