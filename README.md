@@ -16,11 +16,63 @@ So, we do not recommend using the current release in production.
 Please note that the functionalities of CB-Ladybug are not stable and secure yet.
 ```
 
+# FAQ
+
+1. Container conflict (Ref: https://github.com/cloud-barista/cb-operator/issues/75)
+
+```
+# ./operator run
+CB_OPERATOR_MODE: DockerCompose
+
+[Setup and Run Cloud-Barista]
+
+[Config path] ../docker-compose-mode-files/docker-compose.yaml
+
+Creating cb-dragonfly-influxdb ...
+Creating cb-dragonfly-etcd ...
+Creating cb-tumblebug-phpliteadmin ...
+Creating cb-restapigw-jaeger ...
+Creating cb-restapigw-influxdb ...
+Creating cb-dragonfly-etcd
+Creating cb-dragonfly-influxdb
+Creating cb-tumblebug-phpliteadmin
+Creating cb-restapigw-jaeger
+Creating cb-dragonfly-influxdb ... error
+
+ERROR: for cb-dragonfly-influxdb  Cannot create container for service cb-dragonfly-influxdb: Conflict. The container name "/cb-dragonfly-influxdb" is already in use by container "2d15cca0ed2f399ff3155648538Creating cb-tumblebug-phpliteadmin ... error
+
+ERROR: for cb-tumblebug-phpliteadmin  Cannot create container for service cb-tumblebug-phpliteadmin: Conflict. The container name "/cb-tumblebug-phpliteadmin" is already in use by container "6947d55ae3318f3Creating cb-dragonfly-etcd ... error
+
+ERROR: for cb-dragonfly-etcd  Cannot create container for service cb-dragonfly-etcd: Conflict. The container name "/cb-dragonfly-etcd" is already in use by container "c7800abcc11a333f4dcd79eb1527d20a2efc311Creating cb-restapigw-influxdb ... error
+
+ERROR: for cb-restapigw-influxdb  Cannot create container for service influxdb: Conflict. The container name "/cb-restapigw-influxdb" is already in use by container "efc1fb276586b04527c02122dcac736a3d09e100Creating cb-restapigw-jaeger ... error
+
+ERROR: for cb-restapigw-jaeger  Cannot create container for service jaeger: Conflict. The container name "/cb-restapigw-jaeger" is already in use by container "925c76c42780b892036e34b2183fc0c36fabb47e835eda48e4bbc9b83270205d". You have to remove (or rename) that container to be able to reuse that name.
+
+ERROR: for influxdb  Cannot create container for service influxdb: Conflict. The container name "/cb-restapigw-influxdb" is already in use by container "efc1fb276586b04527c02122dcac736a3d09e100bc8c5e9b4e944c0a1a3012eb". You have to remove (or rename) that container to be able to reuse that name.
+
+ERROR: for cb-tumblebug-phpliteadmin  Cannot create container for service cb-tumblebug-phpliteadmin: Conflict. The container name "/cb-tumblebug-phpliteadmin" is already in use by container "6947d55ae3318f3f07c969a1a60d928c3b77e48829e5aaff675b5b8001cc27da". You have to remove (or rename) that container to be able to reuse that name.
+
+ERROR: for jaeger  Cannot create container for service jaeger: Conflict. The container name "/cb-restapigw-jaeger" is already in use by container "925c76c42780b892036e34b2183fc0c36fabb47e835eda48e4bbc9b83270205d". You have to remove (or rename) that container to be able to reuse that name.
+
+ERROR: for cb-dragonfly-etcd  Cannot create container for service cb-dragonfly-etcd: Conflict. The container name "/cb-dragonfly-etcd" is already in use by container "c7800abcc11a333f4dcd79eb1527d20a2efc3116f7c36750d5a366b9a8fa07a6". You have to remove (or rename) that container to be able to reuse that name.
+
+ERROR: for cb-dragonfly-influxdb  Cannot create container for service cb-dragonfly-influxdb: Conflict. The container name "/cb-dragonfly-influxdb" is already in use by container "2d15cca0ed2f399ff31556485385ef577f82eb41d81bc777c4bd71e0a97912da". You have to remove (or rename) that container to be able to reuse that name.
+Encountered errors while bringing up the project.
+```
+
+Solution:
+Remove conflicted containers
+```
+docker rm 925c76c42780b892036e34b2183fc0c36fabb47e835eda48e4bbc9b83270205d
+```
+
+
 # Launched containers and its endpoints
 
 ## Docker Compose Mode
 
-| Name | Endpoint for direct access | Endpoint for acces via cb-restapigw | Misc. |
+| Name | Endpoint for direct access | Endpoint for access via cb-restapigw | Misc. |
 |---|---|---|---|
 | cb-restapigw | http://{{host}}:8000 |   | Admin: http://{{host}}:8001 <br> ID: admin / PW: test@admin00  |
 | cb-restapigw-influxdb | http://{{host}}:8086 |   | 8083: Admin Panel <br> 8086: client-server comm. |
@@ -39,7 +91,7 @@ Please note that the functionalities of CB-Ladybug are not stable and secure yet
 
 ## Kubernetes Mode
 
-| Name | Endpoint for direct access | Endpoint for acces via cb-restapigw | Misc. |
+| Name | Endpoint for direct access | Endpoint for access via cb-restapigw | Misc. |
 |---|---|---|---|
 | cb-restapigw | http://{{host}}:30080 |   | Admin: http://{{host}}:30081 <br> ID: admin / PW: test@admin00  |
 | cb-restapigw-influxdb | - |   | 8083: Admin Panel <br> 8086: client-server comm. |
