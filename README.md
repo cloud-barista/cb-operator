@@ -10,6 +10,53 @@ If you have any difficulties in using cb-operator, please let us know.
 (Open an issue or Join the cloud-barista Slack)
 ```
 
+```
+CB-Ladybug, which is included in cb-operator's Cloud-Barista deployment shape, is currently under development.
+So, we do not recommend using the current release in production.
+Please note that the functionalities of CB-Ladybug are not stable and secure yet.
+```
+
+# Launched containers and its endpoints
+
+## Docker Compose Mode
+
+| Name | Endpoint for direct access | Endpoint for acces via cb-restapigw | Misc. |
+|---|---|---|---|
+| cb-restapigw | http://{{host}}:8000 |   | Admin: http://{{host}}:8001 <br> ID: admin / PW: test@admin00  |
+| cb-restapigw-influxdb | http://{{host}}:8086 |   | 8083: Admin Panel <br> 8086: client-server comm. |
+| cb-restapigw-grafana | http://{{host}}:3100 |   | ID: admin / PW: admin |
+| cb-restapigw-jaeger | http://{{host}}:16686 |   |   |
+| --- |   |   |   |
+| cb-spider | http://{{host}}:1024/spider | http://{{host}}:8000/spider | gRPC: http://{{host}}:2048  |
+| cb-tumblebug | http://{{host}}:1323/tumblebug | http://{{host}}:8000/tumblebug | gRPC: http://{{host}}:50252  |
+| cb-tumblebug-phpliteadmin | http://{{host}}:2015  |   |   |
+| cb-webtool | http://{{host}}:1234 |   |   |
+| --- |   |   |   |
+| cb-dragonfly | http://{{host}}:9090/dragonfly | http://{{host}}:8000/dragonfly | 8094/udp  |
+| cb-dragonfly-influxdb | http://{{host}}:28086 |   |   |
+| cb-dragonfly-etcd | http://{{host}}:2379 |   | 2379: client communication <br> 2380: server-to-server communication |
+| cb-dragonfly-kapacitor | http://{{host}}:9092  |   |   |
+
+## Kubernetes Mode
+
+| Name | Endpoint for direct access | Endpoint for acces via cb-restapigw | Misc. |
+|---|---|---|---|
+| cb-restapigw | http://{{host}}:30080 |   | Admin: http://{{host}}:30081 <br> ID: admin / PW: test@admin00  |
+| cb-restapigw-influxdb | - |   | 8083: Admin Panel <br> 8086: client-server comm. |
+| cb-restapigw-grafana | - |   | ID: admin / PW: admin |
+| cb-restapigw-jaeger | - |   |   |
+| --- |   |   |   |
+| cb-spider | http://{{host}}:31024/spider | http://{{host}}:30080/spider | gRPC: http://{{host}}:32048  |
+| cb-tumblebug | http://{{host}}:31323/tumblebug | http://{{host}}:30080/tumblebug | gRPC: http://{{host}}:30252  |
+| cb-webtool | http://{{host}}:31234 |   |   |
+| --- |   |   |   |
+| cb-dragonfly | http://{{host}}:30090/dragonfly | http://{{host}}:30080/dragonfly | 30094/udp  |
+| cb-dragonfly-influxdb | - |   |   |
+| cb-dragonfly-etcd | - |   | 2379: client communication <br> 2380: server-to-server communication |
+| --- |   |   |   |
+| prometheus | -  |   |   |
+| grafana | http://{{host}}:30300  |   | ID: admin / PW: admin  |
+
 # Prerequisites
 
 ## Install Docker

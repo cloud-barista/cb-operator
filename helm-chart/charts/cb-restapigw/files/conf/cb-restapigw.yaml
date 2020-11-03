@@ -1,12 +1,13 @@
 version: 1
 name: cb-restapigw
 port: 8000
-cache_ttl: 3600s
+#cache_ttl: 3600s
 timeout: 1m
 debug: true
-host: 
-  - "http://localhost:8100"
+router_engine: gin
 middleware:
+  mw-httpcache:
+    enabled: false
   mw-metrics:
     router_enabled: true
     proxy_enabled: true
@@ -36,6 +37,8 @@ middleware:
     allow_methods:
       - POST
       - GET
+      - DELETE
+      - PUT
     allow_headers:
       - Origin
       - Authorization
@@ -44,29 +47,22 @@ middleware:
       - Content-Length
     max_age: 12h
     allow_credentials: true
-endpoints:
 
-  ##############
-  # For Spider
-  ##############
-  - endpoint: "/spider/*bypass"
-    backend:
-      - host: "http://cb-spider:1024"
-        url_pattern: "*bypass"
+repository:
+  dsn: file://./conf
+  #dsn: cbstore://api/restapigw/conf
 
-  #################
-  # For Tumblebug
-  #################
-  - endpoint: "/tumblebug/*bypass"
-    backend:
-      - host: "http://cb-tumblebug:1323"
-        url_pattern: "*bypass"
+cluster:
+  update_frequency: 30s
 
-  #################
-  # For Dragonfly
-  #################
-  - endpoint: "/dragonfly/*bypass"
-    backend:
-      - host: "http://cb-dragonfly:9090"
-        url_pattern: "*bypass"
-
+admin:
+  port: 8001
+  credentials:
+    algorithm: HS256
+    secret: test
+    basic:
+       users:
+         admin: "test@admin00"
+         tester: "tester@admin00"
+  profiling_enabled: true
+  profiling_public: true

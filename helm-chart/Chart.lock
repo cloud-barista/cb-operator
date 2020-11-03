@@ -11,11 +11,23 @@ dependencies:
 - name: cb-tumblebug
   repository: ""
   version: 0.2.0
+- name: cb-ladybug
+  repository: ""
+  version: 0.2.0
 - name: cb-webtool
   repository: ""
   version: 0.2.0
 - name: docker-registry
   repository: https://kubernetes-charts.storage.googleapis.com
-  version: 1.9.3
-digest: sha256:20ca3295ce770fae7c0936b94330b751590b6fed5ce8129e2165db830844218a
-generated: "2020-05-26T09:58:11.050019+09:00"
+  version: ~1.9.3
+- name: weave-scope
+  repository: https://kubernetes-charts.storage.googleapis.com
+  version: ~1.1.10
+- name: grafana
+  repository: https://grafana.github.io/helm-charts
+  version: ~5.7.10
+- name: prometheus
+  repository: https://prometheus-community.github.io/helm-charts/
+  version: ~11.16.3
+digest: sha256:fe48fb10b8669a87fff6448988dde1cf86217a038b8e0e3797994c132142bad9
+generated: "2020-10-27T14:46:01.981875227+09:00"

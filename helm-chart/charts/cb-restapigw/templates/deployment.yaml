@@ -48,6 +48,15 @@ spec:
       - name: config-volume
         configMap:
           name: {{ include "cb-restapigw.fullname" . }}-config
+          items:
+          - key: cb-restapigw.yaml
+            path: cb-restapigw.yaml
+          - key: log_conf.yaml
+            path: log_conf.yaml
+          - key: store_conf.yaml
+            path: store_conf.yaml
+          - key: cb-restapigw-apis.yaml
+            path: apis/cb-restapigw-apis.yaml
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

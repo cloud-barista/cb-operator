@@ -10,6 +10,9 @@ cb-spider:
 cb-tumblebug:
   enabled : true
 
+cb-ladybug:
+  enabled : true
+
 cb-webtool:
   enabled : true
   service:
@@ -32,3 +35,9 @@ docker-registry:
   persistence:
     enabled: true
     size: 1Gi
+
+weave-scope:
+  enabled : true
+  service:
+    nodePort: 30040
+    type: NodePort
