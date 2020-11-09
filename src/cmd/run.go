@@ -52,7 +52,7 @@ var runCmd = &cobra.Command{
 			var cmdStr string
 			switch common.CB_OPERATOR_MODE {
 			case common.Mode_DockerCompose:
-				cmdStr = "sudo docker-compose -f " + common.FileStr + " up"
+				cmdStr = "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " up"
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.Mode_Kubernetes:
@@ -75,16 +75,16 @@ func init() {
 
 	pf := runCmd.PersistentFlags()
 	pf.StringVarP(&common.FileStr, "file", "f", common.Not_Defined, "User-defined configuration file")
-	
-	/*
-	switch common.CB_OPERATOR_MODE {
-	case common.Mode_DockerCompose:
-		pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
-	case common.Mode_Kubernetes:
-		pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/values.yaml", "Path to Cloud-Barista Helm chart file")
-	default:
 
-	}
+	/*
+		switch common.CB_OPERATOR_MODE {
+		case common.Mode_DockerCompose:
+			pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
+		case common.Mode_Kubernetes:
+			pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/values.yaml", "Path to Cloud-Barista Helm chart file")
+		default:
+
+		}
 	*/
 
 	//	cobra.MarkFlagRequired(pf, "file")
