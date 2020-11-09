@@ -66,7 +66,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:v0.2.0-20201025
+    image: cloudbaristaorg/cb-spider:v0.2.2-20201106
     container_name: cb-spider
     ports:
       - "1024:1024"
@@ -81,7 +81,7 @@ services:
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:v0.2.0-20201023
+    image: cloudbaristaorg/cb-tumblebug:v0.2.5-20201105
     container_name: cb-tumblebug
     ports:
       - "1323:1323"
@@ -191,7 +191,7 @@ services:
       - CBLOG_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
       - CBMON_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
 #     - DRAGONFLY_INFLUXDB_URL=cb-dragonfly-influxdb:8086
-    restart: always
+#   restart: always
     security_opt:
       - no-new-privileges
     networks:
@@ -212,7 +212,7 @@ services:
       - INFLUXDB_ADMIN_USER=cbmon
       - INFLUXDB_ADMIN_PASSWORD=password
       - INFLUXDB_HTTP_AUTH_ENABLED=true
-    restart: always
+#   restart: always
     networks:
       cb-dragonfly:
         aliases:
@@ -224,7 +224,7 @@ services:
     container_name: cb-dragonfly-zookeeper
     ports:
       - 2181:2181
-    restart: always
+#   restart: always
     networks:
       cb-dragonfly:
         aliases:
@@ -247,7 +247,7 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 9092:9092
-    restart: always
+#   restart: always
     networks:
       cb-dragonfly:
         aliases:
@@ -266,7 +266,7 @@ services:
       - KAPACITOR_INFLUXDB_0_PASSWORD=password
     depends_on:
       - cb-dragonfly-influxdb
-    restart: always
+#   restart: always
     networks:
       cb-dragonfly:
         aliases:
@@ -274,7 +274,7 @@ services:
 
   # CB-Webtool
   cb-webtool:
-    image: cloudbaristaorg/cb-webtool:v0.2.0-20201020
+    image: cloudbaristaorg/cb-webtool:v0.2.0-20201105
     container_name: cb-webtool
     ports:
       - "1234:1234"
