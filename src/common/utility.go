@@ -12,11 +12,11 @@ var TargetStr string
 var CB_OPERATOR_MODE string
 
 const (
-	Mode_DockerCompose   string = "DockerCompose"
-	Mode_Kubernetes      string = "Kubernetes"
-	Default_DockerCompose_Config   	string = "../docker-compose-mode-files/docker-compose.yaml"
-	Default_Kubernetes_Config      	string = "../helm-chart/values.yaml"
-	Not_Defined      				string = "Not_Defined"
+	Mode_DockerCompose           string = "DockerCompose"
+	Mode_Kubernetes              string = "Kubernetes"
+	Default_DockerCompose_Config string = "../docker-compose-mode-files/docker-compose.yaml"
+	Default_Kubernetes_Config    string = "../helm-chart/values.yaml"
+	Not_Defined                  string = "Not_Defined"
 
 	CB_K8s_Namespace     string = "cloud-barista"
 	CB_Helm_Release_Name string = "cloud-barista"
@@ -39,7 +39,7 @@ func SysCall(cmdStr string) {
 
 func SysCall_docker_compose_ps() {
 	fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-	cmdStr := "sudo docker-compose -f " + FileStr + " ps"
+	cmdStr := "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + FileStr + " ps"
 	SysCall(cmdStr)
 }
 
