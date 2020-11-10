@@ -180,6 +180,7 @@ services:
       - ./data/cb-dragonfly/log:/go/src/github.com/cloud-barista/cb-dragonfly/log
     ports:
       - 9090:9090
+      - 9999:9999
     depends_on:
 #     - cb-restapigw
       - cb-dragonfly-zookeeper

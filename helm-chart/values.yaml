@@ -4,10 +4,7 @@ cb-dragonfly:
     type: NodePort
     restNodePort: 30090
     grpcNodePort: 30254
-    monitorNodePort: 30094
-  etcd:
-    image:
-      tag: 3.3.11
+    #monitorNodePort: 30094
 
 cb-restapigw:
   enabled : true
@@ -55,6 +52,7 @@ cb-webtool:
 # http & nodeport
 # basc auth admin:1234
 # hostPath PV
+
 docker-registry:
   enabled : false
   fullnameOverride: "docker-registry"

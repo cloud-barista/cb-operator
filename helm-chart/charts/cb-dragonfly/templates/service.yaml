@@ -24,12 +24,12 @@ spec:
 {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.grpcNodePort))) }}
       nodePort: {{ .Values.service.grpcNodePort }}
 {{- end }}
-    - port: {{ .Values.service.monitorPort }}
-      protocol: UDP
-      name: monitor
-      targetPort: 8094
-{{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.monitorNodePort))) }}
-      nodePort: {{ .Values.service.monitorNodePort }}
-{{- end }}
+      #- port: {{ .Values.service.monitorPort }}
+      #protocol: UDP
+      #name: monitor
+      #targetPort: 8094
+      #{{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.monitorNodePort))) }}
+      #      nodePort: {{ .Values.service.monitorNodePort }}
+      #{{- end }}
   selector:
     {{- include "cb-dragonfly.selectorLabels" . | nindent 4 }}

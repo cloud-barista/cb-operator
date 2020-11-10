@@ -7,19 +7,95 @@ influxdb:
   adminUser:
     name: "cbmon"
     pwd: "password"
+  persistence:
+    enabled: false
+    size: "8Gi"
+    accessModes: "ReadWriteMany"
 
-## external : etcd
-etcd:
+
+## external: kapacitor
+
+kapacitor:
   enabled: true
-  fullnameOverride: "cb-dragonfly-etcd"
-  auth:
-    rbac:
+  nameOverride: "cb-dragonfly-kapacitor"
+  envVars:
+    #KAPACITOR_INFLUXDB_0_URLS_0: http://cb-dragonfly-influxdb:8086
+    KAPACITOR_INFLUXDB_0_USERNAME: cbmon
+    KAPACITOR_INFLUXDB_0_PASSWORD: password
+  persistence:
+    enabled: false
+    size: "8Gi"
+    accessModes: "ReadWriteMany"
+  influxURL: http://cb-dragonfly-influxdb:8086
+  #  namespaceOverride: cloud-barista
+
+## external : kafka
+
+kafka:
+  enabled: true
+  image: wurstmeister/kafka
+  imageTag: 2.12-2.4.1
+  replicas: 1
+  fullnameOverride: "cb-dragonfly-kafka"
+  external:
+    enabled: true
+    dns:
+      useInternal: true
+      useExternal: true
+    servicePort: 9092
+    firstListenerPort: 32000
+    type: NodePort
+  persistence:
+    enabled: false
+    size: "1Gi"
+    accessModes: "ReadWriteMany"
+  jmx:
+    configMap:
       enabled: false
-  readinessProbe:
-    enabled: true
-  allowNoneAuthentication: true
-  volumePermissions:
-    enabled: true
+  prometheus:
+    mx:
+      enabled: false
+    kafka:
+      enabled: false
+    operator:
+      enabled: false
+  zookeeper:
+    enabled: false
+      #     url: "cb-dragonfly-zookeeper:2181"
+      #     fullnameOverride: "cb-dragonfly-zookeeper"
+      #     port: 2181
+  configurationOverrides:
+    ADVERTISED_HOST_NAME: cb-dragonfly-kafka
+    PORT: 9092
+    ADVERTISED_PORT: 32000
+    #    advertised.listeners: PLAINTEXT://localhost:9092
+    DELETE_TOPIC_ENABLE: "true"
+    LOG_RETENTION_MS: 10000
+    LOG_RETENTION_CHECK_INTERVAL_MS: 5000
+    MESSAGE_TIMESTAMP_TYPE: LogAppendTime
+    LOG_MESSAGE_TIMESTAMP_TYPE: LogAppendTime
+    #   LISTENERS: PLAINTEXT://:9092
+    zookeeper.connect: "cb-dragonfly-zookeeper:2181"
+    zookeeper.connection.timeout.ms: 18000
+    zookeeper.session.timeout.ms: 10000
+
+## external : zookeeper      
+
+zookeeper:
+  enabled: true
+  replicaCount: 1
+  fullnameOverride: "cb-dragonfly-zookeeper"
+  persistence:
+    enabled: false
+  zookeeper:
+   enabled: false
+  exporters:
+    jmx:
+      enabled: false
+  zookeeper:
+    enabled: false
+
+
 
 ## cb-dragonfly custom variables
 dragonfly:
@@ -30,7 +106,7 @@ replicaCount: 1
 
 image:
   repository: cloudbaristaorg/cb-dragonfly
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
@@ -55,8 +131,8 @@ securityContext: {}
 service:
   type: ClusterIP
   restPort: 9090
-  grpcPort: 50254
-  monitorPort: 8094
+  grpcPort: 9999
+  #monitorPort: 8094
 
 ingress:
   enabled: false
@@ -77,7 +153,6 @@ resources: {}
   #   memory: 128Mi
   # requests:
   #   cpu: 100m
-  #   memory: 128Mi
 
 nodeSelector: {}
 

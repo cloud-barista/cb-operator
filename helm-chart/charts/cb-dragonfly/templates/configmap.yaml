@@ -22,3 +22,7 @@ data:
     {{ range .Files.Lines "files/conf/setup.env" }}
     {{ . }}
     {{ end }}
+  store_conf.yaml: |-
+    {{ range .Files.Lines "files/conf/store_conf.yaml" }}
+    {{ . }}
+    {{ end }}

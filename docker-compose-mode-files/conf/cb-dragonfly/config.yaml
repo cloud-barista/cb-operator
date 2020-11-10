@@ -11,15 +11,20 @@ influxdb:
 
 # kapacitor connection info
 kapacitor:
-  endpoint_url: http://cb-dragonfly-kapacitor:9092 # endpoint to kapacitor
+  endpoint_url: http://cloud-barista-cb-dragonfly-kapacitor:9092 # endpoint to kapacitor
 
 # kafka connection info
 kafka:
   endpoint_url: cb-dragonfly-kafka
+  external_ip: 127.0.0.1
+  deploy_type: "compose"    # deploy environment "compose" => docker-compose or others , "helm" => helm chart on k8s
+  compose_external_port: 9092
+  helm_external_port: 32000
+  internal_port: 9092
 
 # collect manager configuration info
 collectManager:
-  collector_ip: 127.0.0.1 # local access endpoint to cb-dragonfly API server
+  collector_ip: 127.0.0.1  # local access endpoint to cb-dragonfly API server
   collector_port: 8094    # udp port
   collector_group_count: 1      # default collector group count
 
