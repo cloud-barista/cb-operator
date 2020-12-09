@@ -66,7 +66,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:v0.2.2-20201106
+    image: cloudbaristaorg/cb-spider:v0.2.9
     container_name: cb-spider
     ports:
       - "1024:1024"
@@ -81,7 +81,7 @@ services:
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:v0.2.5-20201105
+    image: cloudbaristaorg/cb-tumblebug:v0.2.9
     container_name: cb-tumblebug
     ports:
       - "1323:1323"
@@ -149,7 +149,7 @@ services:
 
   # CB-Ladybug
   cb-ladybug:
-    image: cloudbaristaorg/cb-ladybug:v0.2.0-20201021
+    image: cloudbaristaorg/cb-ladybug:v0.2.8
     container_name: cb-ladybug
     ports:
       - "8080:8080"
@@ -173,7 +173,7 @@ services:
 
  # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:espresso-v0.1-kafka
+    image: cloudbaristaorg/cb-dragonfly:v0.2.8
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
@@ -275,7 +275,7 @@ services:
 
   # CB-Webtool
   cb-webtool:
-    image: cloudbaristaorg/cb-webtool:v0.2.0-20201105
+    image: cloudbaristaorg/cb-webtool:v0.2.8
     container_name: cb-webtool
     ports:
       - "1234:1234"
@@ -296,7 +296,7 @@ services:
 
   # CB-RESTAPIGW SERVICE
   cb-restapigw:
-    image: cloudbaristaorg/cb-restapigw:v0.2.0-20201022
+    image: cloudbaristaorg/cb-restapigw:v0.2.9
     container_name: cb-restapigw
     volumes:
       - ./conf/cb-restapigw:/app/conf
