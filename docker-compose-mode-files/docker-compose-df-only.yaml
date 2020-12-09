@@ -3,7 +3,7 @@ services:
 
  # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:espresso-v0.1-kafka
+    image: cloudbaristaorg/cb-dragonfly:v0.2.8
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
