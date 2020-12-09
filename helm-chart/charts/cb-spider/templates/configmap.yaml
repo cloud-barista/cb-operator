@@ -17,3 +17,7 @@ data:
     {{ range .Files.Lines "files/conf/store_conf.yaml" }}
     {{ . }}
     {{ end }}
+  calllog_conf.yaml: |-
+    {{ range .Files.Lines "files/conf/calllog_conf.yaml" }}
+    {{ . }}
+    {{ end }}
