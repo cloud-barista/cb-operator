@@ -44,14 +44,22 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+      {{- if .Values.persistence.enabled }}
           - name: {{ template "cb-spider.fullname" . }}
-            mountPath: /root/go/src/github.com/cloud-barista/cb-spider/meta_db
+            mountPath: {{ .Values.spider.rootPath }}/meta_db
+      {{- end }}
           - name: config-volume
             mountPath: {{ .Values.spider.rootPath }}/conf
       volumes:
+      {{- if .Values.persistence.enabled }}
       - name: {{ template "cb-spider.fullname" . }} #cb-spider-persistent-storage
         persistentVolumeClaim:
+        {{- if .Values.persistence.existingClaim }}
+          claimName: {{ .Values.persistence.existingClaim }}
+        {{- else }}
           claimName: {{ template "cb-spider.fullname" . }}
+        {{- end }}
+      {{- end }}
       - name: config-volume
         configMap:
           name: {{ include "cb-spider.fullname" . }}-config

@@ -44,14 +44,22 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+      {{- if .Values.persistence.enabled }}
           - name: {{ template "cb-ladybug.fullname" . }}
-            mountPath: /app/meta_db
+            mountPath: {{ .Values.ladybug.rootPath }}/meta_db
+      {{- end }}
           - name: config-volume
             mountPath: {{ .Values.ladybug.rootPath }}/conf
       volumes:
+      {{- if .Values.persistence.enabled }}
       - name: {{ template "cb-ladybug.fullname" . }} #cb-ladybug-persistent-storage
         persistentVolumeClaim:
+        {{- if .Values.persistence.existingClaim }}
+          claimName: {{ .Values.persistence.existingClaim }}
+        {{- else }}
           claimName: {{ template "cb-ladybug.fullname" . }}
+        {{- end }}
+      {{- end }}
       - name: config-volume
         configMap:
           name: {{ include "cb-ladybug.fullname" . }}-config
