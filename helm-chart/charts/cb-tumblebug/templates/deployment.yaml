@@ -44,14 +44,22 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+      {{- if .Values.persistence.enabled }}
           - name: {{ template "cb-tumblebug.fullname" . }}
-            mountPath: /app/meta_db
+            mountPath: {{ .Values.tumblebug.rootPath }}/meta_db
+      {{- end }}
           - name: config-volume
             mountPath: {{ .Values.tumblebug.rootPath }}/conf
       volumes:
+      {{- if .Values.persistence.enabled }}
       - name: {{ template "cb-tumblebug.fullname" . }} #cb-tumblebug-persistent-storage
         persistentVolumeClaim:
+        {{- if .Values.persistence.existingClaim }}
+          claimName: {{ .Values.persistence.existingClaim }}
+        {{- else }}
           claimName: {{ template "cb-tumblebug.fullname" . }}
+        {{- end }}
+      {{- end }}
       - name: config-volume
         configMap:
           name: {{ include "cb-tumblebug.fullname" . }}-config
