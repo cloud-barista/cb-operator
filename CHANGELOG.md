@@ -1,3 +1,21 @@
+# dev
+- Add GitHub workflows 'lint' and 'build' (#98)
+- Enable GitHub Actions autoupdate (#99)
+- Add changelog-check GitHub Actions workflow
+
+# v0.3.0-espresso (2020.12.10.)
+
+## ChangeLog
+
+### Feature
+- Add mode-selection feature (#39)
+- Add Helm chart (#40)
+- Add PVC for Cloud-Barista components (#44)
+- Add CB-Ladybug to docker-compose.yaml and Helm chart (#71)
+- Add Prometheus and Grafana to CB Helm chart (#81)
+- Change docker network name (#87)
+
+
 # v0.2.0-cappuccino (2020.06.02.)
 
 ### Changelog
