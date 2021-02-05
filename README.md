@@ -1,18 +1,17 @@
 # cb-operator
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/cloud-barista/cb-operator)](https://goreportcard.com/report/github.com/cloud-barista/cb-operator)
-![Top Language](https://img.shields.io/github/languages/top/cloud-barista/cb-operator) 
-![Repo Size](https://img.shields.io/github/repo-size/cloud-barista/cb-operator)
-![code size](https://img.shields.io/github/languages/code-size/cloud-barista/cb-operator) 
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/cloud-barista/cb-operator?label=go.mod)
+[![Repo Size](https://img.shields.io/github/repo-size/cloud-barista/cb-operator)](#)
+[![code size](https://img.shields.io/github/languages/code-size/cloud-barista/cb-operator)](#)
+[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/cloud-barista/cb-operator?label=go.mod)](https://github.com/cloud-barista/cb-operator/blob/master/go.mod)
 [![GoDoc](https://godoc.org/github.com/cloud-barista/cb-operator?status.svg)](https://pkg.go.dev/github.com/cloud-barista/cb-operator)
 
-![issues](https://img.shields.io/github/issues/cloud-barista/cb-operator) 
-![issues](https://img.shields.io/github/issues-closed/cloud-barista/cb-operator) 
-![pull requests](https://img.shields.io/github/issues-pr/cloud-barista/cb-operator) 
-![pull requests](https://img.shields.io/github/issues-pr-closed/cloud-barista/cb-operator) 
+[![issues](https://img.shields.io/github/issues/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/issues)
+[![issues](https://img.shields.io/github/issues-closed/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/issues?q=is%3Aissue+is%3Aclosed)
+[![pull requests](https://img.shields.io/github/issues-pr/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/pulls)
+[![pull requests](https://img.shields.io/github/issues-pr-closed/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/pulls?q=is%3Apr+is%3Aclosed)
 
-![Release Version](https://img.shields.io/github/v/release/cloud-barista/cb-operator)
+[![Release Version](https://img.shields.io/github/v/release/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/cloud-barista/cb-operator/blob/master/LICENSE)
 
 The Operation Tool for Cloud-Barista System Runtime
