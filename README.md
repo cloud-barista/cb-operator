@@ -4,7 +4,7 @@
 [![Repo Size](https://img.shields.io/github/repo-size/cloud-barista/cb-operator)](#)
 [![code size](https://img.shields.io/github/languages/code-size/cloud-barista/cb-operator)](#)
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/cloud-barista/cb-operator?label=go.mod)](https://github.com/cloud-barista/cb-operator/blob/master/go.mod)
-[![GoDoc](https://godoc.org/github.com/cloud-barista/cb-operator?status.svg)](https://pkg.go.dev/github.com/cloud-barista/cb-operator)
+[![GoDoc](https://godoc.org/github.com/cloud-barista/cb-operator?status.svg)](https://pkg.go.dev/github.com/cloud-barista/cb-operator@master)
 
 [![issues](https://img.shields.io/github/issues/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/issues)
 [![issues](https://img.shields.io/github/issues-closed/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/issues?q=is%3Aissue+is%3Aclosed)
@@ -18,7 +18,7 @@ The Operation Tool for Cloud-Barista System Runtime
 
 ```
 [NOTE]
-cb-operator is currently under development. (the latest version is 0.2 cappuccino)
+cb-operator is currently under development. (the latest version is 0.3 espresso)
 So, we do not recommend using the current release in production.
 Please note that the functionalities of cb-operator are not stable and secure yet.
 If you have any difficulties in using cb-operator, please let us know.
