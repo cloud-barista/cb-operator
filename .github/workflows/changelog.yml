@@ -9,6 +9,12 @@ on:
     types: [opened, synchronize, reopened, labeled, unlabeled]
     branches:
       - master
+    paths-ignore:
+      - '**.md'
+      - '.all-contributorsrc'
+      - '.gitignore'
+      - 'LICENSE'
+      - 'CODEOWNERS'
 
 jobs:
   changelog:
