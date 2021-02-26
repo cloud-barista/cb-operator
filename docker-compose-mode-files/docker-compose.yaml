@@ -95,9 +95,9 @@ services:
       - ./data/cb-tumblebug/meta_db:/app/meta_db/dat
       - ./data/cb-tumblebug/log:/app/log
     environment:
-      - SPIDER_CALL_METHOD=GRPC
-      - SPIDER_REST_URL=http://cb-restapigw:8000/spider
-      - DRAGONFLY_REST_URL=http://cb-restapigw:8000/dragonfly
+      - SPIDER_CALL_METHOD=REST
+      - SPIDER_REST_URL=http://cb-spider:1024/spider
+      - DRAGONFLY_REST_URL=http://cb-dragonfly:9090/dragonfly
       - API_USERNAME=default
       - API_PASSWORD=default
 #     - DB_URL=cb-tumblebug-mysql:3306
@@ -165,8 +165,8 @@ services:
 #     - CBLOG_ROOT=/app
 #     - CBSTORE_ROOT=/app
 #     - APP_ROOT=/app
-      - SPIDER_URL=http://cb-restapigw:8000/spider
-      - TUMBLEBUG_URL=http://cb-restapigw:8000/tumblebug
+      - SPIDER_URL=http://cb-spider:1024/spider
+      - TUMBLEBUG_URL=http://cb-tumblebug:1323/tumblebug
       - BASE_PATH=/ladybug
       - API_USERNAME=default
       - API_PASSWORD=default
@@ -287,10 +287,10 @@ services:
      #- SPIDER_URL=http://cb-restapigw:8000/spider
      #- TUMBLE_URL=http://cb-restapigw:8000/tumblebug
       - API_GW=http://cb-restapigw:8000
-      - SPIDER_URL=http://cb-restapigw:8000/spider
-      - TUMBLE_URL=http://cb-restapigw:8000/tumblebug
-      - DRAGONFLY_URL=http://cb-restapigw:8000/dragonfly
-      - LADYBUG_URL=http://cb-restapigw:8000/ladybug
+      - SPIDER_URL=http://cb-spider:1024/spider
+      - TUMBLE_URL=http://cb-tumblebug:1323/tumblebug
+      - DRAGONFLY_URL=http://cb-dragonfly:9090/dragonfly
+      - LADYBUG_URL=http://cb-ladybug:8080/ladybug
       - LoginEmail=admin
       - LoginPassword=admin
 
