@@ -2,7 +2,7 @@ version: 1
 name: cb-restapigw
 port: 8000
 #cache_ttl: 3600s
-timeout: 1m
+timeout: 100m
 debug: true
 router_engine: gin
 middleware:
