@@ -4,7 +4,7 @@ definitions:
       endpoint: /spider/*bypass
       hosts: []
       #method: GET
-      timeout: 2s
+      timeout: 100m
       cache_ttl: 1h0m0s
       output_encoding: json
       except_querystrings: []
@@ -17,7 +17,7 @@ definitions:
         - hosts:
             - host: http://cb-spider:1024
               weight: 0
-          timeout: 2s
+          timeout: 100m
           #method: GET
           url_pattern: /*bypass
           encoding: json
@@ -36,7 +36,7 @@ definitions:
       endpoint: /tumblebug/*bypass
       hosts: []
       #method: GET
-      timeout: 2s
+      timeout: 100m
       cache_ttl: 1h0m0s
       output_encoding: json
       except_querystrings: []
@@ -49,7 +49,7 @@ definitions:
         - hosts:
             - host: http://cb-tumblebug:1323
               weight: 0
-          timeout: 2s
+          timeout: 100m
           #method: GET
           url_pattern: /*bypass
           encoding: json
@@ -68,7 +68,7 @@ definitions:
       endpoint: /ladybug/*bypass
       hosts: []
       #method: GET
-      timeout: 2s
+      timeout: 100m
       cache_ttl: 1h0m0s
       output_encoding: json
       except_querystrings: []
@@ -81,7 +81,7 @@ definitions:
         - hosts:
             - host: http://cb-ladybug:8080
               weight: 0
-          timeout: 2s
+          timeout: 100m
           #method: GET
           url_pattern: /*bypass
           encoding: json
@@ -100,7 +100,7 @@ definitions:
       endpoint: /dragonfly/*bypass
       hosts: []
       #method: GET
-      timeout: 2s
+      timeout: 100m
       cache_ttl: 1h0m0s
       output_encoding: json
       except_querystrings: []
@@ -113,7 +113,7 @@ definitions:
         - hosts:
             - host: http://cb-dragonfly:9090
               weight: 0
-          timeout: 2s
+          timeout: 100m
           #method: GET
           url_pattern: /*bypass
           encoding: json

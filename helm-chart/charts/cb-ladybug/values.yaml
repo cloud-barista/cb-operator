@@ -9,9 +9,9 @@ image:
 
 env:
 - name: SPIDER_URL
-  value: "http://cb-restapigw:8000/spider"
+  value: "http://cb-spider:1024/spider"
 - name: TUMBLEBUG_URL
-  value: "http://cb-restapigw:8000/tumblebug"
+  value: "http://cb-tumblebug:1323/tumblebug"
 - name: BASE_PATH
   value: /ladybug
 - name: API_USERNAME
