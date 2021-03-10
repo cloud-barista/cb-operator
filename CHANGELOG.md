@@ -2,6 +2,7 @@
 - Add GitHub workflows 'lint' and 'build' (#98)
 - Enable GitHub Actions autoupdate (#99)
 - Add changelog-check GitHub Actions workflow
+- Remove CB-Dragonfly-related Docker network (#110)
 
 # v0.3.0-espresso (2020.12.10.)
 
