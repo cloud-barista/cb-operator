@@ -2,7 +2,8 @@ version: "3.3"
 services:
   # Metrics store
   influxdb:
-    image: influxdb:latest
+    # 21/03/15 - DB V2 구조 변경으로 기존 버전 연결 문제 발생: 1.8.4 버전으로 고정해서 처리, 향후 Influx관련 코드를 v2에 맞도록 처리할 필요 있음.
+    image: influxdb:1.8.4
     container_name: cb-restapigw-influxdb
     ports:
       - "8083:8083"
@@ -38,24 +39,32 @@ services:
       - "16686:16686"
 
   # Fake API
-#  fake_api:
-#    image: jaxgeller/lwan
-#    container_name: fake_api
-#    volumes:
-#      - ./data/lwan:/lwan/wwwroot
-#    ports:
-#      - "8100:8080"
+  # fake_api:
+  #   image: jaxgeller/lwan
+  #   container_name: fake_api
+  #   volumes:
+  #     - ./data/lwan:/lwan/wwwroot
+  #   ports:
+  #     - "8100:8080"
 
+  # fake_api2:
+  #   image: jaxgeller/lwan
+  #   container_name: fake_api2
+  #   volumes:
+  #     - ./data/lwan:/lwan/wwwroot
+  #   ports:
+  #     - "8200:8080"
+      
   # HMAC Server
-#  hmac_site:
-#    build:
-#      context: ./web
-#    container_name: hmac_server
-#    volumes:
-#      - ./web/public:/app/public
-#      - ./web/conf:/app/conf
-#    ports:
-#      - "8010:8010"
+  # hmac_site:
+  #   build:
+  #     context: ./web
+  #   container_name: hmac_server
+  #   volumes:
+  #     - ./web/public:/app/public
+  #     - ./web/conf:/app/conf
+  #   ports:
+  #     - "8010:8010"
 
 # The priority used by Compose to choose which env var value to use:
 # 1. Compose file
@@ -89,7 +98,7 @@ services:
     depends_on:
       - cb-restapigw
       - cb-spider
-#     - cb-tumblebug-mysql
+      # - cb-tumblebug-mysql
     volumes:
       - ./conf/cb-tumblebug:/app/conf
       - ./data/cb-tumblebug/meta_db:/app/meta_db/dat
@@ -100,43 +109,43 @@ services:
       - DRAGONFLY_REST_URL=http://cb-dragonfly:9090/dragonfly
       - API_USERNAME=default
       - API_PASSWORD=default
-#     - DB_URL=cb-tumblebug-mysql:3306
-#     - DB_DATABASE=cb_tumblebug
-#     - DB_USER=cb_tumblebug
-#     - DB_PASSWORD=cb_tumblebug
-#     - GODEBUG=netdns=go
+      # - DB_URL=cb-tumblebug-mysql:3306
+      # - DB_DATABASE=cb_tumblebug
+      # - DB_USER=cb_tumblebug
+      # - DB_PASSWORD=cb_tumblebug
+      # - GODEBUG=netdns=go
 
-# cb-tumblebug-mysql:
-#   image: mysql
-#   container_name: cb-tumblebug-mysql
-#   ports:
-#     - "3306:3306" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
-#   environment: # -e 옵션
-#     MYSQL_ROOT_PASSWORD: "cloud-barista"  # MYSQL 패스워드 설정 옵션
-#     MYSQL_DATABASE: cb_tumblebug
-#     MYSQL_USER: cb_tumblebug
-#     MYSQL_PASSWORD: cb_tumblebug
-#   command: # 명령어 실행
-#     - --character-set-server=utf8mb4
-#     - --collation-server=utf8mb4_unicode_ci
-#     - --default-authentication-plugin=mysql_native_password
-#   volumes:
-#     - ./data/cb-tumblebug-mysql:/var/lib/mysql
+  # cb-tumblebug-mysql:
+  #   image: mysql
+  #   container_name: cb-tumblebug-mysql
+  #   ports:
+  #     - "3306:3306" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
+  #   environment: # -e 옵션
+  #     MYSQL_ROOT_PASSWORD: "cloud-barista"  # MYSQL 패스워드 설정 옵션
+  #     MYSQL_DATABASE: cb_tumblebug
+  #     MYSQL_USER: cb_tumblebug
+  #     MYSQL_PASSWORD: cb_tumblebug
+  #   command: # 명령어 실행
+  #     - --character-set-server=utf8mb4
+  #     - --collation-server=utf8mb4_unicode_ci
+  #     - --default-authentication-plugin=mysql_native_password
+  #   volumes:
+  #     - ./data/cb-tumblebug-mysql:/var/lib/mysql
 
-# cb-phpmyadmin:
-#   image: phpmyadmin/phpmyadmin
-#   container_name: cb-phpmyadmin
-#   ports:
-#     - 80:80
-#   environment: # -e 옵션
-#     PMA_HOSTS: cb-tumblebug-mysql
-#     PMA_PORTS: 3306
-#     PMA_USER: cb_tumblebug
-#     PMA_PASSWORD: cb_tumblebug
-#   links:
-#     - cb-tumblebug-mysql
-#   depends_on:
-#     - cb-tumblebug-mysql
+  # cb-phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: cb-phpmyadmin
+  #   ports:
+  #     - 80:80
+  #   environment: # -e 옵션
+  #     PMA_HOSTS: cb-tumblebug-mysql
+  #     PMA_PORTS: 3306
+  #     PMA_USER: cb_tumblebug
+  #     PMA_PASSWORD: cb_tumblebug
+  #   links:
+  #     - cb-tumblebug-mysql
+  #   depends_on:
+  #     - cb-tumblebug-mysql
 
   cb-tumblebug-phpliteadmin:
     image: acttaiwan/phpliteadmin
