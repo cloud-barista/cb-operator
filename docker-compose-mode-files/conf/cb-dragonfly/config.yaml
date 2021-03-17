@@ -11,7 +11,7 @@ influxdb:
 
 # kapacitor connection info
 kapacitor:
-  endpoint_url: http://cloud-barista-cb-dragonfly-kapacitor:9092 # endpoint to kapacitor
+  endpoint_url: http://cb-dragonfly-kapacitor:9092 # endpoint to kapacitor
 
 # kafka connection info
 kafka:
@@ -36,5 +36,8 @@ apiServer:
 monitoring:
   agent_interval: 2        # agent interval (s)
   collector_interval: 10   # aggregate interval (s)
-  max_host_count:  10      # maximum host count per collector
-  monitoring_policy: 0     # 0 => The number of agent, 1 => csp group
+  max_host_count:  5                # maximum host count per collector
+  monitoring_policy: "agentCount"   # "agentCount" => The number of agent, "csp" => csp group
+
+grpcServer:
+  port: 9999
