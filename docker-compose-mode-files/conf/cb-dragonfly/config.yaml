@@ -16,7 +16,7 @@ kapacitor:
 # kafka connection info
 kafka:
   endpoint_url: cb-dragonfly-kafka
-  external_ip: 127.0.0.1
+  external_ip: 127.0.0.1 # Cloud-Barista를 설치 및 실행하는 VM/물리머신의 Public IP 주소를 기재
   deploy_type: "compose"    # deploy environment "compose" => docker-compose or others , "helm" => helm chart on k8s
   compose_external_port: 9092
   helm_external_port: 32000
@@ -24,7 +24,7 @@ kafka:
 
 # collect manager configuration info
 collectManager:
-  collector_ip: 127.0.0.1  # local access endpoint to cb-dragonfly API server
+  collector_ip: 127.0.0.1  # Cloud-Barista를 설치 및 실행하는 VM/물리머신의 Public IP 주소를 기재
   collector_port: 8094    # udp port
   collector_group_count: 1      # default collector group count
 
