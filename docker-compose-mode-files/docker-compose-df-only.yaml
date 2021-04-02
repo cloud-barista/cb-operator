@@ -1,10 +1,17 @@
 version: "3.3"
 services:
 
+# The priority used by Compose to choose which env var value to use:
+# 1. Compose file
+# 2. Shell environment variables
+# 3. Environment file
+# 4. Dockerfile
+# 5. Variable is not defined
+
+
  # CB-Dragonfly
   cb-dragonfly:
     image: cloudbaristaorg/cb-dragonfly:v0.3.0-espresso
-    #pull_policy: always
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
@@ -34,7 +41,6 @@ services:
   # InfluxDB for CB-Dragonfly
   cb-dragonfly-influxdb:
     image: influxdb:1.8-alpine
-    #pull_policy: always
     container_name: cb-dragonfly-influxdb
     ports:
       - 28083:8083
@@ -54,7 +60,6 @@ services:
   # zookeeper for CB-Dragonfly
   cb-dragonfly-zookeeper:
     image: wurstmeister/zookeeper
-    #pull_policy: always
     container_name: cb-dragonfly-zookeeper
     ports:
       - 2181:2181
@@ -67,7 +72,6 @@ services:
   # kafka for CB-Dragonfly
   cb-dragonfly-kafka:
     image: wurstmeister/kafka:2.12-2.4.1
-    #pull_policy: always
     container_name: cb-dragonfly-kafka
     environment:
       KAFKA_ADVERTISED_HOST_NAME: cb-dragonfly-kafka
@@ -91,7 +95,6 @@ services:
   # Kapacitor for CB-Dragonfly
   cb-dragonfly-kapacitor:
     image: kapacitor:1.5
-    #pull_policy: always
     container_name: cb-dragonfly-kapacitor
     ports:
       - 29092:9092
