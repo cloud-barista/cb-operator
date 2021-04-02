@@ -2,8 +2,7 @@ version: "3.3"
 services:
  # CB-Dragonfly
   cb-dragonfly:
-    #image: cloudbaristaorg/cb-dragonfly:latest
-    image: ghcr.io/cloud-barista/cb-dragonfly:latest
+    image: cloudbaristaorg/cb-dragonfly:v0.3.2
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
