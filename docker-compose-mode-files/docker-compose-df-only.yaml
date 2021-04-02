@@ -1,17 +1,8 @@
 version: "3.3"
 services:
-
-# The priority used by Compose to choose which env var value to use:
-# 1. Compose file
-# 2. Shell environment variables
-# 3. Environment file
-# 4. Dockerfile
-# 5. Variable is not defined
-
-
  # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:v0.3.0-espresso
+    image: cloudbaristaorg/cb-dragonfly:latest
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
@@ -105,8 +96,21 @@ services:
       - KAPACITOR_INFLUXDB_0_PASSWORD=password
     depends_on:
       - cb-dragonfly-influxdb
-#   restart: always
-#    networks:
-#      cb-dragonfly:
-#        aliases:
-#          - cb-dragonfly-kapacitor
+
+  # Chronograf for CB-Dragonfly
+  cb-dragonfly-chronograf:
+    image: chronograf:1.8.4-alpine
+    container_name: cb-dragonfly-chronograf
+    ports:
+      - 8888:8888
+    command:
+      - --influxdb-url=http://cb-dragonfly-influxdb:8086
+      - --influxdb-username=cbmon
+      - --influxdb-password=password
+      - --kapacitor-url=http://cb-dragonfly-kapacitor:9092
+      - --kapacitor-username=cbmon
+      - --kapacitor-password=password
+    depends_on:
+      - cb-dragonfly-influxdb
+      - cb-dragonfly-kapacitor
+      
