@@ -27,7 +27,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "short",
             "gauge": {
                 "maxValue": 100,
@@ -152,7 +152,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "short",
             "gauge": {
                 "maxValue": 100,
@@ -277,7 +277,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "short",
             "gauge": {
                 "maxValue": 100,
@@ -402,7 +402,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "ns",
             "gauge": {
                 "maxValue": 100,
@@ -521,7 +521,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "ns",
             "gauge": {
                 "maxValue": 100,
@@ -640,7 +640,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "ns",
             "gauge": {
                 "maxValue": 100,
@@ -759,7 +759,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "decbytes",
             "gauge": {
                 "maxValue": 100,
@@ -878,7 +878,7 @@
                 "rgba(237, 129, 40, 0.89)",
                 "#d44a3a"
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "format": "none",
             "gauge": {
                 "maxValue": 100,
@@ -1021,7 +1021,7 @@
                     "value": "current"
                 }
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fontSize": "100%",
             "gridPos": {
                 "h": 9,
@@ -1141,7 +1141,7 @@
                     "value": "current"
                 }
             ],
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fontSize": "100%",
             "gridPos": {
                 "h": 9,
@@ -1247,7 +1247,7 @@
             "bars": false,
             "dashLength": 10,
             "dashes": false,
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -1427,7 +1427,7 @@
             "bars": true,
             "dashLength": 10,
             "dashes": false,
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -1558,7 +1558,7 @@
             "bars": false,
             "dashLength": 10,
             "dashes": false,
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fill": 1,
             "fillGradient": 0,
             "gridPos": {
@@ -1697,7 +1697,7 @@
                 "mode": "spectrum"
             },
             "dataFormat": "timeseries",
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "gridPos": {
                 "h": 9,
                 "w": 12,
@@ -1793,7 +1793,7 @@
             "bars": false,
             "dashLength": 10,
             "dashes": false,
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fill": 1,
             "gridPos": {
                 "h": 9,
@@ -1924,7 +1924,7 @@
                 "mode": "spectrum"
             },
             "dataFormat": "timeseries",
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "gridPos": {
                 "h": 9,
                 "w": 12,
@@ -2017,7 +2017,7 @@
             "bars": false,
             "dashLength": 10,
             "dashes": false,
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fill": 1,
             "gridPos": {
                 "h": 9,
@@ -2189,7 +2189,7 @@
             "bars": false,
             "dashLength": 10,
             "dashes": false,
-            "datasource": "${DS_INFLUX}",
+            "datasource": "ETRI API G/W",
             "fill": 1,
             "gridPos": {
                 "h": 9,
@@ -2571,7 +2571,7 @@
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
-                    "datasource": "${DS_INFLUX}",
+                    "datasource": "ETRI API G/W",
                     "fill": 1,
                     "gridPos": {
                         "h": 9,
@@ -2731,7 +2731,7 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "alias": "c: $tag_complete, e: $tag_error",
+                            "alias": "complete: $tag_complete, error: $tag_error",
                             "groupBy": [
                                 {
                                     "params": [
@@ -2833,7 +2833,7 @@
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
-                    "datasource": "${DS_INFLUX}",
+                    "datasource": "ETRI API G/W",
                     "fill": 1,
                     "gridPos": {
                         "h": 9,
@@ -3091,7 +3091,7 @@
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
-                    "datasource": "${DS_INFLUX}",
+                    "datasource": "ETRI API G/W",
                     "fill": 1,
                     "gridPos": {
                         "h": 9,
@@ -3600,7 +3600,7 @@
                     "bars": false,
                     "dashLength": 10,
                     "dashes": false,
-                    "datasource": "${DS_INFLUX}",
+                    "datasource": "ETRI API G/W",
                     "fill": 1,
                     "gridPos": {
                         "h": 9,
@@ -3760,7 +3760,7 @@
                     "steppedLine": false,
                     "targets": [
                         {
-                            "alias": "c: $tag_complete, e: $tag_error",
+                            "alias": "complete: $tag_complete, error: $tag_error",
                             "groupBy": [
                                 {
                                     "params": [
@@ -6458,7 +6458,7 @@
                     "text": "All",
                     "value": "$__all"
                 },
-                "datasource": "${DS_INFLUX}",
+                "datasource": "ETRI API G/W",
                 "definition": "",
                 "hide": 0,
                 "includeAll": true,

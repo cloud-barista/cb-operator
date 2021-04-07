@@ -11,8 +11,8 @@ dependencies:
     repository: "https://charts.bitnami.com/bitnami"
     condition: influxdb.enabled
   - name: grafana
-    version: ~5.0.26
-    repository: "https://kubernetes-charts.storage.googleapis.com"
+    version: ~6.6.4
+    repository: "https://grafana.github.io/helm-charts"
     condition: grafana.enabled
   - name: jaeger
     version: ~0.28.0

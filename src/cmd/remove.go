@@ -33,7 +33,10 @@ var removeCmd = &cobra.Command{
 				cmdStr = "sudo kubectl delete pvc cb-tumblebug -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 
-				cmdStr = "sudo kubectl delete pvc data-cb-dragonfly-etcd-0 -n " + common.CBK8sNamespace
+				cmdStr = "sudo kubectl delete pvc cb-ladybug -n " + common.CBK8sNamespace
+				common.SysCall(cmdStr)
+
+				cmdStr = "sudo kubectl delete pvc cb-dragonfly -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 
 				//fallthrough
