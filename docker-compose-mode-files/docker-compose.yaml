@@ -15,7 +15,7 @@ services:
 
   # Metrics UI
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:7.4.5
     container_name: cb-restapigw-grafana
     ports:
       - "3100:3000"
@@ -75,7 +75,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:v0.3.2
+    image: cloudbaristaorg/cb-spider:v0.3.5
     container_name: cb-spider
     ports:
       - "1024:1024"
@@ -90,7 +90,7 @@ services:
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:0.3.2
+    image: cloudbaristaorg/cb-tumblebug:0.3.4
     container_name: cb-tumblebug
     ports:
       - "1323:1323"
@@ -149,7 +149,6 @@ services:
 
   cb-tumblebug-phpliteadmin:
     image: acttaiwan/phpliteadmin
-#   image: jihoons/phpliteadmin
     container_name: cb-tumblebug-phpliteadmin
     ports:
       - 2015:2015
@@ -182,10 +181,11 @@ services:
 
  # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:v0.3.0-espresso
+    image: cloudbaristaorg/cb-dragonfly:v0.3.2
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
+      - ./data/cb-dragonfly/meta_db:/go/src/github.com/cloud-barista/cb-dragonfly/meta_db/dat
       - ./data/cb-dragonfly/log:/go/src/github.com/cloud-barista/cb-dragonfly/log
     ports:
       - 9090:9090

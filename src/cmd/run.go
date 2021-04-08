@@ -42,7 +42,10 @@ var runCmd = &cobra.Command{
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:
-				cmdStr = "sudo kubectl create ns " + common.CBK8sNamespace
+				// For Kubernetes 1.19 and above (included)
+				cmdStr = "sudo kubectl create ns " + common.CBK8sNamespace + " --dry-run=client -o yaml | kubectl apply -f -"
+				// For Kubernetes 1.18 and below (included)
+				//cmdStr = "sudo kubectl create ns " + common.CBK8sNamespace + " --dry-run -o yaml | kubectl apply -f -"
 				common.SysCall(cmdStr)
 				cmdStr = "sudo helm install --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName + " -f " + common.FileStr + " ../helm-chart --debug"
 				//fmt.Println(cmdStr)
