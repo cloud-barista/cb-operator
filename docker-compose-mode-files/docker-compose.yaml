@@ -282,23 +282,6 @@ services:
 #        aliases:
 #          - cb-dragonfly-kapacitor
 
-  # Chronograf for CB-Dragonfly
-  cb-dragonfly-chronograf:
-    image: chronograf:1.8.4-alpine
-    container_name: cb-dragonfly-chronograf
-    ports:
-      - 8888:8888
-    command:
-      - --influxdb-url=http://cb-dragonfly-influxdb:8086
-      - --influxdb-username=cbmon
-      - --influxdb-password=password
-      - --kapacitor-url=http://cb-dragonfly-kapacitor:9092
-      - --kapacitor-username=cbmon
-      - --kapacitor-password=password
-    depends_on:
-      - cb-dragonfly-influxdb
-      - cb-dragonfly-kapacitor
-
   # CB-Webtool
   cb-webtool:
     image: cloudbaristaorg/cb-webtool:v0.3.0-espresso
