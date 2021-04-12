@@ -2,64 +2,17 @@ definitions:
   - name: Order Service
     active: true
     endpoint: /order/*bypass
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
-    middleware: {}
-    health_check:
-      url: ""
-      timeout: 0s
     backend:
       - hosts:
           - host: http://localhost:8400
             weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /*bypass
-        encoding: json
-        group: ""
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
-        disable_host_sanitize: false
-        lb_mode: ""
-
   - name: Inventory Service
     active: true
     endpoint: /inventory/*bypass
-    hosts: []
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
-    middleware: {}
-    health_check:
-      url: ""
-      timeout: 0s
     backend:
       - hosts:
           - host: http://localhost:8500
             weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /*bypass
-        encoding: json
-        group: ""
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
-        disable_host_sanitize: false
-        lb_mode: ""
+        

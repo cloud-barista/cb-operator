@@ -249,7 +249,7 @@
                             "condition": "AND",
                             "key": "layer",
                             "operator": "=",
-                            "value": "pipe"
+                            "value": "proxy"
                         }
                     ]
                 }
@@ -2432,12 +2432,12 @@
                                     "condition": "AND",
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 }
                             ]
                         }
                     ],
-                    "title": "Pipe Throughput (per $resolution)",
+                    "title": "Proxy Throughput (per $resolution)",
                     "transform": "timeseries_aggregations",
                     "type": "table"
                 },
@@ -2557,12 +2557,12 @@
                                     "condition": "AND",
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 }
                             ]
                         }
                     ],
-                    "title": "Pipe Response Time (ms) (per $resolution)",
+                    "title": "Proxy Response Time (ms) (per $resolution)",
                     "transform": "timeseries_aggregations",
                     "type": "table"
                 },
@@ -2647,7 +2647,7 @@
                                 {
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 },
                                 {
                                     "condition": "AND",
@@ -2781,7 +2781,7 @@
                                 {
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 },
                                 {
                                     "condition": "AND",
@@ -2909,7 +2909,7 @@
                                 {
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 },
                                 {
                                     "condition": "AND",
@@ -3046,7 +3046,7 @@
                                     "condition": "AND",
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 },
                                 {
                                     "condition": "AND",
@@ -3167,7 +3167,7 @@
                                 {
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 },
                                 {
                                     "condition": "AND",
@@ -3298,7 +3298,7 @@
                                     "condition": "AND",
                                     "key": "layer",
                                     "operator": "=",
-                                    "value": "pipe"
+                                    "value": "proxy"
                                 },
                                 {
                                     "condition": "AND",
