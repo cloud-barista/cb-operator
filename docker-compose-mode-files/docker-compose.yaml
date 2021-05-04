@@ -75,15 +75,15 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:v0.3.5
+    image: cloudbaristaorg/cb-spider:0.3.6
     container_name: cb-spider
     ports:
       - "1024:1024"
       - "2048:2048"
     volumes:
-      - ./conf/cb-spider:/root/go/src/github.com/cloud-barista/cb-spider/conf
-      - ./data/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db/dat
-      - ./data/cb-spider/log:/root/go/src/github.com/cloud-barista/cb-spider/log
+      - ./conf/cb-spider/:/root/go/src/github.com/cloud-barista/cb-spider/conf/
+      - ./data/cb-spider/meta_db/:/root/go/src/github.com/cloud-barista/cb-spider/meta_db/
+      - ./data/cb-spider/log/:/root/go/src/github.com/cloud-barista/cb-spider/log/
     depends_on:
       - cb-restapigw
 
@@ -100,9 +100,9 @@ services:
       - cb-spider
       # - cb-tumblebug-mysql
     volumes:
-      - ./conf/cb-tumblebug:/app/conf
-      - ./data/cb-tumblebug/meta_db:/app/meta_db/dat
-      - ./data/cb-tumblebug/log:/app/log
+      - ./conf/cb-tumblebug/:/app/conf/
+      - ./data/cb-tumblebug/meta_db/:/app/meta_db/
+      - ./data/cb-tumblebug/log/:/app/log/
     environment:
       - SPIDER_CALL_METHOD=REST
       - SPIDER_REST_URL=http://cb-spider:1024/spider
@@ -166,9 +166,9 @@ services:
       - cb-spider
       - cb-tumblebug
     volumes:
-      - ./conf/cb-ladybug:/app/conf
-      - ./data/cb-ladybug/meta_db:/app/meta_db/dat
-      - ./data/cb-ladybug/log:/app/log
+      - ./conf/cb-ladybug/:/app/conf/
+      - ./data/cb-ladybug/meta_db/:/app/meta_db/
+      - ./data/cb-ladybug/log/:/app/log/
     environment:
 #     - CBLOG_ROOT=/app
 #     - CBSTORE_ROOT=/app
@@ -184,9 +184,9 @@ services:
     image: cloudbaristaorg/cb-dragonfly:v0.3.2
     container_name: cb-dragonfly
     volumes:
-      - ./conf/cb-dragonfly:/go/src/github.com/cloud-barista/cb-dragonfly/conf
-      - ./data/cb-dragonfly/meta_db:/go/src/github.com/cloud-barista/cb-dragonfly/meta_db/dat
-      - ./data/cb-dragonfly/log:/go/src/github.com/cloud-barista/cb-dragonfly/log
+      - ./conf/cb-dragonfly/:/go/src/github.com/cloud-barista/cb-dragonfly/conf/
+      - ./data/cb-dragonfly/meta_db/:/go/src/github.com/cloud-barista/cb-dragonfly/meta_db/
+      - ./data/cb-dragonfly/log/:/go/src/github.com/cloud-barista/cb-dragonfly/log/
     ports:
       - 9090:9090
       - 9999:9999
@@ -305,7 +305,7 @@ services:
 
   # CB-RESTAPIGW SERVICE
   cb-restapigw:
-    image: cloudbaristaorg/cb-restapigw:v0.3.0-espresso
+    image: cloudbaristaorg/cb-restapigw:0.3.4
     container_name: cb-restapigw
     volumes:
       - ./conf/cb-restapigw:/app/conf

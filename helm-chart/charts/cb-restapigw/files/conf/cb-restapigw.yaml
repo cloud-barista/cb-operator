@@ -3,7 +3,7 @@ name: cb-restapigw
 port: 8000
 #cache_ttl: 3600s
 timeout: 100m
-#output_encoding: json
+output_encoding: json
 debug: true
 router_engine: gin
 middleware:
@@ -67,3 +67,4 @@ admin:
         tester: "tester@admin00"
   profiling_enabled: true
   profiling_public: true
+  

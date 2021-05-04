@@ -1,64 +1,79 @@
 definitions:
+  - name: Splash RateLimit Test
+    active: true
+    hosts:
+      - host: http://fake_api:8100
+        weight: 3
+      - host: http://fake_api2:8200
+        weight: 5
+    endpoint: "/splash_ratelimit"
+    except_querystrings:
+      - "name"
+      - "querystring"
+    except_headers:
+      - "Testing"
+    middleware:
+      mw-ratelimit:
+        max_rate: 5
+        client_max_rate: 10
+        strategy: "ip" #header #ip
+        key: "" #"X-Private-Token"
+    backend:
+      - url_pattern: "/shop/campaigns.json"
+        whitelist:
+          - "campaigns"
+        lb_mode: wrr
+      - url_pattern: "/shop/products.json"
+        middleware:
+          mw-proxy:
+            flatmap_filter:
+              - type: "move"
+                args:
+                  - "products.*.id"
+                  - "products.*.id-"
+              - type: "del"
+                args:
+                  - "products.*.image"
+                  - "products.*.body_html"
+                  - "products.*.created_at"
+                  - "products.*.handle"
+                  - "products.*.product_type"
+                  - "products.*.published_at"
+                  - "products.*.published_scope"
+                  - "products.*.tags"
+                  - "products.*.template_suffix"
+                  - "products.*.updated_at"
+                  - "products.*.vendor"
+          mw-ratelimit:
+            max_rate: 1
+            capacity: 1
+        lb_mode: rr
   - name: Splash Test
     active: true
-    endpoint: /splash
+    endpoint: "/splash"
     hosts:
       - host: http://fake_api:8100
         weight: 0
-      - host: http://fake_api:8200
+      - host: http://fake_api2:8200
         weight: 0
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
-    middleware: {}
-    health_check:
-      url: ""
-      timeout: 0s
     backend:
       - hosts:
           - host: http://fake_api:8100
             weight: 3
-          - host: http://fake_api:8200
+          - host: http://fake_api2:8200
             weight: 5
-        timeout: 2s
-        method: GET
         url_pattern: /shop/campaigns.json
-        encoding: json
-        group: ""
-        blacklist:
         whitelist:
           - campaigns
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
         middleware:
           mw-proxy:
             flatmap_filter:
               - args:
                   - campaigns.*.discounts
                 type: del
-        disable_host_sanitize: false
         lb_mode: wrr
       - hosts:
-          - host: http://fake_api:8100
-            weight: 0
-          - host: http://fake_api:8200
-            weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /shop/products.json
-        encoding: json
-        group: ""
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
         middleware:
           mw-proxy:
             flatmap_filter:
@@ -79,137 +94,49 @@ definitions:
                   - products.*.updated_at
                   - products.*.vendor
                 type: del
-        disable_host_sanitize: false
         lb_mode: rr
   - name: Sequential Test
     active: true
     endpoint: /sequential
-    hosts: []
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
+    hosts:
+      - host: http://fake_api:8100
+        weight: 0
     middleware:
       mw-proxy:
         sequential: true
-    health_check:
-      url: ""
-      timeout: 0s
     backend:
-      - hosts:
-          - host: http://fake_api:8100
-            weight: 0
-        timeout: 2s
-        method: GET
-        url_pattern: /hotels/1.json
-        encoding: json
-        group: ""
-        blacklist: []
+      - url_pattern: /hotels/1.json
         whitelist:
           - destination_id
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
-        disable_host_sanitize: false
-        lb_mode: ""
-      - hosts:
-          - host: http://fake_api:8100
-            weight: 0
-        timeout: 2s
-        method: GET
-        url_pattern: /destinations/{{.Resp0_destination_id}}.json
-        encoding: json
-        group: ""
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
+      - url_pattern: /destinations/{{.Resp0_destination_id}}.json
         middleware:
           mw-http:
             return_error_details: sequential
-        disable_host_sanitize: false
-        lb_mode: ""
   - name: Fail Test
     active: true
     endpoint: /fail
-    hosts: []
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
-    middleware: {}
-    health_check:
-      url: ""
-      timeout: 0s
     backend:
       - hosts:
           - host: http://fake_api:8100
             weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /user/1.json
-        encoding: json
         group: user
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
         target: address
-        middleware:
-          mw-http:
-            return_error_details: fail_1
-        disable_host_sanitize: false
-        lb_mode: ""
       - hosts:
           - host: http://fake_url_that_should_not_resolve.tld
             weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /
-        encoding: json
         group: none
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
-        disable_host_sanitize: false
-        lb_mode: ""
   - name: Public Test
     active: true
     endpoint: /public
-    hosts: []
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
-    middleware: {}
-    health_check:
-      url: ""
-      timeout: 0s
+    timeout: 100m
     backend:
       - hosts:
           - host: https://api.github.com
             weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /users/ccambo
-        encoding: json
         group: github
-        blacklist: []
         whitelist:
           - avatar_url
           - name
@@ -223,23 +150,14 @@ definitions:
           - public_gists
         mapping:
           blog: website
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
         middleware:
           mw-httpcache:
             enabled: true
-        disable_host_sanitize: false
-        lb_mode: ""
       - hosts:
           - host: https://api.bitbucket.org
             weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /2.0/users/kpacha
-        encoding: json
         group: bitbucket
-        blacklist: []
         whitelist:
           - links.avatar
           - display_name
@@ -247,112 +165,89 @@ definitions:
           - location
         mapping:
           display_name: name
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
-        disable_host_sanitize: false
-        lb_mode: ""
+        middleware:
+          mw-http:
+            return_error_details: fail_1
+  - name: Error Test
+    active: true
+    endpoint: /errortest
+    hosts:
+      - host: http://fake_api:8100
+        weight: 0
+    backend:
+      - url_pattern: /user/1.json
+        group: user
+        target: address
+        middleware:
+          mw-http:
+            return_error_details: error_1
+      - url_pattern: /user/2.json
+        group: user2
+        target: address
+        middleware:
+          mw-http:
+            return_error_details: error_2
   - name: External(Github) Test
     active: true
     endpoint: /github/:user
-    hosts: []
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
-    middleware: {}
-    health_check:
-      url: ""
-      timeout: 0s
     backend:
       - hosts:
           - host: https://api.github.com
             weight: 0
-        timeout: 2s
-        method: GET
         url_pattern: /users/{{.User}}
-        encoding: json
-        group: ""
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
         disable_host_sanitize: true
-        lb_mode: ""
   - name: Collection Test
     active: true
     endpoint: /collection
-    hosts: []
-    method: GET
-    timeout: 1s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
-    middleware: {}
-    health_check:
-      url: ""
-      timeout: 0s
+    hosts:
+      - host: http://fake_api:8100
+        weight: 0
     backend:
-      - hosts:
-          - host: http://fake_api:8100
-            weight: 0
-        timeout: 3s
-        method: GET
-        url_pattern: /destinations/2.json
-        encoding: json
-        group: ""
-        blacklist: []
-        whitelist: []
+      - url_pattern: /destinations/2.json
         mapping:
           collection: data
         is_collection: true
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
-        disable_host_sanitize: false
-        lb_mode: ""
+        wrap_collection_to_json: true
   - name: Custom Test
     active: true
     endpoint: /private/custom
     hosts:
       - host: http://fake_api:8100
         weight: 0
-    method: GET
-    timeout: 2s
-    cache_ttl: 1h0m0s
-    output_encoding: json
-    except_querystrings: []
-    except_headers: []
     middleware:
       mw-auth:
         access_ids:
           - etri
         secure_key: "###TEST_SECURE_KEY###"
-    health_check:
-      url: ""
-      timeout: 0s
     backend:
+      - url_pattern: /user/1.json
+  - name: Error with Data Test
+    active: true
+    endpoint: /errordata
+    hosts:
+      - host: http://localhost:8010
+        weight: 0
+    backend:
+      - url_pattern: /error/500
+        middleware:
+          mw-http:
+            return_error_details: "err"
+        group: data
       - hosts:
           - host: http://fake_api:8100
-            weight: 0
-        timeout: 2s
-        method: GET
-        url_pattern: /user/1.json
-        encoding: json
-        group: ""
-        blacklist: []
-        whitelist: []
-        mapping: {}
-        is_collection: false
-        wrap_collection_to_json: false
-        target: ""
-        middleware: {}
-        disable_host_sanitize: false
-        lb_mode: ""
+            weight: 3
+          - host: http://fake_api2:8200
+            weight: 5
+        url_pattern: /shop/campaigns.json
+        group: campaigns
+  - name: Error with Data on ByPass Test
+    active: true
+    endpoint: /error/*bypass
+    hosts:
+      - host: http://localhost:8010
+        weight: 0
+    backend:
+      - url_pattern: /*bypass
+        middleware:
+          mw-http:
+            return_error_details: "err"
