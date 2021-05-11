@@ -6,8 +6,8 @@ services:
     image: influxdb:1.8.4
     container_name: cb-restapigw-influxdb
     ports:
-      - "8083:8083"
-      - "8086:8086"
+      - "0.0.0.0:8083:8083"
+      - "0.0.0.0:8086:8086"
     env_file:
       - './conf/env.influxdb'
     volumes:
@@ -18,7 +18,7 @@ services:
     image: grafana/grafana:7.4.5
     container_name: cb-restapigw-grafana
     ports:
-      - "3100:3000"
+      - "0.0.0.0:3100:3000"
     depends_on:
       - influxdb
     env_file:
@@ -35,8 +35,8 @@ services:
     image: jaegertracing/all-in-one:latest
     container_name: cb-restapigw-jaeger
     ports:
-      - "14268:14268"
-      - "16686:16686"
+      - "0.0.0.0:14268:14268"
+      - "0.0.0.0:16686:16686"
 
   # Fake API
   # fake_api:
@@ -75,26 +75,31 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:0.3.6
+    image: cloudbaristaorg/cb-spider:0.3.13
     container_name: cb-spider
     ports:
-      - "1024:1024"
-      - "2048:2048"
+      - "0.0.0.0:1024:1024"
+      - "0.0.0.0:2048:2048"
+      - "0.0.0.0:4096:4096"
     volumes:
       - ./conf/cb-spider/:/root/go/src/github.com/cloud-barista/cb-spider/conf/
       - ./data/cb-spider/meta_db/:/root/go/src/github.com/cloud-barista/cb-spider/meta_db/
       - ./data/cb-spider/log/:/root/go/src/github.com/cloud-barista/cb-spider/log/
     depends_on:
       - cb-restapigw
+    environment:
+      - LOCALHOST=OFF
+      - PLUGIN_SW=OFF
+      - MEERKAT=OFF
 
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:0.3.4
+    image: cloudbaristaorg/cb-tumblebug:0.3.6
     container_name: cb-tumblebug
     ports:
-      - "1323:1323"
-      - "50252:50252"
+      - "0.0.0.0:1323:1323"
+      - "0.0.0.0:50252:50252"
     depends_on:
       - cb-restapigw
       - cb-spider
@@ -151,7 +156,7 @@ services:
     image: acttaiwan/phpliteadmin
     container_name: cb-tumblebug-phpliteadmin
     ports:
-      - 2015:2015
+      - 0.0.0.0:2015:2015
     volumes:
       - ./data/cb-tumblebug/meta_db:/db
 
@@ -160,7 +165,7 @@ services:
     image: cloudbaristaorg/cb-ladybug:v0.3.0-espresso
     container_name: cb-ladybug
     ports:
-      - "8080:8080"
+      - "0.0.0.0:8080:8080"
     depends_on:
       - cb-restapigw
       - cb-spider
@@ -181,27 +186,27 @@ services:
 
  # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:v0.3.2
+    image: cloudbaristaorg/cb-dragonfly:0.3.3
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly/:/go/src/github.com/cloud-barista/cb-dragonfly/conf/
       - ./data/cb-dragonfly/meta_db/:/go/src/github.com/cloud-barista/cb-dragonfly/meta_db/
       - ./data/cb-dragonfly/log/:/go/src/github.com/cloud-barista/cb-dragonfly/log/
     ports:
-      - 9090:9090
-      - 9999:9999
+      - 0.0.0.0:9090:9090
+      - 0.0.0.0:9999:9999
     depends_on:
 #     - cb-restapigw
       - cb-dragonfly-zookeeper
       - cb-dragonfly-kafka
       - cb-dragonfly-influxdb
       - cb-dragonfly-kapacitor
-    environment:
-      - CBSTORE_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
-      - CBLOG_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
-      - CBMON_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
-#     - DRAGONFLY_INFLUXDB_URL=cb-dragonfly-influxdb:8086
-#   restart: always
+    # environment:
+    #   - CBSTORE_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
+    #   - CBLOG_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
+    #   - CBMON_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
+    #   - DRAGONFLY_INFLUXDB_URL=cb-dragonfly-influxdb:8086
+    # restart: always
     security_opt:
       - no-new-privileges
 #    networks:
@@ -214,8 +219,8 @@ services:
     image: influxdb:1.8-alpine
     container_name: cb-dragonfly-influxdb
     ports:
-      - 28083:8083
-      - 28086:8086
+      - 0.0.0.0:28083:8083
+      - 0.0.0.0:28086:8086
     environment:
       - PRE_CREATE_DB=cbmon
       - INFLUXDB_DB=cbmon
@@ -233,7 +238,7 @@ services:
     image: wurstmeister/zookeeper
     container_name: cb-dragonfly-zookeeper
     ports:
-      - 2181:2181
+      - 0.0.0.0:2181:2181
 #   restart: always
 #    networks:
 #      cb-dragonfly:
@@ -256,7 +261,7 @@ services:
     volumes:
         - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 9092:9092
+      - 0.0.0.0:9092:9092
 #   restart: always
 #    networks:
 #      cb-dragonfly:
@@ -268,7 +273,7 @@ services:
     image: kapacitor:1.5
     container_name: cb-dragonfly-kapacitor
     ports:
-      - 29092:9092
+      - 0.0.0.0:29092:9092
     environment:
       - KAPACITOR_HOSTNAME=cb-dragonfly-kapacitor
       - KAPACITOR_INFLUXDB_0_URLS_0=http://cb-dragonfly-influxdb:8086
@@ -287,7 +292,7 @@ services:
     image: cloudbaristaorg/cb-webtool:v0.3.0-espresso
     container_name: cb-webtool
     ports:
-      - "1234:1234"
+      - "0.0.0.0:1234:1234"
     depends_on:
       - cb-restapigw
       - cb-spider
@@ -311,8 +316,8 @@ services:
       - ./conf/cb-restapigw:/app/conf
 #     - ./data/cb-restapigw/log:/app/log
     ports:
-      - "8000:8000"
-      - "8001:8001"
+      - "0.0.0.0:8000:8000"
+      - "0.0.0.0:8001:8001"
     depends_on:
       - influxdb
       - grafana
