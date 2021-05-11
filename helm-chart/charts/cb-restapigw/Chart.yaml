@@ -2,7 +2,7 @@ apiVersion: v2
 name: cb-restapigw
 type: application
 version: 0.3.0
-appVersion: v0.3.0-espresso
+appVersion: 0.3.4
 description: cb-restapigw Helm chart
 
 dependencies:
