@@ -18,6 +18,14 @@ env:
   value: "default"
 - name: API_PASSWORD
   value: "default"
+- name: AUTOCONTROL_DURATION_MS
+  value: "10000"
+- name: SELF_ENDPOINT
+  value: "localhost:1323"
+- name: GOLANG_PROTOBUF_REGISTRATION_CONFLICT
+  value: "ignore"
+- name: API_DOC_PATH
+  value: "/app/src/docs/swagger.json"
 
 imagePullSecrets: []
 nameOverride: ""
