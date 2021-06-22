@@ -4,7 +4,7 @@
 influxdb:
   endpoint_url: http://cb-dragonfly-influxdb # endpoint for influxDB
   internal_port: 8086
-  external_port: 28086
+  external_port: 8086
   database: cbmon
   user_name: cbmon
   password: password
