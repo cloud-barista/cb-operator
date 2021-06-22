@@ -21,7 +21,7 @@ services:
       - CBLOG_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
       - CBMON_ROOT=/go/src/github.com/cloud-barista/cb-dragonfly
 #     - DRAGONFLY_INFLUXDB_URL=cb-dragonfly-influxdb:8086
-#   restart: always
+    restart: always
     security_opt:
       - no-new-privileges
 #    networks:
