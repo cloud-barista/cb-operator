@@ -1,4 +1,8 @@
 ## Clock Panel Plugin for Grafana
+[![CircleCI](https://circleci.com/gh/grafana/clock-panel.svg?style=svg)](https://circleci.com/gh/grafana/clock-panel)
+[![David Dependancy Status](https://david-dm.org/grafana/clock-panel.svg)](https://david-dm.org/grafana/clock-panel)
+[![David Dev Dependency Status](https://david-dm.org/grafana/clock-panel/dev-status.svg)](https://david-dm.org/grafana/clock-panel/?type=dev)
+
 The Clock Panel can show the current time or a countdown and updates every second.
 
 Show the time in another office or show a countdown to an important event.
@@ -18,6 +22,10 @@ Show the time in another office or show a countdown to an important event.
 - **Timezone**:
 
   This timezones are supplied by the moment timezone library. Timezone can be set or left to default. Default is moment's guess (whatever that is on your computer). Timezone is also used to calculate countdown deadline in countdown mode.
+
+- **Locale**:
+
+  Locales for date-formatting are supplied by the moment library. The locale can be set or left to default. Default is moment's guess.
 
 - **Countdown Deadline**:
 
