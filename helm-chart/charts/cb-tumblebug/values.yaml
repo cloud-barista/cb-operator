@@ -25,7 +25,7 @@ env:
 - name: GOLANG_PROTOBUF_REGISTRATION_CONFLICT
   value: "ignore"
 - name: API_DOC_PATH
-  value: "/app/src/docs/swagger.json"
+  value: "/app/src/api/rest/docs/swagger.json"
 
 imagePullSecrets: []
 nameOverride: ""
