@@ -2,10 +2,13 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/cloud-barista/cb-operator/src/common"
 	"github.com/spf13/cobra"
 )
+
+var csp string
 
 // runCmd represents the run command
 var runCmd = &cobra.Command{
@@ -42,12 +45,15 @@ var runCmd = &cobra.Command{
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:
-				// For Kubernetes 1.19 and above (included)
+				// For Kubernetes 1.19 and above
 				cmdStr = "sudo kubectl create ns " + common.CBK8sNamespace + " --dry-run=client -o yaml | kubectl apply -f -"
-				// For Kubernetes 1.18 and below (included)
+				// For Kubernetes 1.18 and below
 				//cmdStr = "sudo kubectl create ns " + common.CBK8sNamespace + " --dry-run -o yaml | kubectl apply -f -"
 				common.SysCall(cmdStr)
 				cmdStr = "sudo helm install --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName + " -f " + common.FileStr + " ../helm-chart --debug"
+				if strings.ToLower(csp) == "gcp" || strings.ToLower(csp) == "gke" {
+					cmdStr += " --set metricServer.enabled=false"
+				}
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			default:
@@ -64,6 +70,7 @@ func init() {
 
 	pf := runCmd.PersistentFlags()
 	pf.StringVarP(&common.FileStr, "file", "f", common.NotDefined, "User-defined configuration file")
+	pf.StringVarP(&csp, "csp", "", common.NotDefined, "Cloud Service Provider / Kind of Managed K8s services")
 
 	/*
 		switch common.CBOperatorMode {
