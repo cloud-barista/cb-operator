@@ -23,7 +23,7 @@ var stopCmd = &cobra.Command{
 			var cmdStr string
 			switch common.CBOperatorMode {
 			case common.ModeDockerCompose:
-				cmdStr := "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " stop"
+				cmdStr := "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " stop"
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 

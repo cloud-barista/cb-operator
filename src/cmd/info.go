@@ -27,7 +27,7 @@ var infoCmd = &cobra.Command{
 
 				fmt.Println("")
 				fmt.Println("[v]Status of Cloud-Barista runtime images")
-				cmdStr = "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " images"
+				cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " images"
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:

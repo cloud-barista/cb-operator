@@ -41,7 +41,7 @@ var runCmd = &cobra.Command{
 			var cmdStr string
 			switch common.CBOperatorMode {
 			case common.ModeDockerCompose:
-				cmdStr = "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " up"
+				cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " up"
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:

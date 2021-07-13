@@ -35,7 +35,7 @@ var pullCmd = &cobra.Command{
 							common.PrintJsonPretty(configuration)
 			*/
 
-			cmdStr := "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " pull"
+			cmdStr := "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " pull"
 			//fmt.Println(cmdStr)
 			common.SysCall(cmdStr)
 		}

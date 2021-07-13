@@ -42,13 +42,13 @@ var removeCmd = &cobra.Command{
 				//fallthrough
 			case common.ModeDockerCompose:
 				if volFlag && imgFlag {
-					cmdStr = "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down -v --rmi all"
+					cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down -v --rmi all"
 				} else if volFlag {
-					cmdStr = "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down -v"
+					cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down -v"
 				} else if imgFlag {
-					cmdStr = "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down --rmi all"
+					cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down --rmi all"
 				} else {
-					cmdStr = "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down"
+					cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " down"
 				}
 
 				//fmt.Println(cmdStr)
