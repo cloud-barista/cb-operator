@@ -46,11 +46,11 @@ var runCmd = &cobra.Command{
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:
 				// For Kubernetes 1.19 and above
-				cmdStr = "sudo kubectl create ns " + common.CBK8sNamespace + " --dry-run=client -o yaml | kubectl apply -f -"
+				cmdStr = "kubectl create ns " + common.CBK8sNamespace + " --dry-run=client -o yaml | kubectl apply -f -"
 				// For Kubernetes 1.18 and below
-				//cmdStr = "sudo kubectl create ns " + common.CBK8sNamespace + " --dry-run -o yaml | kubectl apply -f -"
+				//cmdStr = "kubectl create ns " + common.CBK8sNamespace + " --dry-run -o yaml | kubectl apply -f -"
 				common.SysCall(cmdStr)
-				cmdStr = "sudo helm install --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName + " -f " + common.FileStr + " ../helm-chart --debug"
+				cmdStr = "helm install --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName + " -f " + common.FileStr + " ../helm-chart --debug"
 				if strings.ToLower(csp) == "gcp" || strings.ToLower(csp) == "gke" {
 					cmdStr += " --set metricServer.enabled=false"
 				}

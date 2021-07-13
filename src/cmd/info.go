@@ -32,15 +32,15 @@ var infoCmd = &cobra.Command{
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:
 				fmt.Println("[v]Status of Cloud-Barista Helm release")
-				cmdStr = "sudo helm status --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
+				cmdStr = "helm status --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
 				common.SysCall(cmdStr)
 				fmt.Println()
 				fmt.Println("[v]Status of Cloud-Barista pods")
-				cmdStr = "sudo kubectl get pods -n " + common.CBK8sNamespace
+				cmdStr = "kubectl get pods -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 				fmt.Println()
 				fmt.Println("[v]Status of Cloud-Barista container images")
-				cmdStr = `sudo kubectl get pods -n ` + common.CBK8sNamespace + ` -o jsonpath="{..image}" |\
+				cmdStr = `kubectl get pods -n ` + common.CBK8sNamespace + ` -o jsonpath="{..image}" |\
 				tr -s '[[:space:]]' '\n' |\
 				sort |\
 				uniq`

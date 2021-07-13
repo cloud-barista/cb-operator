@@ -29,7 +29,7 @@ var stopCmd = &cobra.Command{
 
 				common.SysCallDockerComposePs()
 			case common.ModeKubernetes:
-				cmdStr = "sudo helm uninstall --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
+				cmdStr = "helm uninstall --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
 				common.SysCall(cmdStr)
 			default:
 

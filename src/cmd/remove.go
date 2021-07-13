@@ -24,19 +24,19 @@ var removeCmd = &cobra.Command{
 			var cmdStr string
 			switch common.CBOperatorMode {
 			case common.ModeKubernetes:
-				cmdStr = "sudo helm uninstall --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
+				cmdStr = "helm uninstall --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
 				common.SysCall(cmdStr)
 
-				cmdStr = "sudo kubectl delete pvc cb-spider -n " + common.CBK8sNamespace
+				cmdStr = "kubectl delete pvc cb-spider -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 
-				cmdStr = "sudo kubectl delete pvc cb-tumblebug -n " + common.CBK8sNamespace
+				cmdStr = "kubectl delete pvc cb-tumblebug -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 
-				cmdStr = "sudo kubectl delete pvc cb-ladybug -n " + common.CBK8sNamespace
+				cmdStr = "kubectl delete pvc cb-ladybug -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 
-				cmdStr = "sudo kubectl delete pvc cb-dragonfly -n " + common.CBK8sNamespace
+				cmdStr = "kubectl delete pvc cb-dragonfly -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 
 				//fallthrough
