@@ -39,7 +39,7 @@ var CBHelmReleaseName string = "cloud-barista"
 
 // SysCall executes user-passed command via system call.
 func SysCall(cmdStr string) {
-	//cmdStr := "sudo docker-compose -f " + common.FileStr + " up"
+	//cmdStr := "docker-compose -f " + common.FileStr + " up"
 	cmd := exec.Command("/bin/sh", "-c", cmdStr)
 
 	cmdReader, _ := cmd.StdoutPipe()
@@ -67,7 +67,7 @@ func SysCall(cmdStr string) {
 // SysCallDockerComposePs executes `docker-compose ps` command via system call.
 func SysCallDockerComposePs() {
 	fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-	cmdStr := "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + FileStr + " ps"
+	cmdStr := "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + FileStr + " ps"
 	SysCall(cmdStr)
 }
 

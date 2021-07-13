@@ -23,13 +23,13 @@ var stopCmd = &cobra.Command{
 			var cmdStr string
 			switch common.CBOperatorMode {
 			case common.ModeDockerCompose:
-				cmdStr := "sudo COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " stop"
+				cmdStr := "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " stop"
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 
 				common.SysCallDockerComposePs()
 			case common.ModeKubernetes:
-				cmdStr = "sudo helm uninstall --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
+				cmdStr = "helm uninstall --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
 				common.SysCall(cmdStr)
 			default:
 
