@@ -2,26 +2,26 @@ apiVersion: v2
 name: cloud-barista
 description: Cloud-Barista Helm chart
 type: application
-version: 0.3.0
-appVersion: 0.3.0
+version: 0.4.0
+appVersion: 0.4.0
 dependencies:
   - name: cb-dragonfly
-    version: 0.3.0
+    version: 0.4.0
     condition: cb-dragonfly.enabled
   - name: cb-restapigw
-    version: 0.3.0
+    version: 0.4.0
     condition: cb-restapigw.enabled
   - name: cb-spider
-    version: 0.3.0
+    version: 0.4.0
     condition: cb-spider.enabled
   - name: cb-tumblebug
-    version: 0.3.0
+    version: 0.4.0
     condition: cb-tumblebug.enabled
   - name: cb-ladybug
-    version: 0.3.0
+    version: 0.4.0
     condition: cb-ladybug.enabled
   - name: cb-webtool
-    version: 0.3.0
+    version: 0.4.0
     condition: cb-webtool.enabled
   - name: docker-registry
     version: ~1.9.3
@@ -39,3 +39,7 @@ dependencies:
     version: ~11.16.3
     repository: "https://prometheus-community.github.io/helm-charts/"
     condition: prometheus.enabled
+  - name: etcd
+    version: ~6.2.9
+    condition: etcd.enabled
+    # repository: "https://charts.bitnami.com/bitnami"
