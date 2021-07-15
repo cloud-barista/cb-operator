@@ -1,57 +1,58 @@
 cb-dragonfly:
-  enabled : true
+  enabled: true
   service:
     type: NodePort
     restNodePort: 30090
-    grpcNodePort: 30254
+    grpcNodePort: 30999
     #monitorNodePort: 30094
   persistence:
-    enabled: true
+    enabled: false
     size: 1Gi
     accessMode: 'ReadWriteOnce'
 
 cb-restapigw:
-  enabled : true
+  enabled: true
   service:
     type: NodePort
     restNodePort: 30080
     webAdminNodePort: 30081    
 
 cb-spider:
-  enabled : true
+  enabled: true
   service:
     type: NodePort
     restNodePort: 31024
     grpcNodePort: 32048
   persistence:
-    enabled: true
+    enabled: false
     size: 1Gi
     accessMode: 'ReadWriteOnce'
+    storageClass: 'manual' # for debug
 
 cb-tumblebug:
-  enabled : true
+  enabled: true
   service:
     type: NodePort
     restNodePort: 31323
     grpcNodePort: 30252
   persistence:
-    enabled: true
+    enabled: false
     size: 1Gi
     accessMode: 'ReadWriteOnce'
 
 cb-ladybug:
-  enabled : true
+  enabled: true
   service:
     type: NodePort
     restNodePort: 31080
-#   grpcNodePort: 30252
+    grpcNodePort: 30254
   persistence:
-    enabled: true
+    enabled: false
     size: 1Gi
     accessMode: 'ReadWriteOnce'
 
 cb-webtool:
-  enabled : true
+  enabled: true
   service:
     type: NodePort
     nodePort: 31234    
@@ -61,7 +62,7 @@ cb-webtool:
 # hostPath PV
 
 docker-registry:
-  enabled : false
+  enabled: false
   fullnameOverride: "docker-registry"
   # secrets:
   #   htpasswd: "admin:$2y$05$SDxx.8dOmr23n3WMpCqK1.5rB9m15nTD7QiG6IX2u4DORzPMlxEBS"
@@ -76,7 +77,7 @@ docker-registry:
     accessMode: 'ReadWriteOnce'
 
 weave-scope:
-  enabled : false
+  enabled: false
   service:
     type: NodePort
     nodePort: 30040
@@ -86,7 +87,7 @@ weave-scope:
 
 # sub-chart : grafana
 grafana:
-  enabled: true
+  enabled: false
   adminPassword: "admin"
   testFramework:
     enabled: false
@@ -123,7 +124,7 @@ grafana:
 
 # sub-chart : prometheus
 prometheus:
-  enabled: true
+  enabled: false
   #fullnameOverride: "cloud-barista-prometheus"
   server:
     name: server
@@ -170,4 +171,13 @@ prometheus:
 
 # sub-chart : metric-server
 metricServer:
+  enabled: false
+
+# sub-chart : etcd
+etcd:
   enabled: true
+  persistence:
+    enabled: false
+  auth:
+    rbac:
+      rootPassword: "cloud-barista!"

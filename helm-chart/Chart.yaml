@@ -42,4 +42,4 @@ dependencies:
   - name: etcd
     version: ~6.2.9
     condition: etcd.enabled
-    # repository: "https://charts.bitnami.com/bitnami"
+    repository: "https://charts.bitnami.com/bitnami"
