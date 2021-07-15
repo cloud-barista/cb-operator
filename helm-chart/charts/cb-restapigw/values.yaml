@@ -11,6 +11,8 @@ influxdb:
       value: "cbrestapigw"
     - name: INFLUXDB_DATA_ENGINE
       value: "tsm1"
+  persistence:
+    enabled: false
 
 # sub-chart : grafana conf.
 grafana:

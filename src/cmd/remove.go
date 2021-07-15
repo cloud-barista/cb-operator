@@ -39,6 +39,9 @@ var removeCmd = &cobra.Command{
 				cmdStr = "kubectl delete pvc cb-dragonfly -n " + common.CBK8sNamespace
 				common.SysCall(cmdStr)
 
+				cmdStr = "kubectl delete pvc data-cloud-barista-etcd-0 -n " + common.CBK8sNamespace
+				common.SysCall(cmdStr)
+
 				//fallthrough
 			case common.ModeDockerCompose:
 				if volFlag && imgFlag {

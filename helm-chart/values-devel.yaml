@@ -1,20 +1,20 @@
 cb-dragonfly:
-  enabled : true
+  enabled: true
 
 cb-restapigw:
-  enabled : true
+  enabled: true
 
 cb-spider:
-  enabled : true
+  enabled: true
 
 cb-tumblebug:
-  enabled : true
+  enabled: true
 
 cb-ladybug:
-  enabled : true
+  enabled: true
 
 cb-webtool:
-  enabled : true
+  enabled: true
   service:
     nodePort: 30800
     type: NodePort
@@ -23,7 +23,7 @@ cb-webtool:
 # basc auth admin:1234
 # hostPath PV
 docker-registry:
-  enabled : true
+  enabled: true
   fullnameOverride: "docker-registry"
   # secrets:
   #   htpasswd: "admin:$2y$05$SDxx.8dOmr23n3WMpCqK1.5rB9m15nTD7QiG6IX2u4DORzPMlxEBS"
@@ -37,7 +37,7 @@ docker-registry:
     size: 1Gi
 
 weave-scope:
-  enabled : true
+  enabled: true
   service:
     nodePort: 30040
     type: NodePort
