@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var csp string
+var mode string
 
 // runCmd represents the run command
 var runCmd = &cobra.Command{
@@ -51,7 +51,7 @@ var runCmd = &cobra.Command{
 				//cmdStr = "kubectl create ns " + common.CBK8sNamespace + " --dry-run -o yaml | kubectl apply -f -"
 				common.SysCall(cmdStr)
 				cmdStr = "helm install --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName + " -f " + common.FileStr + " ../helm-chart --debug"
-				if strings.ToLower(csp) == "gcp" || strings.ToLower(csp) == "gke" {
+				if strings.ToLower(mode) == "gcp" || strings.ToLower(mode) == "gke" {
 					cmdStr += " --set metricServer.enabled=false"
 				}
 				//fmt.Println(cmdStr)
@@ -70,7 +70,7 @@ func init() {
 
 	pf := runCmd.PersistentFlags()
 	pf.StringVarP(&common.FileStr, "file", "f", common.NotDefined, "User-defined configuration file")
-	pf.StringVarP(&csp, "csp", "", common.NotDefined, "Cloud Service Provider / Kind of Managed K8s services")
+	pf.StringVarP(&mode, "mode", "", common.NotDefined, "Cloud Service Provider / Kind of Managed K8s services")
 
 	/*
 		switch common.CBOperatorMode {
