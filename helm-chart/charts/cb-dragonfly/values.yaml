@@ -17,7 +17,7 @@ influxdb:
 
 kapacitor:
   enabled: true
-  nameOverride: "cb-dragonfly-kapacitor"
+  nameOverride: "dragonfly-kapacitor"
   envVars:
     #KAPACITOR_INFLUXDB_0_URLS_0: http://cb-dragonfly-influxdb:8086
     KAPACITOR_INFLUXDB_0_USERNAME: cbmon

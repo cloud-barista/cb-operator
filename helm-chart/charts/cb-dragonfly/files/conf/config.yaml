@@ -11,7 +11,7 @@ influxdb:
   rpDuration: 4w                                   # retention Policy for DB (h, d, w), min: 1h max: 0s
 
 kapacitor:
-  endpoint_url: http://cb-dragonfly-kapacitor:9092  # endpoint to kapacitor
+  endpoint_url: http://cloud-barista-dragonfly-kapacitor:9092 # endpoint to kapacitor
 
 kafka:
   endpoint_url: cb-dragonfly-kafka

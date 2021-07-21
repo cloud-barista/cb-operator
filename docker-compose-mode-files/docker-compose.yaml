@@ -75,7 +75,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:0.4.1
+    image: cloudbaristaorg/cb-spider:0.4.6
     container_name: cb-spider
     ports:
       - "0.0.0.0:1024:1024"
@@ -88,14 +88,16 @@ services:
     depends_on:
       - cb-restapigw
     environment:
-      - LOCALHOST=OFF
       - PLUGIN_SW=OFF
       - MEERKAT=OFF
+      # if you leave these values empty, REST Auth will be disabled.
+      - API_USERNAME=
+      - API_PASSWORD=
 
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:0.4.1
+    image: cloudbaristaorg/cb-tumblebug:0.4.2
     container_name: cb-tumblebug
     ports:
       - "0.0.0.0:1323:1323"
@@ -166,7 +168,7 @@ services:
 
   # CB-Ladybug
   cb-ladybug:
-    image: cloudbaristaorg/cb-ladybug:0.4.1
+    image: cloudbaristaorg/cb-ladybug:0.4.2
     container_name: cb-ladybug
     ports:
       - "0.0.0.0:8080:8080"
@@ -191,7 +193,7 @@ services:
 
  # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:0.4.0
+    image: cloudbaristaorg/cb-dragonfly:0.4.1
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly/:/go/src/github.com/cloud-barista/cb-dragonfly/conf/
@@ -315,7 +317,7 @@ services:
 
   # CB-RESTAPIGW SERVICE
   cb-restapigw:
-    image: cloudbaristaorg/cb-restapigw:0.4.0
+    image: cloudbaristaorg/cb-restapigw:0.4.1
     container_name: cb-restapigw
     volumes:
       - ./conf/cb-restapigw:/app/conf

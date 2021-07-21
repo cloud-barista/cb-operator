@@ -43,7 +43,7 @@ replicaCount: 1
 
 image:
   repository: cloudbaristaorg/cb-restapigw
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
