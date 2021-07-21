@@ -87,7 +87,7 @@ weave-scope:
 
 # sub-chart : grafana
 grafana:
-  enabled: false
+  enabled: true
   adminPassword: "admin"
   testFramework:
     enabled: false
@@ -124,7 +124,7 @@ grafana:
 
 # sub-chart : prometheus
 prometheus:
-  enabled: false
+  enabled: true
   #fullnameOverride: "cloud-barista-prometheus"
   server:
     name: server
@@ -171,7 +171,7 @@ prometheus:
 
 # sub-chart : metric-server
 metricServer:
-  enabled: false
+  enabled: true
 
 # sub-chart : etcd
 etcd:
