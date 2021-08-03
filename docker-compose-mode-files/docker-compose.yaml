@@ -75,7 +75,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:0.4.6
+    image: cloudbaristaorg/cb-spider:0.4.7
     container_name: cb-spider
     ports:
       - "0.0.0.0:1024:1024"
