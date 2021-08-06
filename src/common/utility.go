@@ -31,6 +31,9 @@ var DefaultKubernetesConfig string = "../helm-chart/values.yaml"
 // NotDefined is a variable that holds the string "Not_Defined"
 var NotDefined string = "Not_Defined"
 
+// CBComposeProjectName is a variable that holds the default COMPOSE_PROJECT_NAME that CB-Operator will use.
+var CBComposeProjectName string = "cloud-barista"
+
 // CBK8sNamespace is a variable that holds the K8s namespace that CB-Operator will use.
 var CBK8sNamespace string = "cloud-barista"
 
@@ -67,7 +70,8 @@ func SysCall(cmdStr string) {
 // SysCallDockerComposePs executes `docker-compose ps` command via system call.
 func SysCallDockerComposePs() {
 	fmt.Println("\n[v]Status of Cloud-Barista runtimes")
-	cmdStr := "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + FileStr + " ps"
+	//cmdStr := "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + FileStr + " ps"
+	cmdStr := fmt.Sprintf("COMPOSE_PROJECT_NAME=%s docker-compose -f %s ps", CBComposeProjectName, FileStr)
 	SysCall(cmdStr)
 }
 

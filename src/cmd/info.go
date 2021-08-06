@@ -27,16 +27,16 @@ var infoCmd = &cobra.Command{
 
 				fmt.Println("")
 				fmt.Println("[v]Status of Cloud-Barista runtime images")
-				cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " images"
+				cmdStr = fmt.Sprintf("COMPOSE_PROJECT_NAME=%s docker-compose -f %s images", common.CBComposeProjectName, common.FileStr)
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:
 				fmt.Println("[v]Status of Cloud-Barista Helm release")
-				cmdStr = "helm status --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName
+				cmdStr = fmt.Sprintf("helm status --namespace %s %s", common.CBK8sNamespace, common.CBHelmReleaseName)
 				common.SysCall(cmdStr)
 				fmt.Println()
 				fmt.Println("[v]Status of Cloud-Barista pods")
-				cmdStr = "kubectl get pods -n " + common.CBK8sNamespace
+				cmdStr = fmt.Sprintf("kubectl get pods -n %s", common.CBK8sNamespace)
 				common.SysCall(cmdStr)
 				fmt.Println()
 				fmt.Println("[v]Status of Cloud-Barista container images")
