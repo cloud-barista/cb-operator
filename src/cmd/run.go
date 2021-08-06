@@ -22,35 +22,22 @@ var runCmd = &cobra.Command{
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
-			/*
-				var configuration mcisReq
-
-				viper.SetConfigFile(fileStr)
-				if err := viper.ReadInConfig(); err != nil {
-				fmt.Printf("Error reading config file, %s", err)
-				}
-				err := viper.Unmarshal(&configuration)
-				if err != nil {
-				fmt.Printf("Unable to decode into struct, %v", err)
-				}
-
-				common.PrintJsonPretty(configuration)
-			*/
 			common.FileStr = common.GenConfigPath(common.FileStr, common.CBOperatorMode)
 
 			var cmdStr string
 			switch common.CBOperatorMode {
 			case common.ModeDockerCompose:
-				cmdStr = "COMPOSE_PROJECT_NAME=cloud-barista docker-compose -f " + common.FileStr + " up"
+				cmdStr = fmt.Sprintf("COMPOSE_PROJECT_NAME=%s docker-compose -f %s up", common.CBComposeProjectName, common.FileStr)
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			case common.ModeKubernetes:
 				// For Kubernetes 1.19 and above
-				cmdStr = "kubectl create ns " + common.CBK8sNamespace + " --dry-run=client -o yaml | kubectl apply -f -"
+				cmdStr = fmt.Sprintf("kubectl create ns %s --dry-run=client -o yaml | kubectl apply -f -", common.CBK8sNamespace)
 				// For Kubernetes 1.18 and below
-				//cmdStr = "kubectl create ns " + common.CBK8sNamespace + " --dry-run -o yaml | kubectl apply -f -"
+				//cmdStr = fmt.Sprintf("kubectl create ns %s --dry-run -o yaml | kubectl apply -f -", common.CBK8sNamespace)
 				common.SysCall(cmdStr)
-				cmdStr = "helm install --namespace " + common.CBK8sNamespace + " " + common.CBHelmReleaseName + " -f " + common.FileStr + " ../helm-chart --debug"
+
+				cmdStr = fmt.Sprintf("helm install --namespace %s %s -f %s ../helm-chart --debug", common.CBK8sNamespace, common.CBHelmReleaseName, common.FileStr)
 				if strings.ToLower(mode) == "gcp" || strings.ToLower(mode) == "gke" {
 					cmdStr += " --set metricServer.enabled=false"
 				}
