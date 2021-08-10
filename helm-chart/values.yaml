@@ -180,4 +180,6 @@ etcd:
     enabled: false
   auth:
     rbac:
-      rootPassword: "cloud-barista!"
+      enabled: false
+      allowNoneAuthentication: true
+      rootPassword: ""
