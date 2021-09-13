@@ -54,13 +54,13 @@ ingress:
       paths: []
   tls: []
 
-resources: {}
+resources: 
   # limits:
   #   cpu: 100m
   #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 # persistence:
 #   accessMode: 'ReadWriteMany'

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/cloud-barista/cb-operator/src/common"
 	"github.com/spf13/cobra"
@@ -29,6 +30,9 @@ var updateCmd = &cobra.Command{
 
 			case common.ModeKubernetes:
 				cmdStr = fmt.Sprintf("helm upgrade --namespace %s --install %s -f %s ../helm-chart", common.CBK8sNamespace, common.CBHelmReleaseName, common.FileStr)
+				if strings.ToLower(k8sprovider) == "gke" {
+					cmdStr += " --set metricServer.enabled=false"
+				}
 				//fmt.Println(cmdStr)
 				common.SysCall(cmdStr)
 			default:
@@ -45,17 +49,7 @@ func init() {
 
 	pf := updateCmd.PersistentFlags()
 	pf.StringVarP(&common.FileStr, "file", "f", common.NotDefined, "User-defined configuration file")
-
-	/*
-		switch common.CBOperatorMode {
-		case common.ModeDockerCompose:
-			pf.StringVarP(&common.FileStr, "file", "f", "../docker-compose-mode-files/docker-compose.yaml", "Path to Cloud-Barista Docker Compose YAML file")
-		case common.ModeKubernetes:
-			pf.StringVarP(&common.FileStr, "file", "f", "../helm-chart/values.yaml", "Path to Cloud-Barista Helm chart file")
-		default:
-
-		}
-	*/
+	pf.StringVarP(&k8sprovider, "k8sprovider", "", common.NotDefined, "Kind of Managed K8s services")
 
 	//	cobra.MarkFlagRequired(pf, "file")
 

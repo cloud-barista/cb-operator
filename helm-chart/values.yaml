@@ -17,6 +17,13 @@ cb-restapigw:
     restNodePort: 30080
     webAdminNodePort: 30081    
 
+cb-restapigw-readonly:
+  enabled: true
+  service:
+    type: NodePort
+    restNodePort: 30070
+    webAdminNodePort: 30071    
+
 cb-spider:
   enabled: true
   service:
@@ -76,13 +83,13 @@ docker-registry:
     size: 1Gi
     accessMode: 'ReadWriteOnce'
 
-weave-scope:
-  enabled: false
-  service:
-    type: NodePort
-    nodePort: 30040
-    port: 4040
-    targetPort: 4040
+# weave-scope:
+#   enabled: true
+#   service:
+#     type: NodePort
+#     nodePort: 30040
+#     port: 4040
+#     targetPort: 4040
     
 
 # sub-chart : grafana
@@ -183,3 +190,7 @@ etcd:
       enabled: false
       allowNoneAuthentication: true
       rootPassword: ""
+
+# sub-chart : ingress
+ingress:
+  enabled: false

@@ -1,0 +1,91 @@
+_format_version: "2.1"
+_transform: true
+
+routes:
+- name: cb-spider
+  paths:
+  - /spider
+  # methods:
+  # - GET
+#   # Relationships can also be specified between top-level entities,
+#   # either by name or by id
+  service: cb-spider
+#   # hosts: ["hello.com"]
+- name: cb-spider-get-method
+  paths:
+  - /spider
+  methods:
+  - GET
+  service: cb-spider
+  plugins:
+  - name: basic-auth
+    config:
+      hide_credentials: true
+- name: cb-tumblebug
+  paths:
+  - /tumblebug
+  service: cb-tumblebug
+- name: cb-ladybug
+  paths:
+  - /ladybug
+  service: cb-ladybug
+- name: cb-dragonfly
+  paths:
+  - /dragonfly
+  service: cb-dragonfly
+- name: cb-webtool
+  paths:
+  - /webtool
+  service: cb-webtool
+- name: cb-tumblebug-grpc
+  protocols:
+  - grpc
+  paths:
+  - /cbtumblebug.UTILITY
+  - /cbtumblebug.NS
+  - /cbtumblebug.MCIR
+  - /cbtumblebug.MCIS
+  service: cb-tumblebug-grpc
+
+
+
+services:
+- name: cb-spider
+  url: http://cb-spider:1024/spider
+#   # plugins:
+#   # - name: key-auth
+#   routes:
+#   - name: cb-spider
+#     paths:
+#     - /spider
+- name: cb-tumblebug
+  url: http://cb-tumblebug:1323/tumblebug
+- name: cb-ladybug
+  url: http://cb-ladybug:8080/ladybug
+- name: cb-dragonfly
+  url: http://cb-dragonfly:9090/dragonfly
+- name: cb-webtool
+  url: http://cb-webtool:1234/
+- name: cb-tumblebug-grpc
+  protocol: grpc
+  host: cb-tumblebug
+  port: 50252
+#   routes:
+#   - name: cb-tumblebug-grpc
+#     protocols:
+#     - grpc
+#     paths:
+#     - /
+
+
+
+# consumers:
+# - username: my-user
+#   keyauth_credentials:
+#   - key: my-key
+
+consumers:
+- username: guest123
+  basicauth_credentials:
+  - username: default
+    password: default

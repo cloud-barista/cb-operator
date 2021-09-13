@@ -36,8 +36,8 @@ docker-registry:
     enabled: true
     size: 1Gi
 
-weave-scope:
-  enabled: true
-  service:
-    nodePort: 30040
-    type: NodePort
+# weave-scope:
+#   enabled: true
+#   service:
+#     nodePort: 30040
+#     type: NodePort
