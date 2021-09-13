@@ -16,6 +16,8 @@ var pullCmd = &cobra.Command{
 		fmt.Println("\n[Pull images of Cloud-Barista System containers]")
 		fmt.Println()
 
+		common.FileStr = common.GenConfigPath(common.FileStr, common.ModeDockerCompose)
+
 		if common.FileStr == "" {
 			fmt.Println("file is required")
 		} else {
