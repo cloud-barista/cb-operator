@@ -12,7 +12,7 @@ cblog:
 
 ## Config for File Output ##
 logfileinfo:
-  filename: $APP_ROOT/log/cb-ladybug.log
+  filename: $APP_ROOT/log/cb-mcks.log
   maxsize: 10 # megabytes
   maxbackups: 50
   maxage: 31 # days

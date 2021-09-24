@@ -2,13 +2,13 @@ definitions:
   # Health
   - name: 'Ladybug GET /healthy'
     active: true
-    endpoint: /ladybug/healthy
+    endpoint: /mcks/healthy
     method: GET
     backend:
       - hosts:
-        - host: http://cb-ladybug:8080
+        - host: http://cb-mcks:1470
           weight: 0
-        url_pattern: /ladybug/healthy
+        url_pattern: /mcks/healthy
         middleware:
           mw-http:
             return_error_details: GET_healthy
@@ -16,26 +16,26 @@ definitions:
   # Get Ladybug cluster
   - name: 'Ladybug GET /clusters'
     active: true
-    endpoint: /ladybug/ns/:nsId/clusters
+    endpoint: /mcks/ns/:nsId/clusters
     method: GET
     backend:
       - hosts:
-        - host: http://cb-ladybug:8080
+        - host: http://cb-mcks:1470
           weight: 0
-        url_pattern: /ladybug/ns/{{.NsId}}/clusters
+        url_pattern: /mcks/ns/{{.NsId}}/clusters
         middleware:
           mw-http:
             return_error_details: GET_clusters
 
   - name: 'Ladybug GET /clusters/:clusterId'
     active: true
-    endpoint: /ladybug/ns/:nsId/clusters/:clusterId
+    endpoint: /mcks/ns/:nsId/clusters/:clusterId
     method: GET
     backend:
       - hosts:
-        - host: http://cb-ladybug:8080
+        - host: http://cb-mcks:1470
           weight: 0
-        url_pattern: /ladybug/ns/{{.NsId}}/clusters/{{.ClusterId}}
+        url_pattern: /mcks/ns/{{.NsId}}/clusters/{{.ClusterId}}
         middleware:
           mw-http:
             return_error_details: GET_cluster
@@ -43,26 +43,26 @@ definitions:
   # Get Ladybug cluster node
   - name: 'Ladybug GET /clusters/:clusterId/nodes'
     active: true
-    endpoint: /ladybug/ns/:nsId/clusters/:clusterId/nodes
+    endpoint: /mcks/ns/:nsId/clusters/:clusterId/nodes
     method: GET
     backend:
       - hosts:
-        - host: http://cb-ladybug:8080
+        - host: http://cb-mcks:1470
           weight: 0
-        url_pattern: /ladybug/ns/{{.NsId}}/clusters/{{.ClusterId}}/nodes
+        url_pattern: /mcks/ns/{{.NsId}}/clusters/{{.ClusterId}}/nodes
         middleware:
           mw-http:
             return_error_details: GET_nodes
 
   - name: 'Ladybug GET /clusters/:clusterId/nodes/:nodeId'
     active: true
-    endpoint: /ladybug/ns/:nsId/clusters/:clusterId/nodes/:nodeId
+    endpoint: /mcks/ns/:nsId/clusters/:clusterId/nodes/:nodeId
     method: GET
     backend:
       - hosts:
-        - host: http://cb-ladybug:8080
+        - host: http://cb-mcks:1470
           weight: 0
-        url_pattern: /ladybug/ns/{{.NsId}}/clusters/{{.ClusterId}}/nodes/{{.NodeId}}
+        url_pattern: /mcks/ns/{{.NsId}}/clusters/{{.ClusterId}}/nodes/{{.NodeId}}
         middleware:
           mw-http:
             return_error_details: GET_node
