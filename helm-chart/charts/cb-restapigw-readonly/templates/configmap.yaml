@@ -21,10 +21,14 @@ data:
     {{ range .Files.Lines "files/conf/apis/cb-dragonfly-apis.yaml" }}
     {{ . }}
     {{ end }}
-  cb-ladybug-apis.yaml: |-
-    {{ range .Files.Lines "files/conf/apis/cb-ladybug-apis.yaml" }}
+  cb-mcks-apis.yaml: |-
+    {{ range .Files.Lines "files/conf/apis/cb-mcks-apis.yaml" }}
     {{ . }}
     {{ end }}
+  # cb-ladybug-apis.yaml: |-
+  #   {{ range .Files.Lines "files/conf/apis/cb-ladybug-apis.yaml" }}
+  #   {{ . }}
+  #   {{ end }}
   cb-spider-apis.yaml: |-
     {{ range .Files.Lines "files/conf/apis/cb-spider-apis.yaml" }}
     {{ . }}

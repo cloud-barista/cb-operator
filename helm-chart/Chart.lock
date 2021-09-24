@@ -11,15 +11,12 @@ dependencies:
 - name: cb-tumblebug
   repository: ""
   version: 0.4.0
-- name: cb-ladybug
+- name: cb-mcks
   repository: ""
   version: 0.4.0
 - name: cb-webtool
   repository: ""
   version: 0.4.0
-- name: docker-registry
-  repository: https://charts.helm.sh/stable
-  version: ~1.9.3
 - name: grafana
   repository: https://grafana.github.io/helm-charts
   version: ~6.6.4
@@ -29,5 +26,5 @@ dependencies:
 - name: etcd
   repository: https://charts.bitnami.com/bitnami
   version: ~6.2.9
-digest: sha256:32ca94d42bb3b8dabb6b38a2a872c7ab2dd4d66ad0c1de3429ea263f0f922a1b
-generated: "2021-08-17T18:38:14.920125921+09:00"
+digest: sha256:f6c7a26115113325871ea2e9698412a1f399f8000cbd37c6b1557dec132b853e
+generated: "2021-09-24T16:23:48.555274301+09:00"

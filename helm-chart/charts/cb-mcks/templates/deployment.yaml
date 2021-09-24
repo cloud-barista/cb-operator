@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cb-restapigw.fullname" . }}
+  name: {{ include "cb-mcks.fullname" . }}
   labels:
-    {{- include "cb-restapigw.labels" . | nindent 4 }}
+    {{- include "cb-mcks.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "cb-restapigw.selectorLabels" . | nindent 6 }}
+      {{- include "cb-mcks.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "cb-restapigw.selectorLabels" . | nindent 8 }}
+        {{- include "cb-mcks.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "cb-restapigw.serviceAccountName" . }}
+      serviceAccountName: {{ include "cb-mcks.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
@@ -43,40 +43,38 @@ spec:
           #  - name: http
           #    containerPort: 80
           #    protocol: TCP
+          env:
+            {{- toYaml .Values.env | nindent 12 }}
           # livenessProbe:
           #   httpGet:
-          #     path: /
+          #     path: /mcks/
           #     port: http
           # readinessProbe:
           #   httpGet:
-          #     path: /
+          #     path: /mcks/
           #     port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+      {{- if .Values.persistence.enabled }}
+          - name: {{ template "cb-mcks.fullname" . }}
+            mountPath: {{ .Values.mcks.rootPath }}/meta_db
+      {{- end }}
           - name: config-volume
-            mountPath: {{ .Values.restapigw.rootPath }}/conf
+            mountPath: {{ .Values.mcks.rootPath }}/conf
       volumes:
+      {{- if .Values.persistence.enabled }}
+      - name: {{ template "cb-mcks.fullname" . }} #cb-mcks-persistent-storage
+        persistentVolumeClaim:
+        {{- if .Values.persistence.existingClaim }}
+          claimName: {{ .Values.persistence.existingClaim }}
+        {{- else }}
+          claimName: {{ template "cb-mcks.fullname" . }}
+        {{- end }}
+      {{- end }}
       - name: config-volume
         configMap:
-          name: {{ include "cb-restapigw.fullname" . }}-config
-          items:
-          - key: cb-restapigw.yaml
-            path: cb-restapigw.yaml
-          - key: log_conf.yaml
-            path: log_conf.yaml
-          - key: store_conf.yaml
-            path: store_conf.yaml
-          - key: cb-dragonfly-apis.yaml
-            path: apis/cb-dragonfly-apis.yaml
-          - key: cb-mcks-apis.yaml
-            path: apis/cb-mcks-apis.yaml
-          # - key: cb-ladybug-apis.yaml
-          #   path: apis/cb-ladybug-apis.yaml
-          - key: cb-spider-apis.yaml
-            path: apis/cb-spider-apis.yaml
-          - key: cb-tumblebug-apis.yaml
-            path: apis/cb-tumblebug-apis.yaml          
+          name: {{ include "cb-mcks.fullname" . }}-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
