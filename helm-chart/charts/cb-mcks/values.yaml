@@ -1,10 +1,10 @@
-ladybug:
+mcks:
   rootPath: "/app"
 
 replicaCount: 1
 
 image:
-  repository: cloudbaristaorg/cb-ladybug
+  repository: cloudbaristaorg/cb-mcks
   pullPolicy: Always
 
 env:
@@ -13,7 +13,7 @@ env:
 - name: TUMBLEBUG_URL
   value: "http://cb-tumblebug:1323/tumblebug"
 - name: BASE_PATH
-  value: /ladybug
+  value: /mcks
 - name: API_USERNAME
   value: "default"
 - name: API_PASSWORD
@@ -21,7 +21,7 @@ env:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: "cb-ladybug"
+fullnameOverride: "cb-mcks"
 
 serviceAccount:
   create: true
@@ -41,8 +41,8 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  restPort: 1592
-  grpcPort: 50256
+  restPort: 1470
+  grpcPort: 50254
 
 ingress:
   enabled: false
