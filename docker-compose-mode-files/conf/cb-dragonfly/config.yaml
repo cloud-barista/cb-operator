@@ -3,8 +3,7 @@
 # influxdb connection info
 influxdb:
   endpoint_url: http://cb-dragonfly-influxdb       # endpoint for influxDB
-  internal_port: 8086
-  external_port: 8086
+  custom_port: 28086                               # Usage Port when DF Run-time environment(monitoring.deploy_type) is "dev"
   database: cbmon
   user_name: cbmon
   password: password
@@ -12,13 +11,12 @@ influxdb:
 
 kapacitor:
   endpoint_url: http://cb-dragonfly-kapacitor:9092  # endpoint to kapacitor
+  custom_port: 29092                                # Usage Port when DF Run-time environment(monitoring.deploy_type) is "dev"
 
 kafka:
   endpoint_url: cb-dragonfly-kafka
-  external_ip: 127.0.0.1                            # Cloud-Barista를 설치 및 실행하는 VM/물리머신의 Public IP 주소를 기재
-  internal_port: 9092
-  compose_external_port: 9092
-  helm_external_port: 32000
+  kafka_ip: 127.0.0.1                               # Cloud-Barista를 설치 및 실행하는 VM/물리머신의 Public IP 주소를 기재
+  helm_port: 32000                                  # Usage Port for Agent's target Port when DF Run-time environment(monitoring.deploy_type) is "helm"
 
 # collect manager configuration info
 collectManager:
@@ -40,6 +38,3 @@ monitoring:
   puller_aggregate_interval: 30
   aggregate_type: "avg"                             # min, max, avg, last
   deploy_type: "compose"                            # deploy environment "compose" => docker-compose or others , "helm" => helm chart on k8s
-
-grpcServer:
-  port: 9999
