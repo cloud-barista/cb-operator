@@ -6,13 +6,12 @@ on:
   pull_request:
     branches:
       - master
+    paths:
+      - 'src/**'
     paths-ignore:
       - '**.md'
-      - '.all-contributorsrc'
-      - '.gitignore'
       - 'LICENSE'
-      - 'CODEOWNERS'
-
+      
 jobs:
   # The job key is "build"
   build:
@@ -52,4 +51,4 @@ jobs:
       - name: Build test
         run: |
           cd src
-          go build
+          make
