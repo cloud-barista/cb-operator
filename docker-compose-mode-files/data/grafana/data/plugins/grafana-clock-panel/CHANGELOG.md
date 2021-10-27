@@ -1,16 +1,19 @@
 # Change Log
-## 
+
+## [1.2.0]
+
+- Support local for date formats
+- Support refresh with dashboard time
+- Added dependency on Grafana 7.4+
 
 ## [1.1.1]
 
 - Improved background
-- Show timzeone
 
 ## [1.1.0]
 
 - Support for Grafana 7+
 - Built with @grafana/toolkit
-- Ported to react
 
 ## v1.0.3
 
