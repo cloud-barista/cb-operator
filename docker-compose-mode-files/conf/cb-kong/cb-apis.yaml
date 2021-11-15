@@ -15,28 +15,73 @@ routes:
   - name: basic-auth
     config:
       hide_credentials: true
+
 - name: cb-spider-get-method
   paths:
   - /spider
   methods:
   - GET
   service: cb-spider
-- name: cb-tumblebug
+
+- name: cb-tumblebug # With APIGW auth
   paths:
   - /tumblebug
+  methods:
+  - POST
+  - DELETE
+  - PUT
   service: cb-tumblebug
+  plugins:
+  - name: basic-auth
+    config:
+      hide_credentials: true
+
+- name: cb-tumblebug-get-method # No APIGW auth
+  paths:
+  - /tumblebug
+  methods:
+  - GET
+  service: cb-tumblebug
+
+- name: cb-tumblebug-control-mcis-vm # With APIGW auth
+  paths:
+  - /tumblebug/ns/.+/control
+  methods:
+  - GET
+  service: cb-tumblebug
+  plugins:
+  - name: basic-auth
+    config:
+      hide_credentials: true
+
+- name: cb-tumblebug-post-method # No APIGW auth
+  paths:
+  - /tumblebug/ns/.+/resources/filterSpecs
+  - /tumblebug/ns/.+/resources/filterSpecsByRange
+  - /tumblebug/ns/.+/resources/searchImage
+  - /tumblebug/lookupSpecs
+  - /tumblebug/lookupSpec
+  - /tumblebug/lookupImages
+  - /tumblebug/lookupImage
+  methods:
+  - POST
+  service: cb-tumblebug
+
 - name: cb-mcks
   paths:
   - /mcks
   service: cb-mcks
+
 - name: cb-dragonfly
   paths:
   - /dragonfly
   service: cb-dragonfly
+
 - name: cb-webtool
   paths:
   - /webtool
   service: cb-webtool
+
 - name: cb-tumblebug-grpc
   protocols:
   - grpc
