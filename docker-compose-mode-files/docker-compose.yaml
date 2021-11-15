@@ -201,7 +201,7 @@ services:
       - API_USERNAME=default
       - API_PASSWORD=default
 
- # CB-Dragonfly
+# CB-Dragonfly
   cb-dragonfly:
     image: cloudbaristaorg/cb-dragonfly:0.4.3
     container_name: cb-dragonfly
@@ -384,8 +384,8 @@ services:
       - "0.0.0.0:9443:8443" # REST SSL
       - "0.0.0.0:9500:8500" # gRPC
       - "0.0.0.0:9543:8543" # gRPC SSL
-      - "0.0.0.0:9001:8001" # local debug
-      - "0.0.0.0:9444:8444" # local debug SSL
+      - "0.0.0.0:9001:8001" # Admin
+      - "0.0.0.0:9444:8444" # Admin SSL
 
 #networks:
 #  cb-dragonfly:
