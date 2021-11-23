@@ -1,8 +1,10 @@
+# Important: Need to modify ../conf/cb-dragonfly/conf.yaml
+# monitoring.deploy_type = "compose" ==> monitoring.deploy_type = "dev"
 version: "3.3"
 services:
  # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:0.4.3
+    image: cloudbaristaorg/cb-dragonfly:0.4.4
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly/:/go/src/github.com/cloud-barista/cb-dragonfly/conf/
