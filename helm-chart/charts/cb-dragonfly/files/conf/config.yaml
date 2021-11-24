@@ -2,16 +2,16 @@
 
 # influxdb connection info
 influxdb:
-  endpoint_url: cb-dragonfly-influxdb             # endpoint for influxDB
-  helm_port: 28086                                # Usage Port when DF Run-time environment(monitoring.deploy_type) is "dev"
+  endpoint_url: cb-dragonfly-influxdb              # endpoint for influxDB
+  helm_port: 28086                                 # Usage Port when DF Run-time environment(monitoring.deploy_type) is "dev"
   database: cbmon
   user_name: cbmon
   password: password
-  rpDuration: 4w                                  # retention Policy for DB (h, d, w), min: 1h max: 0s
+  rpDuration: 4w                                   # retention Policy for DB (h, d, w), min: 1h max: 0s
 
 kapacitor:
-  endpoint_url: cb-dragonfly-kapacitor            # endpoint to kapacitor
-  helm_port: 29092                                # Usage Port when DF Run-time environment(monitoring.deploy_type) is "dev"
+  endpoint_url: cloud-barista-dragonfly-kapacitor  # endpoint to kapacitor
+  helm_port: 29092                                 # Usage Port when DF Run-time environment(monitoring.deploy_type) is "dev"
 
 kafka:
   endpoint_url: cb-dragonfly-kafka
