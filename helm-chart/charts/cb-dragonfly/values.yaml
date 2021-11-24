@@ -98,8 +98,6 @@ zookeeper:
   exporters:
     jmx:
       enabled: false
-  zookeeper:
-    enabled: false
 
 
 

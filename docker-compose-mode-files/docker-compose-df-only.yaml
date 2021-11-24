@@ -1,3 +1,5 @@
+# Important: Need to modify ../conf/cb-dragonfly/conf.yaml
+# monitoring.deploy_type = "compose" ==> monitoring.deploy_type = "dev"
 version: "3.3"
 services:
  # CB-Dragonfly
