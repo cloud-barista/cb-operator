@@ -75,7 +75,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:0.4.9
+    image: cloudbaristaorg/cb-spider:0.4.18
     container_name: cb-spider
     ports:
       - "0.0.0.0:1024:1024"
@@ -97,7 +97,7 @@ services:
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:0.4.6
+    image: cloudbaristaorg/cb-tumblebug:0.4.16
     container_name: cb-tumblebug
     ports:
       - "0.0.0.0:1323:1323"
@@ -169,7 +169,7 @@ services:
       - cb-tumblebug
 
   cb-tumblebug-mapui:
-    image: cloudbaristaorg/cb-mapui:0.4.1
+    image: cloudbaristaorg/cb-mapui:0.4.5
     container_name: cb-tumblebug-mapui
     ports:
       - 0.0.0.0:1324:1324
@@ -178,7 +178,7 @@ services:
 
   # CB-MCKS
   cb-mcks:
-    image: cloudbaristaorg/cb-mcks:0.4.3
+    image: cloudbaristaorg/cb-mcks:0.4.4
     container_name: cb-mcks
     ports:
       - "0.0.0.0:1470:1470"
