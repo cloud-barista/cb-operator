@@ -2,6 +2,6 @@ apiVersion: v2
 name: cb-mcks
 type: application
 version: 0.4.0
-appVersion: 0.4.3
+appVersion: 0.4.4
 description: CB-MCKS Helm chart
 

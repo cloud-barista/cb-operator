@@ -2,5 +2,5 @@ apiVersion: v2
 name: cb-tumblebug-mapui
 type: application
 version: 0.4.0
-appVersion: 0.4.1
+appVersion: 0.4.5
 description: cb-tumblebug-mapui Helm chart
