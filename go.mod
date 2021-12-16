@@ -1,6 +1,6 @@
 module github.com/cloud-barista/cb-operator
 
-go 1.12
+go 1.17
 
 require (
 	github.com/mitchellh/go-homedir v1.1.0
