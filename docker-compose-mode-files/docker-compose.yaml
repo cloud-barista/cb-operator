@@ -75,7 +75,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:0.5.0
+    image: cloudbaristaorg/cb-spider:0.5.3
     container_name: cb-spider
     ports:
       - "0.0.0.0:1024:1024"
@@ -169,7 +169,7 @@ services:
       - cb-tumblebug
 
   cb-tumblebug-mapui:
-    image: cloudbaristaorg/cb-mapui:0.5.0
+    image: cloudbaristaorg/cb-mapui:0.5.1
     container_name: cb-tumblebug-mapui
     ports:
       - 0.0.0.0:1324:1324
@@ -178,7 +178,7 @@ services:
 
   # CB-MCKS
   cb-mcks:
-    image: cloudbaristaorg/cb-mcks:0.5.0
+    image: cloudbaristaorg/cb-mcks:0.5.1
     container_name: cb-mcks
     ports:
       - "0.0.0.0:1470:1470"
@@ -203,7 +203,7 @@ services:
 
 # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:0.5.0
+    image: cloudbaristaorg/cb-dragonfly:0.5.1
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly/:/go/src/github.com/cloud-barista/cb-dragonfly/conf/
