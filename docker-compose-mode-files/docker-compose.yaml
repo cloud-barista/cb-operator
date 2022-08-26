@@ -75,7 +75,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:0.6.0
+    image: cloudbaristaorg/cb-spider:0.6.6
     container_name: cb-spider
     ports:
       - "0.0.0.0:1024:1024"
@@ -89,7 +89,6 @@ services:
       - cb-restapigw
     environment:
       - PLUGIN_SW=OFF
-      - MEERKAT=OFF
       # if you leave these values empty, REST Auth will be disabled.
       - API_USERNAME=
       - API_PASSWORD=

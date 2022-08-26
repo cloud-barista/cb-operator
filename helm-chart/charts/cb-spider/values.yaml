@@ -14,8 +14,6 @@ env:
   value: ":31024"
 - name: PLUGIN_SW
   value: "OFF"
-- name: MEERKAT
-  value: "OFF"
 - name: API_USERNAME
   value: ""
 - name: API_PASSWORD

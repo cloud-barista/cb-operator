@@ -199,8 +199,15 @@ etcd:
   auth:
     rbac:
       enabled: false
+      create: false
       allowNoneAuthentication: true
       rootPassword: ""
+  readinessProbe:
+    enabled: false
+  livenessProbe:
+    enabled: false
+  startupProbe:
+    enabled: false
 
 # sub-chart : ingress
 ingress:

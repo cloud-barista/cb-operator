@@ -5,6 +5,10 @@ metadata:
   labels:
     {{- include "cb-spider.labels" .  | nindent 4 }}
 data:
+  calllog_conf.yaml: |-
+    {{ range .Files.Lines "files/conf/calllog_conf.yaml" }}
+    {{ . }}
+    {{ end }}
   grpc_conf.yaml: |-
     {{ range .Files.Lines "files/conf/grpc_conf.yaml" }}
     {{ . }}
@@ -15,13 +19,5 @@ data:
     {{ end }}
   store_conf.yaml: |-
     {{ range .Files.Lines "files/conf/store_conf.yaml" }}
-    {{ . }}
-    {{ end }}
-  calllog_conf.yaml: |-
-    {{ range .Files.Lines "files/conf/calllog_conf.yaml" }}
-    {{ . }}
-    {{ end }}
-  cloudos.yaml: |-
-    {{ range .Files.Lines "files/conf/cloudos.yaml" }}
     {{ . }}
     {{ end }}
