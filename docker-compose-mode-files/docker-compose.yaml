@@ -89,7 +89,6 @@ services:
       - cb-restapigw
     environment:
       - PLUGIN_SW=OFF
-      - MEERKAT=OFF
       # if you leave these values empty, REST Auth will be disabled.
       - API_USERNAME=
       - API_PASSWORD=
