@@ -30,7 +30,7 @@ var updateCmd = &cobra.Command{
 
 			case common.ModeKubernetes:
 				cmdStr = fmt.Sprintf("helm upgrade --namespace %s --install %s -f %s ../helm-chart", common.CBK8sNamespace, common.CBHelmReleaseName, common.FileStr)
-				if strings.ToLower(k8sprovider) == "gke" {
+				if strings.ToLower(k8sprovider) == "gke" || strings.ToLower(k8sprovider) == "aks" {
 					cmdStr += " --set metricServer.enabled=false"
 				}
 				//fmt.Println(cmdStr)
