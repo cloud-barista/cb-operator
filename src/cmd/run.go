@@ -61,7 +61,7 @@ var runCmd = &cobra.Command{
 					cmdStr += " --set cb-restapigw.service.type=LoadBalancer"
 					cmdStr += " --set cb-webtool.service.type=LoadBalancer"
 
-					if strings.ToLower(k8sprovider) == "gke" {
+					if strings.ToLower(k8sprovider) == "gke" || strings.ToLower(k8sprovider) == "aks" {
 						cmdStr += " --set metricServer.enabled=false"
 					}
 
