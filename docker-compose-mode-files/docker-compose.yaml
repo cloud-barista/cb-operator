@@ -75,7 +75,7 @@ services:
 
   # CB-Spider
   cb-spider:
-    image: cloudbaristaorg/cb-spider:0.6.6
+    image: cloudbaristaorg/cb-spider:0.7.0
     container_name: cb-spider
     ports:
       - "0.0.0.0:1024:1024"
@@ -96,7 +96,7 @@ services:
 
   # CB-Tumblebug
   cb-tumblebug:
-    image: cloudbaristaorg/cb-tumblebug:0.6.0
+    image: cloudbaristaorg/cb-tumblebug:0.7.0
     container_name: cb-tumblebug
     ports:
       - "0.0.0.0:1323:1323"
@@ -170,7 +170,7 @@ services:
       - cb-tumblebug
 
   cb-tumblebug-mapui:
-    image: cloudbaristaorg/cb-mapui:0.6.0
+    image: cloudbaristaorg/cb-mapui:0.7.0
     container_name: cb-tumblebug-mapui
     ports:
       - 0.0.0.0:1324:1324
@@ -179,7 +179,7 @@ services:
 
   # CB-MCKS
   cb-mcks:
-    image: cloudbaristaorg/cb-mcks:0.6.0
+    image: cloudbaristaorg/cb-mcks:0.7.0
     container_name: cb-mcks
     ports:
       - "0.0.0.0:1470:1470"
@@ -204,7 +204,7 @@ services:
 
 # CB-Dragonfly
   cb-dragonfly:
-    image: cloudbaristaorg/cb-dragonfly:0.6.0
+    image: cloudbaristaorg/cb-dragonfly:0.7.0
     container_name: cb-dragonfly
     volumes:
       - ./conf/cb-dragonfly/:/go/src/github.com/cloud-barista/cb-dragonfly/conf/
@@ -309,7 +309,7 @@ services:
 
   # CB-Webtool
   cb-webtool:
-    image: cloudbaristaorg/cb-webtool:0.6.0
+    image: cloudbaristaorg/cb-webtool:0.7.0
     container_name: cb-webtool
     ports:
       - "0.0.0.0:1234:1234"
@@ -366,27 +366,27 @@ services:
       - "0.0.0.0:7000:8000"
       - "0.0.0.0:7001:8001"
 
-  cb-kong:
-    image: kong:latest
-    container_name: cb-kong
-    volumes:
-      - ./conf/cb-kong:/usr/local/kong/declarative
-    environment:
-      - KONG_DATABASE=off
-      - KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/cb-apis.yaml
-      - KONG_PROXY_ACCESS_LOG=/dev/stdout
-      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
-      - KONG_PROXY_ERROR_LOG=/dev/stderr
-      - KONG_ADMIN_ERROR_LOG=/dev/stderr
-      - KONG_PROXY_LISTEN=0.0.0.0:8000, 0.0.0.0:8443 ssl, 0.0.0.0:8500 http2, 0.0.0.0:8543 ssl http2
-      - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
-    ports:
-      - "0.0.0.0:9000:8000" # REST
-      - "0.0.0.0:9443:8443" # REST SSL
-      - "0.0.0.0:9500:8500" # gRPC
-      - "0.0.0.0:9543:8543" # gRPC SSL
-      - "0.0.0.0:9001:8001" # Admin
-      - "0.0.0.0:9444:8444" # Admin SSL
+  # cb-kong:
+  #   image: kong:latest
+  #   container_name: cb-kong
+  #   volumes:
+  #     - ./conf/cb-kong:/usr/local/kong/declarative
+  #   environment:
+  #     - KONG_DATABASE=off
+  #     - KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/cb-apis.yaml
+  #     - KONG_PROXY_ACCESS_LOG=/dev/stdout
+  #     - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+  #     - KONG_PROXY_ERROR_LOG=/dev/stderr
+  #     - KONG_ADMIN_ERROR_LOG=/dev/stderr
+  #     - KONG_PROXY_LISTEN=0.0.0.0:8000, 0.0.0.0:8443 ssl, 0.0.0.0:8500 http2, 0.0.0.0:8543 ssl http2
+  #     - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+  #   ports:
+  #     - "0.0.0.0:9000:8000" # REST
+  #     - "0.0.0.0:9443:8443" # REST SSL
+  #     - "0.0.0.0:9500:8500" # gRPC
+  #     - "0.0.0.0:9543:8543" # gRPC SSL
+  #     - "0.0.0.0:9001:8001" # Admin
+  #     - "0.0.0.0:9444:8444" # Admin SSL
 
 #networks:
 #  cb-dragonfly:
