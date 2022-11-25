@@ -1,6 +1,17 @@
-# v0.6.0 (Cafe Latte, 2022.07.08.)
 
-## What's Changed
+## v0.7.0 (Cortado, 2022.11.25.)
+
+### What's Changed
+
+* Update CB manifests by @jihoon-seo in https://github.com/cloud-barista/cb-operator/pull/185
+* Update CB Helm chart by @jihoon-seo in https://github.com/cloud-barista/cb-operator/pull/186
+* Update CB-Dragonfly conf files by @inno-cloudbarista in https://github.com/cloud-barista/cb-operator/pull/187
+
+**Full Changelog**: https://github.com/cloud-barista/cb-operator/compare/v0.6.0...v0.7.0
+
+## v0.6.0 (Cafe Latte, 2022.07.08.)
+
+### What's Changed
 
 * Bump actions/checkout from 2 to 3 by @dependabot in <https://github.com/cloud-barista/cb-operator/pull/179>
 * Bump peter-evans/create-pull-request from 3 to 4 by @dependabot in <https://github.com/cloud-barista/cb-operator/pull/180>
@@ -11,9 +22,9 @@
 
 **Full Changelog**: <https://github.com/cloud-barista/cb-operator/compare/v0.5.0...v0.6.0>
 
-# v0.5.0 (Affogato, 2021.12.16.)
+## v0.5.0 (Affogato, 2021.12.16.)
 
-## What's Changed
+### What's Changed
 
 * [Workflow] Update CHANGELOG-generated.md by @jihoon-seo in [#132](https://github.com/cloud-barista/cb-operator/pull/132)
 * Add support for GKE by @jihoon-seo in [#134](https://github.com/cloud-barista/cb-operator/pull/134)
@@ -39,23 +50,23 @@
 * Fix error in df config for helm chart by @seokho-son in [#174](https://github.com/cloud-barista/cb-operator/pull/174)
 * Update config files by @jihoon-seo in [#175](https://github.com/cloud-barista/cb-operator/pull/175)
 
-## New Contributors
+### New Contributors
 
 * @computerphilosopher made their first contribution in [#163](https://github.com/cloud-barista/cb-operator/pull/163)
 * @hyokyungk made their first contribution in [#172](https://github.com/cloud-barista/cb-operator/pull/172)
 
 **Full Changelog**: <https://github.com/cloud-barista/cb-operator/compare/v0.4.0...v0.5.0>
 
-# v0.4.0 (Cafe Mocha, 2021.06.30.)
+## v0.4.0 (Cafe Mocha, 2021.06.30.)
 
 ### Feature
 
 * Remove CB-Dragonfly-related Docker network ([#110](https://github.com/cloud-barista/cb-operator/pull/110))
 * Modify PV access mode to ReadWriteOnce ([#127](https://github.com/cloud-barista/cb-operator/pull/127))
 
-# v0.3.0-espresso (2020.12.10.)
+## v0.3.0-espresso (2020.12.10.)
 
-## ChangeLog
+### ChangeLog
 
 ### Feature
 
@@ -66,7 +77,7 @@
 * Add Prometheus and Grafana to CB Helm chart (#81)
 * Change docker network name (#87)
 
-# v0.2.0-cappuccino (2020.06.02.)
+## v0.2.0-cappuccino (2020.06.02.)
 
 ### Changelog
 

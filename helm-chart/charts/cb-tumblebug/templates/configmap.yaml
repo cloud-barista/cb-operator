@@ -5,6 +5,10 @@ metadata:
   labels:
     {{- include "cb-tumblebug.labels" .  | nindent 4 }}
 data:
+  cloud_conf.yaml: |-
+    {{ range .Files.Lines "files/conf/cloud_conf.yaml" }}
+    {{ . }}
+    {{ end }}
   grpc_conf.yaml: |-
     {{ range .Files.Lines "files/conf/grpc_conf.yaml" }}
     {{ . }}
