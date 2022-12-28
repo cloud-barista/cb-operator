@@ -67,10 +67,10 @@ routes:
   - POST
   service: cb-tumblebug
 
-- name: cb-mcks
+- name: cb-ladybug
   paths:
-  - /mcks
-  service: cb-mcks
+  - /ladybug
+  service: cb-ladybug
 
 - name: cb-dragonfly
   paths:
@@ -105,8 +105,8 @@ services:
 #     - /spider
 - name: cb-tumblebug
   url: http://cb-tumblebug:1323/tumblebug
-- name: cb-mcks
-  url: http://cb-mcks:1470/mcks
+- name: cb-ladybug
+  url: http://cb-ladybug:1470/ladybug
 - name: cb-dragonfly
   url: http://cb-dragonfly:9090/dragonfly
 - name: cb-webtool

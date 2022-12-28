@@ -41,8 +41,8 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  restPort: 1592
-  grpcPort: 50256
+  restPort: 1470
+  grpcPort: 50254
 
 ingress:
   enabled: false

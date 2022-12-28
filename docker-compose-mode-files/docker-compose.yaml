@@ -177,10 +177,10 @@ services:
     depends_on:
       - cb-tumblebug
 
-  # CB-MCKS
-  cb-mcks:
-    image: cloudbaristaorg/cb-mcks:0.7.0
-    container_name: cb-mcks
+  # CB-Ladybug
+  cb-ladybug:
+    image: cloudbaristaorg/cb-ladybug:0.7.2
+    container_name: cb-ladybug
     ports:
       - "0.0.0.0:1470:1470"
       - "0.0.0.0:50254:50254"
@@ -189,16 +189,16 @@ services:
       - cb-spider
       - cb-tumblebug
     volumes:
-      - ./conf/cb-mcks/:/app/conf/
-      - ./data/cb-mcks/meta_db/:/app/meta_db/
-      - ./data/cb-mcks/log/:/app/log/
+      - ./conf/cb-ladybug/:/app/conf/
+      - ./data/cb-ladybug/meta_db/:/app/meta_db/
+      - ./data/cb-ladybug/log/:/app/log/
     environment:
 #     - CBLOG_ROOT=/app
 #     - CBSTORE_ROOT=/app
 #     - APP_ROOT=/app
       - SPIDER_URL=http://cb-spider:1024/spider
       - TUMBLEBUG_URL=http://cb-tumblebug:1323/tumblebug
-      - BASE_PATH=/mcks
+      - BASE_PATH=/ladybug
       - API_USERNAME=default
       - API_PASSWORD=default
 
@@ -323,7 +323,7 @@ services:
       - SPIDER_URL=http://cb-spider:1024/spider
       - TUMBLE_URL=http://cb-tumblebug:1323/tumblebug
       - DRAGONFLY_URL=http://cb-dragonfly:9090/dragonfly
-      - LADYBUG_URL=http://cb-mcks:1470/mcks
+      - LADYBUG_URL=http://cb-ladybug:1470/ladybug
       - LoginUser=admin
       - LoginEmail=admin
       - LoginPassword=admin

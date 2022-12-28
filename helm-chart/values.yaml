@@ -47,23 +47,12 @@ cb-tumblebug:
     size: 1Gi
     accessMode: 'ReadWriteOnce'
 
-cb-mcks:
+cb-ladybug:
   enabled: true
   service:
     type: NodePort
     restNodePort: 31470
     grpcNodePort: 30254
-  persistence:
-    enabled: false
-    size: 1Gi
-    accessMode: 'ReadWriteOnce'
-
-cb-ladybug:
-  enabled: false
-  service:
-    type: NodePort
-    restNodePort: 31592
-    grpcNodePort: 30256
   persistence:
     enabled: false
     size: 1Gi

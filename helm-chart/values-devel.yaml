@@ -10,9 +10,6 @@ cb-spider:
 cb-tumblebug:
   enabled: true
 
-cb-mcks:
-  enabled: true
-
 cb-ladybug:
   enabled: true
 

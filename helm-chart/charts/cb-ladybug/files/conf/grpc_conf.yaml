@@ -1,7 +1,7 @@
 version: 1
 grpc:
   ladybugsrv:
-    addr: :50256
+    addr: :50254
     #reflection: enable
     #tls:
     #  tls_cert: $APP_ROOT/certs/server.crt
@@ -16,4 +16,3 @@ grpc:
           endpoint: localhost:6834
           service_name: ladybug grpc server
           sample_rate: 1
-          

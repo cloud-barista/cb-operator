@@ -33,7 +33,7 @@ agent:
 # monitoring interval configuration info
 monitoring:
   mcis_agent_interval: 2                            # mcis_agent interval (s)
-  mck8s_agent_interval: 30                          # mcks_agent interval (s)
+  mck8s_agent_interval: 30                          # ladybug_agent interval (s)
   mcis_collector_interval: 10                       # aggregate interval (s)
   mck8s_collector_interval: 60                      # aggregate interval (s)
   max_host_count:  5                                # maximum host count per collector
