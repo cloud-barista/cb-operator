@@ -69,10 +69,8 @@ spec:
             path: store_conf.yaml
           - key: cb-dragonfly-apis.yaml
             path: apis/cb-dragonfly-apis.yaml
-          - key: cb-mcks-apis.yaml
-            path: apis/cb-mcks-apis.yaml
-          # - key: cb-ladybug-apis.yaml
-          #   path: apis/cb-ladybug-apis.yaml
+          - key: cb-ladybug-apis.yaml
+            path: apis/cb-ladybug-apis.yaml
           - key: cb-spider-apis.yaml
             path: apis/cb-spider-apis.yaml
           - key: cb-tumblebug-apis.yaml

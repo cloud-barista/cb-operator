@@ -17,11 +17,8 @@ dependencies:
   - name: cb-tumblebug
     version: 0.7.0
     condition: cb-tumblebug.enabled
-  - name: cb-mcks
-    version: 0.7.0
-    condition: cb-mcks.enabled
   - name: cb-ladybug
-    version: 0.7.0
+    version: 0.7.1
     condition: cb-ladybug.enabled
   - name: cb-webtool
     version: 0.7.0

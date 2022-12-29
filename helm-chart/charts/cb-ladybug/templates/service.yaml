@@ -13,14 +13,14 @@ spec:
     - port: {{ .Values.service.restPort }}
       protocol: TCP
       name: rest
-      targetPort: 1592
+      targetPort: 1470
 {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.restNodePort))) }}
       nodePort: {{ .Values.service.restNodePort }}
 {{- end }}
     - port: {{ .Values.service.grpcPort }}
       protocol: TCP
       name: grpc
-      targetPort: 50256
+      targetPort: 50254
 {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.grpcNodePort))) }}
       nodePort: {{ .Values.service.grpcNodePort }}
 {{- end }}

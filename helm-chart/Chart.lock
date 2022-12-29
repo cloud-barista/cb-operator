@@ -11,9 +11,6 @@ dependencies:
 - name: cb-tumblebug
   repository: ""
   version: 0.6.0
-- name: cb-mcks
-  repository: ""
-  version: 0.6.0
 - name: cb-ladybug
   repository: ""
   version: 0.6.0

@@ -20,14 +20,10 @@ spec:
         backend:
           serviceName: cb-tumblebug
           servicePort: 1323
-      - path: /mcks/*
-        backend:
-          serviceName: cb-mcks
-          servicePort: 1470
       - path: /ladybug/*
         backend:
           serviceName: cb-ladybug
-          servicePort: 1592
+          servicePort: 1470
       - path: /dragonfly/*
         backend:
           serviceName: cb-dragonfly
