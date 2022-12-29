@@ -2,5 +2,5 @@ apiVersion: v2
 name: cb-spider
 type: application
 version: 0.7.0
-appVersion: 0.7.0
+appVersion: 0.7.2
 description: CB-Spider Helm chart
