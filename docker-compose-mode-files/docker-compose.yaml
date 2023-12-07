@@ -85,8 +85,8 @@ services:
       - ./conf/cb-spider/:/root/go/src/github.com/cloud-barista/cb-spider/conf/
       - ./data/cb-spider/meta_db/:/root/go/src/github.com/cloud-barista/cb-spider/meta_db/
       - ./data/cb-spider/log/:/root/go/src/github.com/cloud-barista/cb-spider/log/
-    depends_on:
-      - cb-restapigw
+    # depends_on:
+    #   - cb-restapigw
     environment:
       - PLUGIN_SW=OFF
       # if you leave these values empty, REST Auth will be disabled.
@@ -102,7 +102,7 @@ services:
       - "0.0.0.0:1323:1323"
       - "0.0.0.0:50252:50252"
     depends_on:
-      - cb-restapigw
+      # - cb-restapigw
       - cb-spider
       # - cb-tumblebug-mysql
     volumes:
