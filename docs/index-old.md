@@ -166,7 +166,7 @@ Server: Docker Engine - Community
 
 ## Install Docker Compose
 - On Ubuntu/Debian: `sudo apt install docker-compose`
-- Tested version: 1.17.1
+- Tested version: 1.21.4
 
 # Command to build the operator from souce code
 ```Shell

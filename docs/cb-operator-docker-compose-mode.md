@@ -64,10 +64,10 @@
   
 ```bash
 # Golang 다운로드
-wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
+wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
 
 # 기존 Golang 삭제 및 압축파일 해제
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.2.linux-amd64.tar.gz
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
 
 # ~/.bashrc 또는 ~/.zshrc 등에 다음 라인을 추가
 export PATH=$PATH:/usr/local/go/bin

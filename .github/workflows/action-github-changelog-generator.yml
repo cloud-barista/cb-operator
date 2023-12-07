@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate changelog for master branch
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Generate changelog
-        uses: heinrichreimer/action-github-changelog-generator@v2.3
+        uses: heinrichreimer/action-github-changelog-generator@v2.4
         with:
           output: CHANGELOG-generated.md
 #          token: ${{ secrets.GITHUB_TOKEN }}
