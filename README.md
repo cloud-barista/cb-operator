@@ -14,7 +14,21 @@
 [![Release Version](https://img.shields.io/github/v/release/cloud-barista/cb-operator)](https://github.com/cloud-barista/cb-operator/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/cloud-barista/cb-operator/blob/master/LICENSE)
 
+<br>
+
+---
+
+> ⚠️ **Archived Repository**  
+> This repository has been archived and is no longer actively maintained.  
+> It is kept for historical reference, and no new issues or pull requests are being accepted.  
+
+---
+
+<br>
+
+
 The Operation Tool for Cloud-Barista System Runtime
+
 
 ```
 [NOTE]
